@@ -34,11 +34,31 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
   }, { dependencies: [pathname] })
 
   const transitionTo = (href: string) => {
-    if (!overlayRef.current || href === pathname) return
+    if (!overlayRef.current) return
+
+    // Check if it's an anchor on the current page
+    const [pathPart, anchorPart] = href.split('#')
+    const isSamePageAnchor = anchorPart && (pathPart === pathname || pathPart === '')
+
+    if (href === pathname && !anchorPart) return
 
     const tl = gsap.timeline({
       onComplete: () => {
-        router.push(href)
+        if (isSamePageAnchor) {
+          // Scroll to the element
+          const element = document.getElementById(anchorPart)
+          if (element) {
+            element.scrollIntoView()
+          }
+          // Since pathname won't change, we manually trigger the reveal reveal
+          gsap.to(overlayRef.current, {
+            y: '-100%',
+            duration: 1.2,
+            ease: 'power4.inOut',
+          })
+        } else {
+          router.push(href)
+        }
       }
     })
 

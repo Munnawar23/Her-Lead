@@ -68,12 +68,17 @@ const ServicesSection = () => {
   }, [hoveredIndex])
 
   return (
-    <section ref={containerRef} className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 py-20 md:py-40 flex items-start overflow-hidden'>
+    <section id="services" ref={containerRef} className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 pt-10 md:pt-20 pb-20 md:pb-40 flex flex-col items-center overflow-hidden'>
+      <div className='mb-24 text-center overflow-hidden'>
+        <h2 className='reveal-text font-heading text-7xl md:text-8xl lg:text-[8vw] text-text leading-[0.8] tracking-tighter uppercase font-bold'>
+          Services<span className='text-primary'>.</span>
+        </h2>
+      </div>
       <div className='max-w-full mx-auto w-full grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-20 lg:gap-32 items-start'>
         
         {/* Left Side - Video & Current Service Details */}
-        <div className='image-stage relative order-2 lg:order-1 max-w-sm lg:max-w-md'>
-          <div className='w-full aspect-square overflow-hidden rounded-sm bg-black/5'>
+        <div className='image-stage lg:sticky lg:top-40 relative order-2 lg:order-1 max-w-sm lg:max-w-md w-full'>
+          <div className='w-full aspect-square overflow-hidden rounded-sm bg-black/5 relative z-0'>
             {services.map((service, index) => (
               <video
                 key={service.id}
@@ -87,25 +92,25 @@ const ServicesSection = () => {
             ))}
           </div>
           
-          <div className='mt-8 space-y-2'>
+          <div className='mt-8 space-y-2 relative z-0'>
             <h4 className='font-heading text-sm md:text-base text-text font-medium'>
               {services[hoveredIndex].category}
             </h4>
-            <p className='font-body text-[12px] md:text-sm text-text/50 leading-relaxed'>
+            <p className='font-body text-[12px] md:text-sm text-text/50 leading-relaxed italic'>
               {services[hoveredIndex].description}
             </p>
           </div>
         </div>
 
         {/* Right Side - Vertical List of Service Names */}
-        <div className='services-list space-y-1 md:space-y-2 order-1 lg:order-2 flex flex-col'>
+        <div className='services-list space-y-4 md:space-y-6 order-1 lg:order-2 flex flex-col relative z-10'>
             {services.map((service, index) => (
               <div 
                 key={service.id}
                 className='service-item-row group cursor-pointer inline-block'
                 onMouseEnter={() => setHoveredIndex(index)}
               >
-                <h3 className={`font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] transition-all duration-300 ${hoveredIndex === index ? 'text-text' : 'text-text/10'}`}>
+                <h3 className={`font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] transition-all duration-500 ${hoveredIndex === index ? 'text-text translate-x-4' : 'text-text/10'}`}>
                   {service.name}
                 </h3>
               </div>

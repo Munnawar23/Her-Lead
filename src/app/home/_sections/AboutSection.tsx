@@ -75,7 +75,7 @@ const AboutSection = () => {
   }, { scope: containerRef })
 
   return (
-    <section ref={containerRef} className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 py-20 md:py-32 overflow-hidden flex flex-col justify-center'>
+    <section ref={containerRef} className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 pt-20 md:pt-32 pb-10 md:pb-20 overflow-hidden flex flex-col justify-center'>
       <div className='max-w-full mx-auto space-y-24'>
         
         {/* Hero Statement */}

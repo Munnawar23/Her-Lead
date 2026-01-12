@@ -24,10 +24,11 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
   const { transitionTo } = useTransition()
 
   const menuItems = [
-    { name: 'Home', path: '/home', img: aboutImg },
-    { name: 'About', path: '/about', img: lionImg },
-    { name: 'Services', path: '/services', img: postImg },
-    { name: 'Projects', path: '/projects', img: logoImg },
+    { name: 'Home', path: '/home', img: logoImg },
+    { name: 'About', path: '/about', img: aboutImg },
+    { name: 'Services', path: '/home#services', img: postImg },
+    { name: 'Careers', path: '/careers', img: lionImg },
+    { name: 'Contact us', path: '/home#contact', img: logoImg },
   ]
 
   useGSAP(() => {
@@ -76,6 +77,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
   const handleLinkClick = (e: React.MouseEvent, path: string) => {
     e.preventDefault()
     onClose()
+    
     setTimeout(() => {
       transitionTo(path)
     }, 600)
@@ -84,34 +86,34 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
   return (
     <div 
       ref={containerRef}
-      className="fixed top-0 -left-full w-full h-screen bg-white z-100 overflow-hidden flex flex-col justify-center"
+      className="nav-menu-container fixed top-0 -left-full w-full h-screen bg-black z-100 overflow-hidden flex flex-col justify-center"
     >
       <div 
         onClick={onClose}
-        className="absolute top-0 right-0 p-10 text-xl font-bold uppercase cursor-pointer text-black hover:text-primary transition-colors"
+        className="absolute top-0 right-0 p-10 text-xl font-bold uppercase cursor-pointer text-white hover:text-primary transition-colors"
       >
         Close
       </div>
 
       <div 
         ref={socialsRef}
-        className="absolute bottom-0 left-0 m-10 md:mx-24 flex gap-8 socials text-black"
+        className="absolute bottom-0 left-0 m-10 md:mx-24 flex gap-8 socials text-white"
       >
         <span className="uppercase tracking-widest text-sm font-bold cursor-pointer hover:text-primary">Facebook</span>
         <span className="uppercase tracking-widest text-sm font-bold cursor-pointer hover:text-primary">Instagram</span>
       </div>
 
-      <nav className="flex flex-col py-20">
+      <nav className="flex flex-col justify-center items-center md:items-start py-10 md:py-20">
         {menuItems.map((item, index) => (
           <div 
             key={item.name}
             ref={(el) => { menuItemsRef.current[index] = el }}
-            className="group relative px-[6vw] overflow-visible h-[12vh] flex items-center"
+            className="group relative px-[6vw] overflow-visible h-[8vh] md:h-[12vh] flex items-center justify-center md:justify-start w-full"
           >
             <a 
               href={item.path}
               onClick={(e) => handleLinkClick(e, item.path)}
-              className="relative z-10 text-[7vw] leading-none font-bold tracking-tighter text-black transition-opacity duration-300 group-hover:opacity-0 cursor-pointer italic"
+              className="relative z-10 text-[10vw] md:text-[7vw] leading-none font-bold tracking-tighter text-white transition-opacity duration-300 group-hover:opacity-0 cursor-pointer italic"
             >
               {item.name}
             </a>
@@ -129,7 +131,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
                 {[...Array(6)].map((_, i) => (
                   <span 
                     key={i}
-                    className="text-[7vw] leading-none font-bold tracking-tighter text-[#d6d6d6] italic px-4"
+                    className="text-[10vw] md:text-[7vw] leading-none font-bold tracking-tighter text-white/20 italic px-4"
                   >
                     {item.name} —
                   </span>
