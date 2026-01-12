@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { TransitionProvider } from "@/components/TransitionProvider";
 
 export const metadata: Metadata = {
   title: "Her Lead",
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body>
         <CustomCursor />
         <SmoothScroll>
-          {children}
+          <TransitionProvider>
+            {children}
+          </TransitionProvider>
         </SmoothScroll>
       </body>
     </html>

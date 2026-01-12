@@ -68,7 +68,7 @@ const SplashScreen = () => {
       <div className='flex flex-wrap justify-center items-center gap-2 sm:gap-3 px-4 max-w-4xl text-center'>
         <h1 
           ref={line1Ref}
-          className='text-lg sm:text-2xl md:text-3xl font-bold text-yellow-500 opacity-0'
+          className='text-lg sm:text-2xl md:text-3xl font-bold text-primary opacity-0'
         >
           Her Lead
         </h1>
