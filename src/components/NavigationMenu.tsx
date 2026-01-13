@@ -113,7 +113,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
             <a 
               href={item.path}
               onClick={(e) => handleLinkClick(e, item.path)}
-              className="relative z-10 text-[10vw] md:text-[7vw] leading-none font-bold tracking-tighter text-white transition-opacity duration-300 group-hover:opacity-0 cursor-pointer italic"
+              className="relative z-10 text-[8vw] md:text-[5.5vw] leading-none font-bold tracking-tighter text-white transition-opacity duration-300 group-hover:opacity-0 cursor-pointer italic"
             >
               {item.name}
             </a>
@@ -131,7 +131,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
                 {[...Array(6)].map((_, i) => (
                   <span 
                     key={i}
-                    className="text-[10vw] md:text-[7vw] leading-none font-bold tracking-tighter text-white/20 italic px-4"
+                    className="text-[8vw] md:text-[5.5vw] leading-none font-bold tracking-tighter text-white/10 italic px-4"
                   >
                     {item.name} —
                   </span>

@@ -75,13 +75,13 @@ const AboutPage = () => {
           <div className="md:col-span-6 lg:col-span-5 space-y-10 md:space-y-12">
             <div className="max-w-2xl overflow-hidden">
               <p className="reveal-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.9] tracking-tighter text-black">
-                Experienced team of in-house experts in <span className="text-primary italic">360° digital</span> elevation.
+                We are an experienced team of in-house experts in <span className="text-primary italic">360° digital</span> elevation.
               </p>
             </div>
 
             <div className="max-w-2xl reveal-item">
               <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-black/60">
-                With talent and skills to ideate, organize, execute, publish, distribute and scale award winning content that results in impactful and measurable results for some of the world's biggest brands.
+                We have the talent and skills to ideate, organize, execute, publish, distribute and scale award winning content that results in impactful and measurable results for some of the world's biggest brands.
               </p>
             </div>
 
@@ -111,15 +111,18 @@ const AboutPage = () => {
             <div className="max-w-2xl space-y-8">
               <div className="overflow-hidden">
                 <p className="reveal-text text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tighter text-black uppercase">
-                  Bold storytelling. <br/> Smart strategy. <br/> <span className="text-primary italic">Momentum.</span>
+                  Where public relations meets strategy, <span className="text-primary italic">your story</span> finds its audience
                 </p>
               </div>
               <div className="reveal-item space-y-8">
                 <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-black/80">
-                  As a full-service public relations agency, bold storytelling and smart strategy are at the core of everything we do. Media coverage that moves the needle and makes your brand newsworthy.
+                  As a full-service public relations agency, bold storytelling and smart strategy are at the core of everything we do. The cherry on top? Media coverage that moves the needle and makes your brand newsworthy.
                 </p>
                 <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-black/80">
-                  We blend traditional tactics with a digital-first approach to ensure your story stands out, shaping perception and turning any message into momentum for startups and national brands alike.
+                  Modern PR isn’t just about press releases and public image. It’s about shaping perception and turning any message into momentum. We’re a PR agency that blends traditional tactics with a digital-first approach to ensure your story stands out to consumers.
+                </p>
+                <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-black/80">
+                  Whether you’re a startup or a national brand, we offer custom public relations services that drive media visibility, trust and growth.
                 </p>
               </div>
             </div>
