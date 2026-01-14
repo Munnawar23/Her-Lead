@@ -1,65 +1,74 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
+import Image from 'next/image'
+import logo from '@/assets/images/logo.png'
+import { useTransition } from '@/components/TransitionProvider'
 
 const SplashScreen = () => {
-  const router = useRouter()
+  const { transitionTo } = useTransition()
   const containerRef = useRef<HTMLDivElement>(null)
-  const counterRef = useRef<HTMLHeadingElement>(null)
-  
-  // State to force re-render for counter if needed, though GSAP handles innerText better usually
-  // We will use a GSAP object to tween the value
   
   useGSAP(() => {
     const tl = gsap.timeline()
-    const counterObj = { value: 0 }
 
-    // 1. Counter Animation 0 -> 100
-    tl.to(counterObj, {
-      value: 100,
-      duration: 2.5,
-      ease: 'power2.out',
-      onUpdate: () => {
-         if (counterRef.current) {
-            counterRef.current.innerText = Math.round(counterObj.value) + '%'
-         }
-      }
+    // 1. Initial State
+    gsap.set('.word-cycle-item', { y: 20, opacity: 0 })
+    gsap.set('.brand-logo', { filter: 'blur(20px)', opacity: 0, scale: 1.1 })
+
+    // 2. Loading Bar
+    tl.to('.loading-bar', {
+       width: '100%',
+       duration: 3,
+       ease: 'none'
     })
 
-    // 2. Reveal Brand Name (simultaneously or slightly after)
-    .to('.loading-bar', {
-       width: '100%',
-       duration: 2.5,
-       ease: 'power2.out'
-    }, 0)
+    // 3. Word Cycle Sequence
+    const cycleWords = ['.word-1', '.word-2', '.word-3']
+    cycleWords.forEach((word, i) => {
+      tl.to(word, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.out'
+      }, i * 0.7)
+      .to(word, {
+        y: -20,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.in'
+      }, (i * 0.7) + 0.5)
+    })
 
-    // 3. Text Reveal
-    .to('.counter-container', {
+    // 4. Logo Premium Reveal
+    tl.to('.loading-section', {
        opacity: 0,
        duration: 0.5,
        ease: 'power2.inOut'
+    }, '-=0.2')
+    .to('.brand-logo', {
+      filter: 'blur(0px)',
+      opacity: 1,
+      scale: 1,
+      duration: 1.5,
+      ease: 'expo.out'
     })
-    .fromTo('.brand-text span', 
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power4.out' }
-    )
     .fromTo('.tagline',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
-      '-=0.5'
+      { opacity: 0, letterSpacing: '1em' },
+      { opacity: 1, letterSpacing: '0.5em', duration: 1.5, ease: 'power3.out' },
+      '-=1'
     )
 
-    // 4. Exit Animation (Curtain Up)
+    // 5. Exit Animation
     .to('.splash-curtain', {
-       height: 0,
+       yPercent: -100,
        duration: 1.2,
-       ease: 'power4.inOut',
-       delay: 0.5,
+       ease: 'expo.inOut',
+       delay: 0.8,
        onComplete: () => {
-         router.push('/home')
+         transitionTo('/home')
        }
     })
   }, { scope: containerRef })
@@ -67,43 +76,53 @@ const SplashScreen = () => {
   return (
     <div 
       ref={containerRef}
-      className='splash-curtain fixed inset-0 z-50 flex flex-col justify-between bg-black text-white px-6 py-8 overflow-hidden'
+      className='splash-curtain fixed inset-0 z-50 flex flex-col justify-between bg-background text-text px-10 py-12 overflow-hidden'
     >
-      {/* Top Details */}
-      <div className="flex justify-between items-start opacity-50 text-[10px] uppercase tracking-[0.2em] font-bold">
-         <span>Est. 2026</span>
+      {/* Grain Overlay */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-60 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
+      
+      {/* Top Decoration */}
+      <div className="flex justify-between items-center opacity-40 text-[9px] uppercase tracking-[0.3em] font-bold">
+         <div className="flex items-center gap-4">
+            <span className="w-8 h-px bg-text" />
+            <span>Identity Presence</span>
+         </div>
+         <span>2026 Edition</span>
       </div>
 
       {/* Center Content */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">
-         {/* Brand Reveal (Hidden Initially) */}
-         <div className="brand-reveal w-full overflow-hidden">
-             <h1 className="brand-text text-[10vw] md:text-[6vw] font-black uppercase leading-none font-heading flex justify-center gap-[2vw]">
-                <span className="inline-block">Her</span>
-                <span className="inline-block text-primary">Lead</span>
-             </h1>
-             <p className="tagline mt-4 font-heading text-sm md:text-xl text-white/60 tracking-[0.5em] uppercase font-bold">
-               Digital Elevation
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-10">
+         {/* Word Cycle */}
+         <div className="relative h-20 flex items-center justify-center">
+            <h2 className="word-cycle-item word-1 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Vision</h2>
+            <h2 className="word-cycle-item word-2 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Impact</h2>
+            <h2 className="word-cycle-item word-3 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Leadership</h2>
+         </div>
+
+         {/* Brand Logo */}
+         <div className="brand-reveal w-full flex flex-col items-center">
+             <div className="brand-logo w-[50vw] md:w-[22vw] max-w-sm">
+               <Image 
+                 src={logo} 
+                 alt="Her Lead Logo" 
+                 className="w-full h-auto drop-shadow-[0_0_30px_rgba(0,0,0,0.05)]"
+                 priority
+               />
+             </div>
+             <p className="tagline mt-10 font-heading text-xs md:text-sm text-text/40 tracking-[0.5em] uppercase font-bold">
+               Digital Elevation Studio
              </p>
          </div>
       </div>
 
-      {/* Bottom Loading Bar */}
-      <div className="w-full flex flex-col justify-end">
-         {/* Counter */}
-         <div className="counter-container text-left mb-[-1vw]">
-            <h1 ref={counterRef} className="text-[15vw] md:text-[10vw] font-black leading-none font-heading text-white tabular-nums">
-               0%
-            </h1>
+      {/* Bottom Loading Section */}
+      <div className="loading-section w-full flex flex-col z-10 max-w-xs">
+         <div className="flex justify-between text-[8px] uppercase tracking-[0.3em] font-bold text-text/30 mb-2">
+            <span>System Initializing</span>
+            <span>Alpha v1.0</span>
          </div>
-
-         <div className="w-full h-px bg-white/10 overflow-hidden relative mb-3">
+         <div className="w-full h-[2px] bg-text/5 overflow-hidden relative">
             <div className="loading-bar absolute top-0 left-0 h-full w-0 bg-primary" />
-         </div>
-         
-         <div className="flex justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">
-            <span>Loading Experience</span>
-            <span>Please Wait</span>
          </div>
       </div>
     </div>

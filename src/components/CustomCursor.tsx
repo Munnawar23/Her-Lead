@@ -22,47 +22,38 @@ const CustomCursor = () => {
         ease: "power2.out",
       });
 
-      // Larger lagging circle
+      // Little follower circle
       gsap.to(follower, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.6,
+        duration: 0.4,
         ease: "power3.out",
       });
     };
 
     // Hover effect logic
-    const handleMouseEnter = (e: MouseEvent) => {
-      const target = e.currentTarget as HTMLElement;
-      if (target.closest('.nav-menu-container')) return;
-
-      gsap.to(follower, {
-        scale: 2,
-        backgroundColor: "rgba(212, 175, 55, 0.3)", // Translucent Gold
-        borderColor: "rgba(212, 175, 55, 0.6)",
-        duration: 0.4,
-        ease: "power2.out",
-        mixBlendMode: 'normal' as any
-      });
+    const handleMouseEnter = () => {
       gsap.to(cursor, {
-        scale: 0.5,
-        opacity: 0.5,
+        scale: 1.5,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(follower, {
+        scale: 1.8,
+        borderColor: "rgba(0,0,0,1)",
         duration: 0.3,
       });
     };
 
     const handleMouseLeave = () => {
-      gsap.to(follower, {
-        scale: 1,
-        backgroundColor: "transparent",
-        borderColor: "white",
-        duration: 0.3,
-        ease: "power2.out",
-        mixBlendMode: 'difference' as any
-      });
       gsap.to(cursor, {
         scale: 1,
-        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(follower, {
+        scale: 1,
+        borderColor: "rgba(0,0,0,0.3)",
         duration: 0.3,
       });
     };
@@ -70,15 +61,15 @@ const CustomCursor = () => {
     window.addEventListener('mousemove', moveCursor);
 
     // Initial state
-    gsap.set(follower, { borderColor: "white", mixBlendMode: 'difference' });
-    gsap.set(cursor, { backgroundColor: "white", mixBlendMode: 'difference' });
+    gsap.set(cursor, { backgroundColor: "black" });
+    gsap.set(follower, { borderColor: "rgba(0,0,0,0.3)" });
 
     // Attach to all interactive elements
     const updateInteractiveListeners = () => {
       const interactiveElements = document.querySelectorAll('a, button, .cursor-pointer, [role="button"]');
       interactiveElements.forEach((el) => {
-        el.addEventListener('mouseenter', handleMouseEnter as any);
-        el.addEventListener('mouseleave', handleMouseLeave as any);
+        el.addEventListener('mouseenter', handleMouseEnter);
+        el.addEventListener('mouseleave', handleMouseLeave);
       });
     };
 
@@ -100,11 +91,11 @@ const CustomCursor = () => {
     <>
       <div 
         ref={cursorRef} 
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-black rounded-full pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2"
       />
       <div 
         ref={followerRef} 
-        className="fixed top-0 left-0 w-8 h-8 border border-white rounded-full pointer-events-none z-9998 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+        className="fixed top-0 left-0 w-6 h-6 border border-black/30 rounded-full pointer-events-none z-9998 -translate-x-1/2 -translate-y-1/2"
       />
     </>
   );

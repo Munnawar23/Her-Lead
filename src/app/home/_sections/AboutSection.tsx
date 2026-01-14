@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -9,159 +9,127 @@ gsap.registerPlugin(ScrollTrigger)
 
 const AboutSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const magneticRef = useRef<HTMLButtonElement>(null)
   const { transitionTo } = useTransition()
 
   useGSAP(() => {
-    // Animating the Hero Statement
-    gsap.from(".reveal-text", {
-      yPercent: 100,
-      duration: 0.8,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: ".reveal-text",
-        start: "top 100%",
-        toggleActions: "play none none reverse"
-      }
-    })
-
-    // Animating the content blocks
-    gsap.from(".reveal-content", {
-      yPercent: 100,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".reveal-content-trigger",
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      }
-    })
-
-    // Magnetic effect for the button
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!magneticRef.current) return
-      
-      const bounds = magneticRef.current.getBoundingClientRect()
-      const centerX = bounds.left + bounds.width / 2
-      const centerY = bounds.top + bounds.height / 2
-      
-      const deltaX = e.clientX - centerX
-      const deltaY = e.clientY - centerY
-      
-      // Distance threshold
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
-      if (distance < 150) {
-        gsap.to(magneticRef.current, {
-          x: deltaX * 0.4,
-          y: deltaY * 0.4,
-          duration: 0.5,
-          ease: "power2.out"
-        })
-        gsap.to(magneticRef.current.querySelector('.inner-text'), {
-          x: deltaX * 0.2,
-          y: deltaY * 0.2,
-          duration: 0.5,
-          ease: "power2.out"
-        })
-      } else {
-        gsap.to(magneticRef.current, { x: 0, y: 0, duration: 0.5, ease: "power2.out" })
-        gsap.to(magneticRef.current.querySelector('.inner-text'), { x: 0, y: 0, duration: 0.5, ease: "power2.out" })
-      }
+    // Reveal main heading words
+    const headingWords = containerRef.current?.querySelectorAll('.heading-word');
+    if (headingWords) {
+      gsap.from(headingWords, {
+        y: 60,
+        opacity: 0,
+        rotateX: -45,
+        stagger: 0.05,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+        }
+      });
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    // Reveal sub-content and lines
+    gsap.from(".reveal-item", {
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".reveal-item-trigger",
+        start: "top 80%",
+      }
+    });
+
+    // Reveal decorative line
+    gsap.from(".header-line", {
+      width: 0,
+      duration: 1.5,
+      ease: "power4.inOut",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 70%",
+      }
+    });
   }, { scope: containerRef })
 
   return (
-    <section ref={containerRef} className='min-h-fit md:min-h-screen w-full bg-black px-6 md:px-12 lg:px-20 pt-24 md:pt-32 pb-16 md:pb-20 overflow-hidden flex flex-col justify-center border-t border-white/10'>
-      <div className='max-w-full mx-auto space-y-16 md:space-y-24'>
+    <section 
+      ref={containerRef} 
+      className='relative w-full bg-background px-6 md:px-12 lg:px-24 pt-16 md:pt-24 pb-10 md:pb-12 overflow-hidden'
+    >
+      <div className='max-w-7xl mx-auto'>
         
-        {/* Hero Statement */}
-        <div className='space-y-8 overflow-hidden relative'>
-          <h2 className='reveal-text font-heading text-4xl md:text-6xl lg:text-7xl text-white leading-[0.9] tracking-tighter'>
-            We are an experienced team of in-house experts in <span className='text-primary italic px-2'>360° digital</span> elevation. We ideate, execute, and scale <span className='underline underline-offset-12 decoration-primary/30'>award winning</span> content.
-          </h2>
+        {/* Section Header */}
+        <div className='flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8'>
+          <div className='space-y-4'>
+            <span className='block text-xs font-black uppercase tracking-[0.4em] text-primary'>Our Philosophy</span>
+            <div className='header-line h-px bg-text/10 w-32 md:w-64' />
+          </div>
+          <p className='text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-text/30'>
+             Innovation • Impact • Integrity
+          </p>
         </div>
 
-        {/* Triple Column Content & Magnetic Portal */}
-        <div className='reveal-content-trigger grid grid-cols-1 md:grid-cols-10 gap-12 items-start'>
+        {/* Main Content Grid */}
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16'>
           
-          {/* Left: Label */}
-          <div className='md:col-span-2 overflow-hidden'>
-            <div className='reveal-content'>
-              <p className='font-heading text-xs text-white/40 uppercase tracking-[0.3em] font-bold'>
-                Overview
-              </p>
-            </div>
+          {/* Left Column: Bold Typography */}
+          <div className='lg:col-span-8 space-y-8'>
+            <h2 className='text-4xl md:text-6xl lg:text-[5vw] font-black leading-[1.05] tracking-tighter text-text'>
+              { "Elevating brands through cinematic storytelling and strategic digital precision.".split(' ').map((word, i) => (
+                <span key={i} className='inline-block overflow-hidden mr-2 md:mr-2.5 py-1'>
+                  <span className='heading-word inline-block'>{word}</span>
+                </span>
+              ))}
+            </h2>
           </div>
 
-          {/* Middle: Content */}
-          <div className='md:col-span-12 lg:col-span-5 space-y-12 shrink-0'>
-            <div className='overflow-hidden'>
-              <p className='reveal-content font-heading text-xl md:text-2xl text-white leading-tight tracking-tight font-medium'>
-                Our approach first starts with in-depth discovery and research, in order to gain a thorough understanding of what makes our client’s business unique, as well as what their consumer profile looks like.
+          {/* Right Column: Detailed Copy & CTA */}
+          <div className='lg:col-span-4 lg:pt-0 reveal-item-trigger'>
+            <div className='space-y-8 reveal-item'>
+              <p className='text-lg md:text-xl font-medium text-text/80 leading-snug'>
+                We are a boutique agency of in-house specialists dedicated to 360° digital evolution. 
               </p>
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-              <div className='overflow-hidden max-w-sm'>
-                <p className='reveal-content text-base md:text-lg text-white/60 leading-relaxed font-medium'>
-                  Whether you’re a startup or a national brand, we offer custom public relations services that drive media visibility, trust and growth.
-                </p>
-              </div>
+              
+              <p className='text-sm md:text-base text-text/50 leading-relaxed font-medium'>
+                Our process begins with exhaustive research and discovery, identifying the core dna that makes your business unique. We don't just create content; we build digital ecosystems that drive visibility and trust.
+              </p>
 
-              {/* THE CREATIVE BUTTON: A Magnetic "Portal" */}
-              <div className="reveal-content pt-8 md:pt-0 pl-0 md:pl-12">
+              <div className='pt-4'>
                 <button 
-                  ref={magneticRef}
                   onClick={() => transitionTo('/about')}
-                  className='relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center rounded-full border-2 border-primary/30 group hover:border-primary transition-colors duration-500'
+                  className='group relative flex items-center gap-6'
                 >
-                  {/* Rotating Border Text or Background */}
-                  <div className='absolute inset-0 bg-black scale-0 group-hover:scale-100 rounded-full transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]' />
-                  
-                  <div className='inner-text relative z-10 flex flex-col items-center justify-center text-center'>
-                    <span className='text-[10px] uppercase tracking-[0.2em] font-bold text-white group-hover:text-black transition-colors duration-300'>
-                      Discover
-                    </span>
-                    <span className='text-[10px] uppercase tracking-[0.2em] font-bold text-primary group-hover:text-black transition-colors duration-300'>
-                      Our Story
-                    </span>
-                    <span className='text-lg mt-1 text-white group-hover:text-black group-hover:translate-x-1 transition-all duration-300 antialiased'>
-                      →
-                    </span>
+                  <div className='w-14 h-14 rounded-full border border-text/10 flex items-center justify-center group-hover:bg-text group-hover:border-text transition-all duration-500'>
+                    <svg className="w-5 h-5 text-text group-hover:text-background transition-colors duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
                   </div>
-
-                  {/* Decorative rotating circle */}
-                  <svg className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite] opacity-20 transition-opacity duration-500" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="4 4" />
-                  </svg>
+                  <div className='flex flex-col'>
+                    <span className='text-[10px] uppercase tracking-[0.3em] font-black text-text'>Learn More</span>
+                    <span className='text-[10px] uppercase tracking-[0.3em] font-bold text-primary'>Our Full Story</span>
+                  </div>
                 </button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Right: Social/Stats */}
-          <div className='md:col-span-3 lg:col-span-3 flex flex-col md:items-end space-y-8'>
-            <div className='overflow-hidden text-left md:text-right'>
-              <p className='reveal-content font-heading text-xs text-white/40 uppercase tracking-[0.3em] mb-4 font-bold'>Connect</p>
-              <div className='flex flex-col space-y-2'>
-                {['Instagram', 'Facebook', 'Linkedin'].map((link) => (
-                  <a 
-                    key={link}
-                    href={`#${link.toLowerCase()}`} 
-                    className='reveal-content font-heading text-xl md:text-2xl text-white hover:text-primary transition-all duration-300 hover:tracking-widest flex items-center md:justify-end gap-2'
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
-                    {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
+        {/* Bottom Details */}
+        <div className='mt-20 md:mt-24 pt-10 border-t border-text/5 flex flex-wrap gap-x-16 gap-y-8'>
+           {[
+             { label: 'Founded', value: '2026' },
+             { label: 'Services', value: '360° Digital' },
+             { label: 'Focus', value: 'Global Reach' }
+           ].map((stat, i) => (
+             <div key={i} className='reveal-item'>
+                <span className='block text-[9px] uppercase tracking-[0.3em] font-black text-text/30 mb-2'>{stat.label}</span>
+                <span className='text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text'>{stat.value}</span>
+             </div>
+           ))}
         </div>
 
       </div>

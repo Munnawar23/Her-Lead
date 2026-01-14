@@ -3,155 +3,121 @@ import React, { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { useTransition } from '@/components/TransitionProvider'
 import { services } from '@/constants/services'
+import { useTransition } from '@/components/TransitionProvider'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const ServicesSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const portalRef = useRef<HTMLDivElement>(null)
+  const [hoveredIndex, setHoveredIndex] = useState(0)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const { transitionTo } = useTransition()
 
-  // Curated high-end Unsplash images for each service
+  // High-end Unsplash images for each service (Used as fallback/primary if videos missing)
   const imageSources = [
     "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop", // PR & Media
     "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop", // Digital Marketing
-    "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200&auto=format&fit=crop", // Branding (Fixed)
+    "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200&auto=format&fit=crop", // Branding
     "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop", // Corp Training
     "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop", // Talent
     "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop", // Digital Exp
   ]
 
   useGSAP(() => {
-    if (!containerRef.current) return
-
-    // Entrance animation for titles using fromTo for absolute control
-    gsap.fromTo(".service-title", 
-      { 
-        y: 100, 
-        opacity: 0,
-        rotateX: -15
-      },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        duration: 1.2,
-        stagger: 0.05,
-        ease: "power4.out",
-        clearProps: "transform,rotateX,opacity",
-        scrollTrigger: {
-          trigger: ".services-wrapper",
-          start: "top 95%",
-          toggleActions: "play none none none"
-        }
+    // Reveal project items on scroll
+    gsap.from(".service-item-row", {
+      x: -50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".services-list",
+        start: "top 80%",
       }
-    )
+    })
 
-    // Force a layout refresh
-    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
-    return () => clearTimeout(timer);
+    // Sticky image reveal
+    gsap.from(".image-stage", {
+      opacity: 0,
+      clipPath: "inset(100% 0% 0% 0%)",
+      duration: 1.5,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 70%",
+      }
+    })
   }, { scope: containerRef })
 
-  // Floating Portal Logic
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  useGSAP(() => {
-    if (portalRef.current) {
-      gsap.to(portalRef.current, {
-        x: mousePos.x,
-        y: mousePos.y,
-        duration: 0.8,
-        ease: "power3.out"
-      })
-    }
-  }, [mousePos])
-
   return (
-    <section 
-      ref={containerRef} 
-      id="services" 
-      className='min-h-screen w-full bg-background py-40 flex flex-col items-center justify-center relative overflow-hidden'
-    >
-      {/* Cinematic Noise Layer */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      
-      {/* Background Section Title */}
-      <div className="absolute top-20 left-12 overflow-hidden">
-        <h4 className="font-heading text-primary text-xs uppercase tracking-[0.6em] font-bold italic">Our Services</h4>
+    <section id="services" ref={containerRef} className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-24 pt-10 md:pt-16 pb-20 md:pb-40 flex flex-col items-center overflow-hidden'>
+      <div className='w-full mb-16'>
+        <span className='block text-xs font-black uppercase tracking-[0.4em] text-primary mb-4'>Our Expertise</span>
+        <h2 className='font-heading text-5xl md:text-7xl lg:text-[7vw] text-text leading-[0.8] tracking-tighter uppercase font-black'>
+          Services<span className='text-primary'>.</span>
+        </h2>
       </div>
 
-      {/* Brand Background Watermark */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
-        <h2 className="font-heading text-[30vw] font-black text-text/5 uppercase tracking-tighter select-none">Impact.</h2>
-      </div>
-
-      <div className="services-wrapper w-full max-w-[90vw] flex flex-col items-center relative z-10">
-        {services.map((service, index) => (
-          <div 
-            key={service.id}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => transitionTo('/services')}
-            className="group relative w-full h-[12vh] md:h-[18vh] flex items-center justify-center cursor-pointer border-b border-text/10 last:border-b-0"
-          >
-            <span className="absolute left-0 font-heading text-xs md:text-sm text-text/40 font-bold italic group-hover:text-primary transition-colors duration-500">
-              0{index + 1}
-            </span>
-
-            <h3 className="service-title font-heading text-[8vw] md:text-[6.5vw] leading-none font-black tracking-tighter uppercase text-text/20 group-hover:text-text transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:italic group-hover:scale-110 z-10">
-              {service.name}
-            </h3>
-
-            <div className="absolute right-0 opacity-0 group-hover:opacity-100 translate-x-10 group-hover:translate-x-0 transition-all duration-700 hidden lg:block">
-              <p className="font-heading text-xs text-primary uppercase tracking-[0.4em] font-bold">Discover +</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* THE FLOATING MEDIA PORTAL */}
-      <div 
-        ref={portalRef}
-        className={`fixed top-0 left-0 w-[400px] h-[550px] pointer-events-none overflow-hidden z-20 -translate-x-1/2 -translate-y-1/2 shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-opacity duration-500 scale-0 origin-center ${hoveredIndex !== null ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
-      >
-        <div className="w-full h-full relative p-4 bg-background border border-text/10 rounded-xl overflow-hidden">
-           <div className="absolute inset-0 z-20 bg-linear-to-b from-transparent via-text/5 to-transparent bg-size-[100%_4px] pointer-events-none opacity-20" />
-           
-           <div className="w-full h-full overflow-hidden relative rounded-lg">
+      <div className='max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-32 items-start'>
+        
+        {/* Left Side - Sticky Media Stage */}
+        <div className='image-stage lg:sticky lg:top-32 relative order-2 lg:order-1 w-full'>
+          <div className="relative w-full aspect-4/5 rounded-2xl overflow-hidden transition-all duration-700 ease-out">
             {services.map((service, index) => (
-              <img
+              <div 
                 key={service.id}
-                src={imageSources[index]}
-                alt={service.name}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${hoveredIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
-              />
+                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-expo ${hoveredIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-110 pointer-events-none'}`}
+              >
+                <img
+                  src={imageSources[index]}
+                  alt={service.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20" />
+              </div>
             ))}
-           </div>
-
-           <div className="absolute inset-0 z-30 bg-linear-to-t from-black via-transparent to-transparent opacity-80" />
-           
-           <div className="absolute bottom-8 left-8 right-8 z-40">
-              <p className="font-heading text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-1">Focus Sector</p>
-              <h5 className="font-heading text-lg text-white font-black leading-tight uppercase italic tracking-tighter">
-                {hoveredIndex !== null ? services[hoveredIndex].category : ''}
-              </h5>
-           </div>
+          </div>
+          
+          <div className='mt-8 space-y-3'>
+             <div className="flex items-center gap-4">
+                <span className="text-primary font-black text-xs uppercase tracking-widest">0{hoveredIndex + 1}</span>
+                <div className="h-px w-8 bg-primary/30" />
+                <h4 className='font-heading text-base text-text font-black uppercase tracking-tighter'>
+                  {services[hoveredIndex].category}
+                </h4>
+             </div>
+            <p className='text-xs md:text-sm text-text/50 leading-relaxed font-medium max-w-sm'>
+              {services[hoveredIndex].description}
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Background Interactive Text */}
-      <div className="absolute bottom-10 right-12 text-right opacity-20 hidden md:block">
-        <p className="font-heading text-[8px] uppercase tracking-[1em] text-text font-bold">Scroll horizontally to navigate</p>
+        {/* Right Side - Vertical List of Service Names */}
+        <div className='services-list space-y-1 md:space-y-2 order-1 lg:order-2 flex flex-col'>
+            {services.map((service, index) => (
+              <div 
+                key={service.id}
+                className='service-item-row group cursor-pointer border-b border-text/5 py-4 lg:py-6'
+                onMouseEnter={() => setHoveredIndex(index)}
+                onClick={() => transitionTo('/services')}
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className={`font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[4vw] leading-none font-black transition-all duration-700 tracking-tighter uppercase ${hoveredIndex === index ? 'text-text translate-x-6 italic' : 'text-text/10'}`}>
+                    {service.name}
+                  </h3>
+                  <div className={`transition-all duration-500 ${hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                    <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
       </div>
     </section>
   )
