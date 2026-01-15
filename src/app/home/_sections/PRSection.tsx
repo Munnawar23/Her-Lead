@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { useTransition } from '@/components/TransitionProvider'
+import { Instagram, Twitter, Linkedin, Facebook, Youtube, Heart, MessageCircle } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -58,17 +59,17 @@ const PRSection = () => {
       
       {/* SECTION 1: HEADER & OVERLAPPING ARTICLES */}
       <div className='articles-trigger relative w-full mb-20'>
-        {/* Magenta Header */}
-        <div className='w-full bg-[#FF1178] px-6 md:px-12 lg:px-24 pt-16 pb-32 md:pt-20 md:pb-40 rounded-b-4xl md:rounded-b-5xl relative overflow-hidden'>
+        {/* Golden Header */}
+        <div className='w-full bg-primary px-6 md:px-12 lg:px-24 pt-16 pb-32 md:pt-20 md:pb-40 rounded-b-4xl md:rounded-b-5xl relative overflow-hidden'>
            <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 rounded-l-full blur-3xl pointer-events-none" />
            <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
               <div className="max-w-2xl">
-                <span className='block text-[10px] font-black uppercase tracking-[0.4em] text-white/50 mb-4'>PR Releases</span>
-                <h2 className='text-3xl md:text-5xl lg:text-6xl font-black text-white leading-none tracking-tighter uppercase'>
+                <span className='block text-[10px] font-black uppercase tracking-[0.4em] text-text/50 mb-4'>PR Releases</span>
+                <h2 className='text-3xl md:text-5xl lg:text-6xl font-black text-text leading-none tracking-tighter uppercase'>
                   You can read our <br /> reputation, right?
                 </h2>
                 <div className="mt-8">
-                  <button className="px-8 py-3.5 border border-white/20 rounded-full text-[10px] font-black uppercase text-white tracking-widest hover:bg-white hover:text-[#FF1178] transition-all">
+                  <button className="px-8 py-3.5 border-2 border-text/20 rounded-full text-[10px] font-black uppercase text-text tracking-widest hover:bg-text hover:text-background transition-all">
                     Take me there →
                   </button>
                 </div>
@@ -94,13 +95,19 @@ const PRSection = () => {
 
            {/* Card 2 - Offset/Overlapping */}
             <div className="article-reveal md:mt-16 group bg-white rounded-3xl p-6 md:p-8 shadow-2xl border border-black/5">
+              <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200" className="w-full h-full object-cover" alt="Article" />
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[9px] font-black uppercase tracking-wider text-black">Culture & Trends</span>
+                </div>
+              </div>
                <h4 className="text-xl md:text-2xl font-black text-text mb-4 leading-tight tracking-tighter">
                  Chronically Online: From Pins to Pints to "I Do's"
                </h4>
                <p className="text-xs md:text-sm text-text/50 font-medium mb-8">How brands closed out the year online through culture-led storytelling.</p>
                <button 
                  onClick={() => transitionTo('/blog')}
-                 className="px-6 py-3 bg-linear-to-r from-orange-500 to-pink-500 rounded-full text-[10px] font-black text-white uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
+                 className="px-6 py-3 bg-primary rounded-full text-[10px] font-black text-background uppercase tracking-widest hover:scale-105 hover:bg-text transition-all shadow-lg"
                >
                  Read article ↗
                </button>
@@ -135,8 +142,8 @@ const PRSection = () => {
                       <img src={post.image} className="w-full h-full object-cover" alt="Social Post" />
                    </div>
                    <div className="flex gap-4 px-2">
-                      <div className="w-5 h-5 text-pink-500"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-                      <div className="w-5 h-5 text-gray-300"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98 1 4.28L2 22l5.72-1c1.3.64 2.74 1 4.28 1 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                      <Heart size={20} className="text-pink-500 fill-pink-500" />
+                      <MessageCircle size={20} className="text-text/40" />
                    </div>
                 </div>
               </div>
@@ -155,20 +162,22 @@ const PRSection = () => {
             {/* Social Icon Row */}
             <div className='flex items-center gap-4 md:gap-6'>
                {[
-                 { icon: 'ig', color: '#E1306C' },
-                 { icon: 'tt', color: '#000000' },
-                 { icon: 'li', color: '#0077B5' },
-                 { icon: 'x', color: '#000000' },
-                 { icon: 'fb', color: '#1877F2' },
-                 { icon: 'yt', color: '#FF0000' }
+                 { Icon: Instagram, color: '#E1306C', label: 'Instagram' },
+                 { Icon: Twitter, color: '#000000', label: 'Twitter' },
+                 { Icon: Linkedin, color: '#0077B5', label: 'LinkedIn' },
+                 { Icon: Twitter, color: '#000000', label: 'X' },
+                 { Icon: Facebook, color: '#1877F2', label: 'Facebook' },
+                 { Icon: Youtube, color: '#FF0000', label: 'YouTube' }
                ].map((social, i) => (
-                 <div 
-                   key={i} 
-                   className='w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-black/5 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all'
+                 <a 
+                   key={i}
+                   href="#"
+                   aria-label={social.label}
+                   className='w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-text/10 flex items-center justify-center cursor-pointer hover:scale-110 hover:border-primary active:scale-95 transition-all group'
                    style={{ backgroundColor: `${social.color}10` }}
                  >
-                    <div className='w-4 h-4 md:w-5 md:h-5 rounded-sm' style={{ backgroundColor: social.color }} />
-                 </div>
+                    <social.Icon size={20} strokeWidth={2} className="group-hover:text-primary transition-colors" style={{ color: social.color }} />
+                 </a>
                ))}
             </div>
          </div>

@@ -1,70 +1,49 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useTransition } from "@/components/TransitionProvider";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    number: "Step 1",
+    number: "01",
     title: "Discovery",
-    description: "Our approach first starts with in-depth discovery and research, in order to gain a thorough understanding of what makes our client’s business unique, as well as what their consumer profile looks like.",
+    description: "We dive deep into your brand DNA, understanding what makes you unique and identifying your ideal audience.",
   },
   {
-    number: "Step 2",
+    number: "02",
     title: "Strategy & Selection",
-    description: "We then propose a strategy and select influencers that fit within those strategies who will not only pair well with our client’s brand, but also who’s social following matches their target key-demographic.",
+    description: "We craft a tailored strategy and handpick influencers who align perfectly with your brand values.",
   },
   {
-    number: "Step 3",
+    number: "03",
     title: "Delivery",
-    description: "Next comes the execution, blending creative ad treatment with precise influencer execution. We oversee every step, working with influencers to maintain top-quality posts and keep clients updated throughout.",
+    description: "Our team executes with precision, blending creative excellence with strategic partnerships.",
   },
   {
-    number: "Step 4",
+    number: "04",
     title: "Amplification",
-    description: "We use paid media and organic sharing to amplify campaigns, reaching the target audience. Our team optimizes strategies to drive results and achieve client goals.",
+    description: "We maximize reach through paid media and organic sharing for optimal impact.",
   },
   {
-    number: "Step 5",
+    number: "05",
     title: "Reporting",
-    description: "Post-campaign, we share transparent insights and ROI analysis, detailing customer journeys from impression to conversion. Our impactful, measurable strategy delivers definitive growth for your brand.",
+    description: "Transparent insights and ROI analysis prove measurable growth for your brand.",
   },
 ];
 
 const ProcessSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const { transitionTo } = useTransition();
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      const targetScroll = scrollContainerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
-      scrollContainerRef.current.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
 
   useGSAP(() => {
     gsap.from(".process-card", {
-      y: 50,
+      y: 60,
       opacity: 0,
       stagger: 0.1,
-      duration: 1,
-      ease: "power4.out",
+      duration: 0.8,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 70%",
@@ -73,75 +52,64 @@ const ProcessSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="w-full min-h-screen md:h-screen bg-background px-4 md:px-12 py-4 md:py-6 flex flex-col justify-center overflow-hidden">
-      {/* Magenta Container */}
-      <div className="relative w-full h-full max-h-[850px] bg-[#FF1178] rounded-[2.5rem] md:rounded-[3rem] px-6 md:px-14 py-8 md:py-12 flex flex-col justify-center overflow-hidden">
+    <section ref={containerRef} className="w-full bg-background py-20 md:py-32 px-6 md:px-12 overflow-hidden">
+      
+      <div className="max-w-7xl mx-auto">
         
-        {/* Abstract Background Shapes */}
-        <div className="absolute top-[-10%] right-[-5%] w-[30%] aspect-square bg-white/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[40%] aspect-square bg-black/5 rounded-full blur-3xl pointer-events-none" />
- 
-        {/* Heading */}
-        <div className="relative z-10 max-w-3xl mb-10 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-[1.1] tracking-tight">
-            How does a multi-service agency elevate their clients through integrated campaigns?
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-6">
+            Our Process
+          </span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text leading-tight tracking-tighter uppercase mb-4">
+            How We Work
           </h2>
+          <p className="text-base md:text-lg text-text/60 font-medium max-w-2xl mx-auto">
+            A proven methodology that transforms brands through strategic campaigns.
+          </p>
         </div>
 
-        {/* Cards Carousel */}
-        <div 
-          ref={scrollContainerRef}
-          onScroll={handleScroll}
-          className="relative z-10 flex gap-4 overflow-x-auto no-scrollbar pb-8 cursor-grab active:cursor-grabbing snap-x snap-mandatory"
-        >
+        {/* Process Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div 
-              key={index} 
-              className="process-card shrink-0 w-[80vw] md:w-[320px] h-[350px] md:h-[380px] bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-7 flex flex-col snap-center border border-white/10 select-none hover:bg-white/15 transition-colors"
+              key={step.number}
+              className="process-card group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-primary/30 hover:shadow-2xl transition-all duration-500"
             >
-              <div className="mb-6">
-                <span className="px-4 py-1.5 bg-white/20 rounded-full text-[9px] md:text-[10px] font-black text-white uppercase tracking-wider">
+              {/* Number Badge */}
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-500">
+                <span className="text-2xl font-black text-primary group-hover:text-white transition-colors duration-500">
                   {step.number}
                 </span>
               </div>
-              
-              <h3 className="text-xl md:text-2xl font-black text-white mb-4 tracking-tighter">
+
+              {/* Title */}
+              <h3 className="text-2xl md:text-3xl font-black text-text mb-4 tracking-tight">
                 {step.title}
               </h3>
-              
-              <p className="text-[11px] md:text-xs text-white/80 leading-relaxed font-medium">
+
+              {/* Description */}
+              <p className="text-sm md:text-base text-text/70 leading-relaxed font-medium">
                 {step.description}
               </p>
+
+              {/* Decorative Element */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-primary/0 group-hover:bg-primary/100 transition-all duration-500 rounded-b-3xl" />
             </div>
           ))}
         </div>
 
-        {/* Bottom Controls Area */}
-        <div className="relative z-10 mt-8 flex items-center justify-between">
-          
-          {/* Navigation Arrows */}
-          <div className="flex gap-4">
-            <button 
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              className={`w-14 h-14 md:w-20 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white transition-all ${!canScrollLeft ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10 active:scale-95'}`}
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-            </button>
-            <button 
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              className={`w-14 h-14 md:w-20 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white transition-all ${!canScrollRight ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10 active:scale-95'}`}
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        {/* Bottom CTA */}
+        <div className="mt-20 text-center">
+          <button className="group px-10 py-4 bg-primary hover:bg-text rounded-full transition-all duration-300">
+            <span className="text-sm font-black uppercase tracking-wider text-white flex items-center gap-3">
+              Start Your Journey
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
         </div>
 
       </div>

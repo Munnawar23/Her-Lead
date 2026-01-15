@@ -97,7 +97,7 @@ const Navbar = () => {
           
           <button 
             onClick={(e) => handleNavClick(e, '/home#contact')}
-            className="flex items-center gap-3 px-8 py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-white bg-linear-to-r from-[#FF1178] via-[#FF5F3F] to-[#FF930F] shadow-lg shadow-primary/10 hover:shadow-primary/30 hover:scale-[1.03] active:scale-[0.97] transition-all group"
+            className="flex items-center gap-3 px-8 py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-background bg-primary shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.03] hover:bg-text active:scale-[0.97] transition-all group"
           >
             Request a Quote
             <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

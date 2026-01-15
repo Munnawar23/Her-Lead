@@ -87,33 +87,33 @@ const BlogSection = () => {
     <section ref={containerRef} className='relative w-full bg-background overflow-hidden pb-24 md:pb-40'>
       
       {/* ANIMATED MARQUEE HEADER */}
-      <div className='relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden bg-[#FF1178] mb-20 md:mb-32'>
+      <div className='relative w-full h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden bg-primary mb-20 md:mb-32'>
         <div className='absolute inset-0 opacity-10 pointer-events-none'>
            <div className='w-full h-full bg-[radial-gradient(circle,white_1px,transparent_1px)] bg-size-[40px_40px]' />
         </div>
 
         {/* Giant Marquee Background */}
         <div className='absolute top-1/2 -translate-y-1/2 whitespace-nowrap opacity-20'>
-          <div ref={marqueeRef} className='flex gap-10 text-[15vw] md:text-[20vw] font-black uppercase text-white leading-none italic select-none'>
+          <div ref={marqueeRef} className='flex gap-10 text-[15vw] md:text-[20vw] font-black uppercase text-text leading-none italic select-none'>
             <span>THE JOURNAL THE JOURNAL THE JOURNAL THE JOURNAL &nbsp;</span>
             <span>THE JOURNAL THE JOURNAL THE JOURNAL THE JOURNAL &nbsp;</span>
           </div>
         </div>
 
         <div className='relative z-10 text-center'>
-            <div className='mb-6 bg-white text-[#FF1178] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.5em] inline-block shadow-2xl'>
+            <div className='mb-6 bg-white text-text px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.5em] inline-block shadow-2xl'>
                Her Lead Insights
             </div>
-            <h2 className='text-6xl md:text-9xl font-black text-white leading-[0.8] tracking-tighter uppercase drop-shadow-2xl'>
-              Lately<span className='text-black'>.</span>
+            <h2 className='text-6xl md:text-9xl font-black text-text leading-[0.8] tracking-tighter uppercase drop-shadow-2xl'>
+              Lately<span className='text-white'>.</span>
             </h2>
         </div>
 
         {/* Floating "Stickers" */}
-        <div className='absolute top-20 right-[15%] w-24 h-24 bg-yellow-400 rounded-full hidden md:flex items-center justify-center -rotate-12 shadow-xl animate-bounce'>
-           <span className='text-[10px] font-black text-black text-center px-4 leading-tight'>NEW DROP EVERY WEEK</span>
+        <div className='absolute top-20 right-[15%] w-24 h-24 bg-white rounded-full hidden md:flex items-center justify-center -rotate-12 shadow-xl animate-bounce'>
+           <span className='text-[10px] font-black text-text text-center px-4 leading-tight'>NEW DROP EVERY WEEK</span>
         </div>
-        <div className='absolute bottom-20 left-[10%] w-32 h-32 bg-primary rounded-lg border-4 border-white hidden md:flex items-center justify-center rotate-12 shadow-2xl skew-x-12'>
+        <div className='absolute bottom-20 left-[10%] w-32 h-32 bg-text rounded-lg border-4 border-white hidden md:flex items-center justify-center rotate-12 shadow-2xl skew-x-12'>
            <span className='text-lg font-black text-white italic'>FUNKY!</span>
         </div>
       </div>
@@ -121,7 +121,7 @@ const BlogSection = () => {
       {/* Animated Background Blobs */}
       <div className='blog-blob absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none' />
       <div className='blog-blob absolute top-[60%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none' />
-
+`
       <div className='max-w-7xl mx-auto flex flex-wrap justify-center gap-x-12 gap-y-24 md:gap-y-32'>
          {blogPosts.map((post, index) => (
            <div 
@@ -135,7 +135,7 @@ const BlogSection = () => {
              onClick={() => transitionTo('/blog')}
            >
               {/* Image Stage */}
-              <div className='relative w-full aspect-square md:aspect-video rounded-[3rem] overflow-hidden bg-black shadow-[15px_15px_0px_#FF1178] group-hover:shadow-[0px_0px_0px_#FF1178] transition-all duration-500 mb-10'>
+               <div className='relative w-full aspect-square md:aspect-video rounded-[3rem] overflow-hidden bg-black shadow-[15px_15px_0px] shadow-primary group-hover:shadow-none transition-all duration-500 mb-10'>
                  <img 
                   src={post.image} 
                   className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000' 

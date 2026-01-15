@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTransition } from '@/components/TransitionProvider'
 
-import aboutImg from '@/assets/images/about.png'
+import aboutImg from '@/assets/images/about-editorial.png'
 import postImg from '@/assets/images/post.png'
 import lionImg from '@/assets/images/lion.png'
 

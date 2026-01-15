@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -9,105 +9,216 @@ gsap.registerPlugin(ScrollTrigger)
 const testimonials = [
   {
     id: 1,
-    quote: "Her Lead transformed our digital presence from basic to world-class within months.",
+    quote: "Her Lead transformed our digital presence from basic to world-class within months. Their strategic approach and creative execution exceeded all expectations.",
     author: "Sarah Jenkins",
-    role: "CEO, LuxBeauty",
+    role: "CEO",
+    company: "LuxBeauty",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800",
-    award: "Best Digital Strategy"
+    rating: 5
   },
   {
     id: 2,
-    quote: "The most creative agency we've ever worked with. They create trends through culture-led design.",
+    quote: "The most creative agency we've ever worked with. They don't just follow trends—they create them through culture-led design and authentic storytelling.",
     author: "Marcus Chen",
-    role: "Founder, TechFlow",
+    role: "Founder",
+    company: "TechFlow",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800",
-    award: "Innovation Excellence"
+    rating: 5
   },
   {
     id: 3,
-    quote: "Their influencer marketing campaigns have a soul. They find the perfect alignment between brands.",
+    quote: "Their influencer marketing campaigns have soul. They find the perfect alignment between brands and creators, resulting in authentic partnerships that drive real results.",
     author: "Elena Rodriguez",
     role: "Marketing Director",
+    company: "Vogue Collective",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800",
-    award: "Social Impact Award"
+    rating: 5
   }
 ]
 
 const TestimonialSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useGSAP(() => {
-    gsap.from(".testimonial-card", {
+    // Reveal animation for the section
+    gsap.from(".testimonial-header", {
+      y: 60,
       opacity: 0,
-      scale: 0.95,
-      y: 20,
-      stagger: 0.1,
-      duration: 1.2,
+      duration: 1,
       ease: "power4.out",
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 70%",
       }
     });
+
+    // Stagger animation for testimonial cards
+    gsap.from(".testimonial-slide", {
+      x: 100,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".testimonials-container",
+        start: "top 80%",
+      }
+    });
   }, { scope: containerRef })
 
+  const nextTestimonial = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
   return (
-    <section ref={containerRef} className='w-full min-h-screen bg-background flex items-center justify-center py-12 px-6 md:px-12 lg:px-24 overflow-hidden relative'>
-      {/* Subtle Background decoration for light theme */}
-      <div className='absolute inset-0 opacity-10 pointer-events-none'>
-         <div className='absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]' />
-         <div className='absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-[#FF1178]/20 rounded-full blur-[120px]' />
+    <section ref={containerRef} className='relative w-full min-h-screen bg-background flex items-center justify-center py-20 md:py-32 px-6 md:px-12 overflow-hidden'>
+      
+      {/* Decorative Background Elements */}
+      <div className='absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none'>
+        <div className='absolute top-20 right-[10%] w-[500px] h-[500px] bg-primary rounded-full blur-[150px]' />
+        <div className='absolute bottom-20 left-[10%] w-[400px] h-[400px] bg-primary rounded-full blur-[120px]' />
       </div>
 
       <div className='max-w-7xl mx-auto w-full relative z-10'>
-        {/* Compact Header */}
-        <div className='text-center mb-16 flex flex-col items-center'>
-          <span className='px-4 py-1.5 bg-text/5 border border-text/10 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-text/40 mb-4'>Social Proof</span>
-          <h2 className='text-4xl md:text-6xl lg:text-7xl font-black text-text leading-none tracking-tighter uppercase italic select-none'>
-            The Wall <span className='text-primary'>of Fame.</span>
+        
+        {/* Header */}
+        <div className='testimonial-header text-center mb-16 md:mb-24'>
+          <div className='inline-flex items-center gap-3 mb-6'>
+            <div className='w-12 h-px bg-primary' />
+            <span className='text-[10px] font-black uppercase tracking-[0.5em] text-primary'>Client Love</span>
+            <div className='w-12 h-px bg-primary' />
+          </div>
+          <h2 className='text-5xl md:text-7xl lg:text-8xl font-black text-text leading-[0.85] tracking-tighter uppercase mb-6'>
+            What They're <br />
+            <span className='text-primary italic'>Saying</span>
           </h2>
+          <p className='text-base md:text-lg text-text/60 font-medium max-w-2xl mx-auto'>
+            Don't just take our word for it—hear from the brands we've helped transform.
+          </p>
         </div>
 
-        {/* Compact Grid with Light Cards */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-          {testimonials.map((t, i) => (
+        {/* Testimonials Carousel */}
+        <div className='testimonials-container relative'>
+          <div className='relative overflow-hidden'>
             <div 
-              key={t.id} 
-              className="testimonial-card group bg-white border border-black/5 rounded-[3rem] p-8 md:p-12 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 min-h-[420px]"
+              className='flex transition-transform duration-700 ease-out'
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
-               <div className='space-y-8'>
-                  <div className='flex items-center gap-3'>
-                     <span className='text-[10px] font-black uppercase tracking-widest text-[#FF1178] bg-[#FF1178]/10 px-4 py-1.5 rounded-full'>{t.award}</span>
-                  </div>
-                  <h3 className='text-xl md:text-2xl font-black text-text leading-tight tracking-tight italic'>
-                    "{t.quote}"
-                  </h3>
-               </div>
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={testimonial.id}
+                  className='testimonial-slide min-w-full px-4'
+                >
+                  <div className='max-w-5xl mx-auto'>
+                    <div className='grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-center'>
+                      
+                      {/* Image Side */}
+                      <div className='relative order-2 lg:order-1'>
+                        <div className='aspect-square rounded-2xl overflow-hidden relative group'>
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.author}
+                            className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700'
+                          />
+                          <div className='absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent' />
+                          
+                          {/* Floating Badge */}
+                          <div className='absolute top-6 right-6 bg-primary px-6 py-3 rounded-full'>
+                            <div className='flex items-center gap-1'>
+                              {[...Array(testimonial.rating)].map((_, i) => (
+                                <span key={i} className='text-white text-sm'>★</span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-               <div className='flex items-center gap-4 pt-10 border-t border-text/5 mt-auto'>
-                  <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 shrink-0 p-0.5'>
-                     <img src={t.image} className='w-full h-full rounded-full object-cover' alt={t.author} />
+                      {/* Content Side */}
+                      <div className='order-1 lg:order-2 space-y-8'>
+                        {/* Quote Icon */}
+                        <div className='w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center'>
+                          <span className='text-4xl text-primary font-serif'>"</span>
+                        </div>
+
+                        {/* Quote */}
+                        <blockquote className='text-2xl md:text-3xl lg:text-4xl font-black text-text leading-[1.2] tracking-tight italic'>
+                          {testimonial.quote}
+                        </blockquote>
+
+                        {/* Author Info */}
+                        <div className='pt-6 border-t border-text/10'>
+                          <h4 className='text-xl font-black text-text uppercase tracking-tight mb-1'>
+                            {testimonial.author}
+                          </h4>
+                          <p className='text-sm font-bold text-text/50 uppercase tracking-wider'>
+                            {testimonial.role} • {testimonial.company}
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                  <div>
-                     <h4 className='text-base font-black text-text uppercase tracking-tighter'>{t.author}</h4>
-                     <p className='text-[10px] font-bold text-text/30 uppercase tracking-[0.2em]'>{t.role}</p>
-                  </div>
-                  <div className='ml-auto hidden lg:block'>
-                     <span className='text-xs text-primary tracking-tighter font-black italic'>PLATINUM REVIEW</span>
-                  </div>
-               </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className='flex items-center justify-center gap-6 mt-16'>
+            <button
+              onClick={prevTestimonial}
+              className='w-14 h-14 rounded-full border-2 border-text/10 flex items-center justify-center hover:border-primary hover:bg-primary hover:text-white transition-all group'
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            {/* Dots Indicator */}
+            <div className='flex items-center gap-3'>
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`transition-all duration-300 ${
+                    index === activeIndex 
+                      ? 'w-12 h-2 bg-primary rounded-full' 
+                      : 'w-2 h-2 bg-text/20 rounded-full hover:bg-text/40'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextTestimonial}
+              className='w-14 h-14 rounded-full border-2 border-text/10 flex items-center justify-center hover:border-primary hover:bg-primary hover:text-white transition-all group'
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Stats */}
+        <div className='grid grid-cols-3 gap-8 mt-24 pt-12 border-t border-text/5'>
+          {[
+            { label: 'Happy Clients', value: '50+' },
+            { label: 'Success Rate', value: '98%' },
+            { label: 'Projects Delivered', value: '200+' }
+          ].map((stat, i) => (
+            <div key={i} className='text-center'>
+              <div className='text-3xl md:text-4xl font-black text-primary mb-2'>{stat.value}</div>
+              <div className='text-xs font-bold uppercase tracking-wider text-text/40'>{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Subtle CTA Link */}
-        <div className='testimonial-card mt-16 text-center'>
-           <p className='text-[10px] font-black uppercase tracking-[0.5em] text-text/20 hover:text-text cursor-pointer transition-colors flex items-center justify-center gap-4'>
-             <span className="w-10 h-px bg-text/10" />
-             Want to see your name here? <span className='text-primary underline'>Let's talk →</span>
-             <span className="w-10 h-px bg-text/10" />
-           </p>
-        </div>
       </div>
     </section>
   )

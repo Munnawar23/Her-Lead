@@ -56,20 +56,20 @@ const Footer = () => {
                     placeholder="info@herlead.com" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent border-b-2 border-black/5 py-4 text-xl font-black placeholder:text-black/10 focus:outline-none focus:border-[#FF1178] transition-colors"
+                    className="w-full bg-transparent border-b-2 border-black/5 py-4 text-xl font-black placeholder:text-black/10 focus:outline-none focus:border-primary transition-colors"
                   />
                </div>
             </div>
             
-            <button className="mt-16 group relative w-full h-16 bg-linear-to-r from-[#FF1178] to-[#FFA500] rounded-full overflow-hidden shadow-2xl hover:scale-[1.03] active:scale-95 transition-all">
-               <span className="relative z-10 text-white font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+            <button className="mt-16 group relative w-full h-16 bg-primary rounded-full overflow-hidden shadow-2xl hover:scale-[1.03] hover:bg-text active:scale-95 transition-all">
+               <span className="relative z-10 text-background font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
                  Join Our Mailing List 
                  <span className="text-2xl leading-none -mt-1">↗</span>
                </span>
             </button>
 
             {/* Subtle background glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
           </div>
         </div>
 
@@ -165,7 +165,7 @@ const Footer = () => {
                 <h3 className="text-2xl font-black text-white leading-[1.1] tracking-tighter">
                   I'm interested in Influence Marketing
                 </h3>
-                <div className="mt-8 w-14 h-14 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/20 group-hover:bg-[#FF1178] group-hover:border-[#FF1178] transition-all duration-500">
+                <div className="mt-8 w-14 h-14 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white border border-white/20 group-hover:bg-primary group-hover:border-primary transition-all duration-500">
                   <span className="text-2xl">↗</span>
                 </div>
              </div>

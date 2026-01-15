@@ -1,9 +1,18 @@
 "use client"
 import React from 'react'
 import { useTransition } from '@/components/TransitionProvider'
+import { Instagram, Twitter, Linkedin, Facebook, Youtube } from 'lucide-react'
 
 const SocialBottomBar = () => {
   const { transitionTo } = useTransition()
+
+  const socialLinks = [
+    { Icon: Instagram, url: '#', label: 'Instagram' },
+    { Icon: Twitter, url: '#', label: 'Twitter' },
+    { Icon: Linkedin, url: '#', label: 'LinkedIn' },
+    { Icon: Facebook, url: '#', label: 'Facebook' },
+    { Icon: Youtube, url: '#', label: 'YouTube' }
+  ]
 
   return (
     <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-90 w-full max-w-fit px-6">
@@ -11,22 +20,19 @@ const SocialBottomBar = () => {
         
         {/* Social Icons */}
         <div className="flex items-center gap-3 pr-0 md:pr-6 md:border-r border-white/10">
-          {[
-            { tag: 'ig', url: '#' },
-            { tag: 'tt', url: '#' },
-            { tag: 'li', url: '#' },
-            { tag: 'x', url: '#' },
-            { tag: 'fb', url: '#' },
-            { tag: 'yt', url: '#' }
-          ].map((social, i) => (
-            <a 
-              key={i} 
-              href={social.url}
-              className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-all text-[9.5px] font-black uppercase"
-            >
-              {social.tag}
-            </a>
-          ))}
+          {socialLinks.map((social, i) => {
+            const Icon = social.Icon
+            return (
+              <a 
+                key={i} 
+                href={social.url}
+                aria-label={social.label}
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-all"
+              >
+                <Icon size={16} strokeWidth={2.5} />
+              </a>
+            )
+          })}
         </div>
 
         {/* Action Section */}
@@ -36,7 +42,7 @@ const SocialBottomBar = () => {
           </div>
           <button 
             onClick={() => transitionTo('/contact')}
-            className="bg-linear-to-r from-primary to-orange-500 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
+            className="bg-primary hover:bg-secondary px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all whitespace-nowrap text-text"
           >
             Work with us →
           </button>

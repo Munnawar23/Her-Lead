@@ -3,9 +3,10 @@
 /* THEME DEFINITIONS */
 @theme {
   /* Colors */
---color-background: #FFFEFC; /* Ultra white with a tiny warm tint */
---color-text: #242424;       /* Deep soft black */
---color-primary: #D4AF37; /* New Golden Color */
+  --color-background: #fffefc; /* Ultra white with a tiny warm tint */
+  --color-text: #242424; /* Deep soft black */
+  --color-primary: #d4af37; /* Golden Color */
+  --color-secondary: #e8d4a0; /* Lighter Golden Color */
 
   /* Typography */
   --font-heading: "Poppins", sans-serif;
@@ -63,13 +64,22 @@
 
   /* Hide scrollbar for IE, Edge and Firefox */
   * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   /* Global Selection Colors */
   ::selection {
     background-color: var(--color-primary);
     color: white;
+  }
+
+  /* Scrollbar Hide Utility */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
