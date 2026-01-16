@@ -1,10 +1,16 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { useTransition } from '@/components/TransitionProvider'
-import { Instagram, Twitter, Linkedin, Facebook, Youtube } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { Instagram, Twitter, Linkedin, Facebook, Youtube, Share2, X } from 'lucide-react'
 
 const SocialBottomBar = () => {
   const { transitionTo } = useTransition()
+  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Don't show on splash screen
+  if (pathname === '/') return null
 
   const socialLinks = [
     { Icon: Instagram, url: '#', label: 'Instagram' },
@@ -15,44 +21,39 @@ const SocialBottomBar = () => {
   ]
 
   return (
-    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-90 w-full max-w-fit px-6">
-      <div className="flex flex-col md:flex-row bg-[#1a1a1a]/95 backdrop-blur-xl shadow-2xl rounded-2xl md:rounded-full px-5 py-2.5 text-white items-center gap-6 border border-white/10 scale-90 md:scale-95 transition-all hover:scale-100">
+    <div className="fixed bottom-6 right-6 z-90 flex flex-col items-end gap-3">
+      {/* Social Links - Expand from bottom */}
+      <div className={`flex flex-col gap-2 transition-all duration-300 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+        {socialLinks.map((social, i) => {
+          const Icon = social.Icon
+          return (
+            <a 
+              key={i} 
+              href={social.url}
+              aria-label={social.label}
+              className="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white hover:text-primary transition-all hover:scale-110 border border-white/5"
+              style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
+            >
+              <Icon size={18} strokeWidth={2.5} />
+            </a>
+          )
+        })}
+      </div>
+
+      {/* Main Toggle Button */}
+      <div className="flex items-center gap-3 group">
+        {/* Text Label */}
+        <span className={`text-[10px] font-heading font-black uppercase tracking-widest text-white bg-red-light px-4 py-2 rounded-full shadow-lg transition-all duration-300 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'}`}>
+          Stay Connected
+        </span>
         
-        {/* Social Icons */}
-        <div className="flex items-center gap-3 pr-0 md:pr-6 md:border-r border-white/10">
-          {socialLinks.map((social, i) => {
-            const Icon = social.Icon
-            return (
-              <a 
-                key={i} 
-                href={social.url}
-                aria-label={social.label}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-primary transition-all"
-              >
-                <Icon size={16} strokeWidth={2.5} />
-              </a>
-            )
-          })}
-        </div>
-
-        {/* Action Section */}
-        <div className="flex items-center gap-5">
-          <div className="hidden sm:block text-[10px] font-black tracking-[0.2em] uppercase">
-             Take me to: <span className="text-white/40 ml-1">Influencer Marketing</span>
-          </div>
-          <button 
-            onClick={() => transitionTo('/contact')}
-            className="bg-primary hover:bg-secondary px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all whitespace-nowrap text-text"
-          >
-            Work with us →
-          </button>
-        </div>
-
-        {/* Decoration */}
-        <div className="hidden lg:block w-px h-5 bg-white/10 ml-1" />
-        <div className="hidden lg:block text-[8px] font-bold text-white/20 uppercase tracking-widest pl-1">
-          Global
-        </div>
+        {/* Button */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-14 h-14 rounded-full bg-primary hover:bg-red-light flex items-center justify-center text-white shadow-xl hover:shadow-2xl transition-all hover:scale-110 active:scale-95"
+        >
+          {isOpen ? <X size={24} strokeWidth={3} /> : <Share2 size={24} strokeWidth={3} />}
+        </button>
       </div>
     </div>
   )

@@ -88,16 +88,11 @@ const TestimonialSection = () => {
         
         {/* Header */}
         <div className='testimonial-header text-center mb-16 md:mb-24'>
-          <div className='inline-flex items-center gap-3 mb-6'>
-            <div className='w-12 h-px bg-primary' />
-            <span className='text-[10px] font-black uppercase tracking-[0.5em] text-primary'>Client Love</span>
-            <div className='w-12 h-px bg-primary' />
-          </div>
           <h2 className='text-5xl md:text-7xl lg:text-8xl font-black text-text leading-[0.85] tracking-tighter uppercase mb-6'>
             What They're <br />
-            <span className='text-primary italic'>Saying</span>
+            <span className="text-red-light">Saying</span><span className="text-primary">.</span>
           </h2>
-          <p className='text-base md:text-lg text-text/60 font-medium max-w-2xl mx-auto'>
+          <p className='text-base md:text-lg text-text max-w-2xl mx-auto font-bold'>
             Don't just take our word for it—hear from the brands we've helped transform.
           </p>
         </div>
@@ -155,7 +150,7 @@ const TestimonialSection = () => {
                           <h4 className='text-xl font-black text-text uppercase tracking-tight mb-1'>
                             {testimonial.author}
                           </h4>
-                          <p className='text-sm font-bold text-text/50 uppercase tracking-wider'>
+                          <p className='text-sm font-bold text-red-light uppercase tracking-wider'>
                             {testimonial.role} • {testimonial.company}
                           </p>
                         </div>
@@ -214,7 +209,7 @@ const TestimonialSection = () => {
           ].map((stat, i) => (
             <div key={i} className='text-center'>
               <div className='text-3xl md:text-4xl font-black text-primary mb-2'>{stat.value}</div>
-              <div className='text-xs font-bold uppercase tracking-wider text-text/40'>{stat.label}</div>
+              <div className='text-xs font-bold uppercase tracking-wider text-text'>{stat.label}</div>
             </div>
           ))}
         </div>

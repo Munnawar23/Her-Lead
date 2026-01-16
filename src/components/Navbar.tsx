@@ -11,9 +11,6 @@ const Navbar = () => {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
 
-  // Don't show navbar on splash screen
-  if (pathname === '/') return null;
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -21,6 +18,9 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Don't show navbar on splash screen
+  if (pathname === '/') return null;
 
   const navLinks = [
     { name: 'Services', path: '/home#services', hasDropdown: true },
@@ -68,11 +68,11 @@ const Navbar = () => {
               <a
                 href={link.path}
                 onClick={(e) => handleNavClick(e, link.path)}
-                className="text-[11px] uppercase tracking-[0.25em] font-bold text-black/60 hover:text-black transition-colors flex items-center gap-1.5"
+                className="text-[11px] uppercase tracking-[0.25em] font-heading font-black text-text hover:text-red-light transition-colors flex items-center gap-1.5"
               >
                 {link.name}
                 {link.hasDropdown && (
-                  <svg className="w-2.5 h-2.5 opacity-30 group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-2.5 h-2.5 opacity-50 text-primary group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 )}
@@ -86,7 +86,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <button 
             onClick={(e) => handleNavClick(e, '/careers')}
-            className="hidden md:flex items-center gap-3 px-7 py-3 rounded-full text-[10px] uppercase tracking-[0.2em] font-black border border-black/10 hover:bg-black group transition-all duration-300 hover:text-white"
+            className="hidden md:flex items-center gap-3 px-7 py-3 rounded-full text-[10px] uppercase tracking-[0.2em] font-heading font-black border border-text/10 hover:border-red-light hover:text-red-light group transition-all duration-300"
           >
             I'm a Talent
             <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -97,7 +97,7 @@ const Navbar = () => {
           
           <button 
             onClick={(e) => handleNavClick(e, '/home#contact')}
-            className="flex items-center gap-3 px-8 py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-background bg-primary shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.03] hover:bg-text active:scale-[0.97] transition-all group"
+            className="flex items-center gap-3 px-8 py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] font-heading font-black text-white bg-red-light shadow-lg shadow-red-light/20 hover:shadow-red-light/40 hover:scale-[1.03] active:scale-[0.97] transition-all group"
           >
             Request a Quote
             <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

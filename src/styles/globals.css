@@ -1,46 +1,47 @@
+/* GOOGLE FONTS IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 @import "tailwindcss";
 
 /* THEME DEFINITIONS */
 @theme {
-  /* Colors */
-  --color-background: #fffefc; /* Ultra white with a tiny warm tint */
-  --color-text: #242424; /* Deep soft black */
-  --color-primary: #d4af37; /* Golden Color */
-  --color-secondary: #e8d4a0; /* Lighter Golden Color */
-
-  /* Typography */
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  /* ===== BRAND COLORS ===== */
+  --color-background: #fffefc;
+  --color-text: #242424;
+  --color-primary: #d4af37; /* Golden */
+  --color-secondary: #e8d4a0; /* Light Golden */
+  
+  /* ===== NEUTRALS ===== */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-100: #f5f5f5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-500: #737373;
+  --color-gray-700: #404040;
+  --color-gray-900: #171717;
+  
+  /* ===== ACCENT COLORS ===== */
+  --color-rose: #ff6b9d;
+  --color-purple: #9333ea;
+  --color-blue: #3b82f6;
+  --color-teal: #14b8a6;
+  --color-emerald: #10b981;
+  --color-red-light: #ff6666; /* Light Red - Even Darker */
+  
+  /* ===== SEMANTIC COLORS ===== */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* ===== TYPOGRAPHY ===== */
+  --font-display: "Playfair Display", serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
-/* BASE AND FONT-FACE LAYER */
+/* BASE LAYER */
 @layer base {
-  /* Font-face declarations */
-  /* Poppins - Headings */
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 600;
-    src: url("../assets/fonts/Poppins-SemiBold.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 700;
-    src: url("../assets/fonts/Poppins-Bold.ttf") format("truetype");
-  }
-
-  /* DM Sans - Body */
-  @font-face {
-    font-family: "DM Sans";
-    font-weight: 400;
-    src: url("../assets/fonts/DMSans-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "DM Sans";
-    font-weight: 500;
-    src: url("../assets/fonts/DMSans-Medium.ttf") format("truetype");
-  }
-
-  /* Apply base styles */
   * {
     margin: 0;
     padding: 0;
@@ -53,33 +54,47 @@
     background-color: var(--color-background);
     font-family: var(--font-body);
     color: var(--color-text);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+
   *::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
   * {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  /* Global Selection Colors */
   ::selection {
     background-color: var(--color-primary);
     color: white;
   }
 
-  /* Scrollbar Hide Utility */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  
+  *:focus-visible {
+    outline: 2px solid var(--color-info);
+    outline-offset: 2px;
   }
 }

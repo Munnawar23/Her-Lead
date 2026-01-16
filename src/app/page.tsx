@@ -14,18 +14,18 @@ const SplashScreen = () => {
   useGSAP(() => {
     const tl = gsap.timeline()
 
-    // 1. Initial State
+    // Initial State
     gsap.set('.word-cycle-item', { y: 20, opacity: 0 })
     gsap.set('.brand-logo', { filter: 'blur(20px)', opacity: 0, scale: 1.1 })
 
-    // 2. Loading Bar
+    // Loading Bar
     tl.to('.loading-bar', {
        width: '100%',
        duration: 3,
        ease: 'none'
     })
 
-    // 3. Word Cycle Sequence
+    // Word Cycle
     const cycleWords = ['.word-1', '.word-2', '.word-3']
     cycleWords.forEach((word, i) => {
       tl.to(word, {
@@ -42,7 +42,7 @@ const SplashScreen = () => {
       }, (i * 0.7) + 0.5)
     })
 
-    // 4. Logo Premium Reveal
+    // Logo Reveal
     tl.to('.loading-section', {
        opacity: 0,
        duration: 0.5,
@@ -60,16 +60,12 @@ const SplashScreen = () => {
       { opacity: 1, letterSpacing: '0.5em', duration: 1.5, ease: 'power3.out' },
       '-=1'
     )
-
-    // 5. Exit Animation
     .to('.splash-curtain', {
        yPercent: -100,
        duration: 1.2,
        ease: 'expo.inOut',
        delay: 0.8,
-       onComplete: () => {
-         transitionTo('/home')
-       }
+       onComplete: () => transitionTo('/home')
     })
   }, { scope: containerRef })
 
@@ -81,47 +77,52 @@ const SplashScreen = () => {
       {/* Grain Overlay */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-60 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
       
-      {/* Top Decoration */}
-      <div className="flex justify-between items-center opacity-40 text-[9px] uppercase tracking-[0.3em] font-bold">
+      {/* Top Section */}
+      <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.3em] font-black text-text">
          <div className="flex items-center gap-4">
-            <span className="w-8 h-px bg-text" />
-            <span>Identity Presence</span>
+            <span className="w-10 h-[2px] bg-text" />
+            <span>Digital Elevation</span>
          </div>
-         <span>2026 Edition</span>
+         <span>Est. 2026</span>
       </div>
 
       {/* Center Content */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-10">
-         {/* Word Cycle */}
          <div className="relative h-20 flex items-center justify-center">
-            <h2 className="word-cycle-item word-1 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Vision</h2>
-            <h2 className="word-cycle-item word-2 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Impact</h2>
-            <h2 className="word-cycle-item word-3 absolute text-[6vw] md:text-[3vw] font-light tracking-[0.2em] uppercase text-text/80">Leadership</h2>
+            <h2 className="word-cycle-item word-1 absolute text-[6vw] md:text-[3vw] font-black tracking-[0.2em] uppercase text-text">
+              Strategy
+            </h2>
+            <h2 className="word-cycle-item word-2 absolute text-[6vw] md:text-[3vw] font-black tracking-[0.2em] uppercase text-text">
+              Creativity
+            </h2>
+            <h2 className="word-cycle-item word-3 absolute text-[6vw] md:text-[3vw] font-black tracking-[0.2em] uppercase text-text">
+              Growth
+            </h2>
          </div>
 
-         {/* Brand Logo */}
+         {/* Logo */}
          <div className="brand-reveal w-full flex flex-col items-center">
              <div className="brand-logo w-[50vw] md:w-[22vw] max-w-sm">
                <Image 
                  src={logo} 
-                 alt="Her Lead Logo" 
+                 alt="Brand Logo" 
                  className="w-full h-auto drop-shadow-[0_0_30px_rgba(0,0,0,0.05)]"
                  priority
                />
              </div>
-             <p className="tagline mt-10 font-heading text-xs md:text-sm text-text/40 tracking-[0.5em] uppercase font-bold">
-               Digital Elevation Studio
+             <p className="tagline mt-10 font-heading text-xs md:text-sm text-text tracking-[0.5em] uppercase font-black">
+               360° Digital Elevation Studio
              </p>
          </div>
       </div>
 
-      {/* Bottom Loading Section */}
+      {/* Bottom Loading */}
       <div className="loading-section w-full flex flex-col z-10 max-w-xs">
-         <div className="flex justify-between text-[8px] uppercase tracking-[0.3em] font-bold text-text/30 mb-2">
-            <span>System Initializing</span>
-            <span>Alpha v1.0</span>
+         <div className="flex justify-between text-[9px] uppercase tracking-[0.3em] font-black text-text mb-3">
+            <span>Preparing Experience</span>
+            <span>Launching</span>
          </div>
-         <div className="w-full h-[2px] bg-text/5 overflow-hidden relative">
+         <div className="w-full h-[2px] bg-text/10 overflow-hidden relative">
             <div className="loading-bar absolute top-0 left-0 h-full w-0 bg-primary" />
          </div>
       </div>
