@@ -165,42 +165,48 @@ const ContentShowcaseSection = () => {
       </div>
 
       {/* BLOG CARDS */}
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-x-12 gap-y-16 md:gap-y-20 mb-16">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-y-12 md:gap-x-12 md:gap-y-20 mb-16">
         {blogPosts.map((post, index) => (
           <div
             key={post.id}
-            className="funky-blog-card group relative cursor-pointer"
+            className="funky-blog-card group relative w-full"
             style={{
-              width:
-                post.size === "large"
-                  ? "100%"
-                  : post.size === "medium"
-                    ? "500px"
-                    : "400px",
-              maxWidth: "100%",
+              width: "100%",
+              maxWidth: post.size === "large" ? "100%" : post.size === "medium" ? "700px" : "500px",
             }}
             data-rotate={post.rotation}
-            onClick={() => transitionTo("/blog")}
           >
-            <div className="relative w-full aspect-square md:aspect-video rounded-[3rem] overflow-hidden bg-black shadow-[15px_15px_0px] shadow-primary group-hover:shadow-none transition-all duration-500 mb-10">
-              <img
-                src={post.image}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                alt={post.title}
-              />
+            <div className="relative w-full aspect-square md:aspect-video rounded-none md:rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8 md:mb-10">
+              {index === 0 ? (
+                <video
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src="/videos/soon.mp4" type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src={post.image}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                  alt={post.title}
+                />
+              )}
               <div className="absolute top-6 left-6 px-4 py-1.5 bg-black text-white text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
                 {post.tag}
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute -top-16 left-0 text-[10vw] font-black text-black/5 pointer-events-none italic uppercase">
+            <div className="relative px-6 md:px-0">
+              <div className="absolute -top-12 md:-top-16 left-6 md:left-0 text-[12vw] md:text-[10vw] font-black text-black/5 pointer-events-none italic uppercase">
                 0{index + 1}
               </div>
               <h3 className="text-3xl md:text-5xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-red-light transition-colors">
                 {post.title}
               </h3>
-              <p className="mt-5 text-sm md:text-base text-text font-bold max-w-md leading-relaxed">
+              <p className="mt-4 md:mt-5 text-base md:text-lg text-text font-bold max-w-md leading-relaxed">
                 {post.description}
               </p>
             </div>
