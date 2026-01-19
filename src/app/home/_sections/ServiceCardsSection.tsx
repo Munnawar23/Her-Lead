@@ -112,7 +112,7 @@ const ServiceCardsSection = () => {
             return (
               <div 
                 key={idx}
-                className={`service-card group relative w-full ${group.color} ${group.textColor} rounded-[2rem] md:rounded-[3rem] overflow-hidden p-8 md:p-16 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center shadow-2xl transition-transform duration-500 hover:scale-[1.01]`}
+                className={`service-card group relative w-full ${group.color} ${group.textColor} rounded-4xl md:rounded-[3rem] overflow-hidden p-8 md:p-16 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center shadow-2xl transition-transform duration-500 hover:scale-[1.01]`}
               >
                 {/* Left Content */}
                 <div className="space-y-8 md:space-y-10 relative z-10">
