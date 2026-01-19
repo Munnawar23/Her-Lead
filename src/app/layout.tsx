@@ -19,12 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CustomCursor />
         <SmoothScroll>
           <TransitionProvider>
             <Navbar />
             {children}
-            <SocialBottomBar />
           </TransitionProvider>
         </SmoothScroll>
       </body>

@@ -36,15 +36,17 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section className="w-full bg-background py-20 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section className="mt-32 md:mt-48 w-full bg-background pt-20 pb-20 md:pb-32 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-4xl md:text-6xl font-heading font-black text-text leading-tight tracking-tighter uppercase mb-4">
-            How We <span className="text-primary">Work</span>
-          </h2>
-          <p className="text-base md:text-lg font-body text-text max-w-2xl mx-auto">
+        <div className="text-center mb-20 md:mb-32">
+          <div className='inline-flex items-center justify-center gap-6 mb-8'>
+            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+            <span className='text-4xl md:text-6xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Process</span>
+            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+          </div>
+          <p className="text-lg md:text-xl font-body font-bold text-text leading-relaxed max-w-2xl mx-auto">
             A simple, structured approach designed to deliver clarity, quality, and measurable growth.
           </p>
         </div>
@@ -63,11 +65,11 @@ const ProcessSection = () => {
                 </span>
               </div>
 
-              <h3 className="text-xl md:text-2xl font-heading font-black text-text mb-4 tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-heading font-black text-text mb-4 tracking-tighter uppercase leading-none">
                 {step.title}
               </h3>
 
-              <p className="text-sm md:text-base font-body text-text leading-relaxed font-bold">
+              <p className="text-base font-body font-bold text-text/80 leading-relaxed">
                 {step.description}
               </p>
 

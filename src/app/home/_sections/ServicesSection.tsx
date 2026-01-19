@@ -57,22 +57,24 @@ const ServicesSection = () => {
   }, { scope: containerRef })
 
   return (
-    <section
-      id="services"
-      ref={containerRef}
-      className='min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 py-20 md:py-32 flex flex-col items-center overflow-hidden'
-    >
-      <div className='mb-16 md:mb-20 text-center overflow-hidden'>
-        <h2 className='reveal-text font-heading text-5xl md:text-6xl font-black text-text leading-[0.8] tracking-tighter uppercase'>
-          Our Services<span className='text-red-light'>.</span>
-        </h2>
-        <div className="w-24 h-1 bg-primary mx-auto mt-4" />
+  <section
+  id="services"
+  ref={containerRef}
+  // Added mt-32 md:mt-48 for external gap, kept pt-20 for internal top space
+  className='mt-32 md:mt-48 min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-20 md:pb-32 flex flex-col items-center overflow-hidden'
+>
+      <div className='mb-20 md:mb-32 text-center'>
+        <div className='inline-flex items-center justify-center gap-6'>
+          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+          <span className='text-4xl md:text-6xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Services</span>
+          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+        </div>
       </div>
 
-      <div className='max-w-full mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 md:gap-16 lg:gap-20 items-start'>
+      <div className='max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-4 items-start'>
         
-        {/* Left Image */}
-        <div className='image-stage lg:sticky lg:top-40 relative order-2 lg:order-1 max-w-sm lg:max-w-lg w-full mx-auto lg:mx-0'>
+        {/* Left Image (Span 6) */}
+        <div className='lg:col-span-6 image-stage lg:sticky lg:top-40 relative order-2 lg:order-1 max-w-md lg:max-w-none w-full mx-auto lg:mx-0'>
           <div className='w-full aspect-square overflow-hidden rounded-sm bg-black/5 relative'>
             {services.map((service, index) => (
               <div
@@ -91,18 +93,18 @@ const ServicesSection = () => {
             ))}
           </div>
 
-          <div className='mt-6 md:mt-8 space-y-2'>
-            <h4 className='font-heading text-base md:text-lg text-red-light font-black uppercase tracking-tight'>
+          <div className='mt-8 space-y-4'>
+            <h4 className='font-heading text-sm md:text-base text-red-light font-black uppercase tracking-widest'>
               {services[hoveredIndex].category}
             </h4>
-            <p className='font-body text-sm md:text-base text-text leading-relaxed font-bold'>
+            <p className='font-body text-sm md:text-base text-text/80 leading-relaxed max-w-sm'>
               {services[hoveredIndex].description}
             </p>
           </div>
         </div>
 
-        {/* Right List */}
-        <div className='services-list space-y-4 md:space-y-5 lg:space-y-6 order-1 lg:order-2'>
+        {/* Right List (Span 6) */}
+        <div className='lg:col-span-6 services-list space-y-2 md:space-y-3 lg:space-y-4 order-1 lg:order-2'>
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -110,10 +112,10 @@ const ServicesSection = () => {
               onMouseEnter={() => setHoveredIndex(index)}
             >
               <h3
-                className={`font-heading text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl leading-[0.9] font-black tracking-tighter uppercase transition-all duration-500 ${
+                className={`font-body text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight font-normal tracking-tight uppercase transition-all duration-700 ${
                   hoveredIndex === index
-                    ? 'text-primary translate-x-4'
-                    : 'text-text/20'
+                    ? 'text-text opacity-100'
+                    : 'text-text/20 hover:text-text/40'
                 }`}
               >
                 {serviceDisplayNames[index]}

@@ -1,22 +1,21 @@
 "use client"
 import React from "react"
 import { useTransition } from "@/components/TransitionProvider"
+import { Instagram, Linkedin } from "lucide-react"
+
+const XIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+  </svg>
+)
 
 const Footer = () => {
   const { transitionTo } = useTransition()
 
-  const links = [
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
-  ]
-
   const socials = [
-    { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "Twitter", href: "#" },
-    { label: "Facebook", href: "#" },
+    { label: "Instagram", href: "#", icon: Instagram },
+    { label: "LinkedIn", href: "#", icon: Linkedin },
+    { label: "X", href: "#", icon: XIcon },
   ]
 
   return (
@@ -27,15 +26,12 @@ const Footer = () => {
         <div className="py-16 md:py-20 border-b border-text/10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="group p-8 border border-text/20 rounded-2xl hover:border-primary/50 transition-all cursor-pointer">
-              <div className="text-3xl mb-4 text-primary">✨</div>
               <h3 className="text-xl font-heading font-black text-text">Request a quote</h3>
             </div>
             <div className="group p-8 border border-text/20 rounded-2xl hover:border-red-light/50 transition-all cursor-pointer">
-              <div className="text-3xl mb-4 text-red-light">📝</div>
               <h3 className="text-xl font-heading font-black text-text">General inquiries</h3>
             </div>
             <div className="group p-8 border border-text/20 rounded-2xl hover:border-primary/50 transition-all cursor-pointer">
-              <div className="text-3xl mb-4 text-primary">📱</div>
               <h3 className="text-xl font-heading font-black text-text">I'm an influencer</h3>
             </div>
           </div>
@@ -55,7 +51,7 @@ const Footer = () => {
                 Ready to elevate your brand? Get in touch and let's start building your digital presence.
               </p>
               <button 
-                onClick={() => transitionTo('/contact')}
+                onClick={() => window.location.href = 'mailto:munawwarh48@gmail.com'}
                 className="group px-8 py-4 bg-text text-background rounded-full font-heading font-black text-xs uppercase tracking-wider hover:bg-primary transition-all inline-flex items-center gap-3"
               >
                 Get In Touch
@@ -68,14 +64,14 @@ const Footer = () => {
               <div>
                 <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4">Contact</h3>
                 <div className="space-y-3">
-                  <p className="text-base font-body text-text">
+                  <p className="text-base font-body font-bold text-text">
                     213 Sterling Rd. Unit 214<br />
                     Toronto, ON M6R 2B2, Canada
                   </p>
-                  <p className="text-base font-body text-text">
+                  <p className="text-base font-body font-bold text-text">
                     <a href="tel:4162542944" className="hover:text-primary transition-colors">416.254.2944</a>
                   </p>
-                  <p className="text-base font-body text-text">
+                  <p className="text-base font-body font-bold text-text">
                     <a href="mailto:info@herlead.com" className="hover:text-primary transition-colors">info@herlead.com</a>
                   </p>
                 </div>
@@ -88,9 +84,10 @@ const Footer = () => {
                     <a 
                       key={i}
                       href={social.href}
-                      className="text-sm font-body font-medium text-text hover:text-primary transition-colors"
+                      className="w-10 h-10 rounded-full border border-text/10 flex items-center justify-center text-text hover:text-primary hover:border-primary transition-all duration-300"
+                      aria-label={social.label}
                     >
-                      {social.label}
+                      <social.icon size={18} />
                     </a>
                   ))}
                 </div>
@@ -104,21 +101,9 @@ const Footer = () => {
         <div className="py-8 border-t border-text/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             
-            {/* Links */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-6">
-              {links.map((link, i) => (
-                <button
-                  key={i}
-                  onClick={() => transitionTo(link.href)}
-                  className="text-sm font-body font-black text-text hover:text-red-light transition-colors uppercase tracking-widest"
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
 
             {/* Copyright */}
-            <div className="flex items-center gap-4 text-xs font-body text-text font-black uppercase tracking-widest">
+            <div className="flex items-center gap-4 text-xs font-body font-bold text-text uppercase tracking-widest">
               <span>© 2026 Her Lead</span>
               <span className="text-primary">•</span>
               <a href="#" className="hover:text-red-light transition-colors">Privacy</a>

@@ -88,7 +88,7 @@ const TestimonialSection = () => {
         
         {/* Header */}
         <div className='testimonial-header text-center mb-16 md:mb-24'>
-          <h2 className='text-5xl md:text-7xl lg:text-8xl font-black text-text leading-[0.85] tracking-tighter uppercase mb-6'>
+          <h2 className='text-5xl md:text-7xl lg:text-6xl font-black text-text leading-[0.85] tracking-tighter uppercase mb-6'>
             What They're <br />
             <span className="text-red-light">Saying</span><span className="text-primary">.</span>
           </h2>

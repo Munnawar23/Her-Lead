@@ -14,20 +14,15 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+  </svg>
+)
+
 gsap.registerPlugin(ScrollTrigger);
 
 const blogPosts = [
-  {
-    id: 1,
-    tag: "Branding",
-    title: "Why Minimal No Longer Works",
-    description:
-      "How bold storytelling is shaping the future of digital brands.",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200",
-    size: "large",
-    rotation: -2,
-  },
   {
     id: 2,
     tag: "Digital Marketing",
@@ -177,23 +172,11 @@ const ContentShowcaseSection = () => {
             data-rotate={post.rotation}
           >
             <div className="relative w-full aspect-square md:aspect-video rounded-none md:rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8 md:mb-10">
-              {index === 0 ? (
-                <video
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src="/videos/soon.mp4" type="video/mp4" />
-                </video>
-              ) : (
-                <img
-                  src={post.image}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                  alt={post.title}
-                />
-              )}
+              <img
+                src={post.image}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                alt={post.title}
+              />
               <div className="absolute top-6 left-6 px-4 py-1.5 bg-black text-white text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
                 {post.tag}
               </div>
@@ -271,10 +254,8 @@ const ContentShowcaseSection = () => {
           <div className="flex items-center gap-4 md:gap-6">
             {[
               { Icon: Instagram, color: "#E1306C", label: "Instagram" },
-              { Icon: Twitter, color: "#000000", label: "Twitter" },
               { Icon: Linkedin, color: "#0077B5", label: "LinkedIn" },
-              { Icon: Twitter, color: "#000000", label: "X" },
-              { Icon: Facebook, color: "#1877F2", label: "Facebook" },
+              { Icon: XIcon, color: "#000000", label: "X" },
               { Icon: Youtube, color: "#FF0000", label: "YouTube" },
             ].map((social, i) => (
               <a
