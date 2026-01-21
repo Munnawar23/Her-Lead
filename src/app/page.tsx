@@ -111,7 +111,7 @@ const SplashScreen = () => {
                />
              </div>
              <p className="tagline mt-10 font-heading text-xs md:text-sm text-text tracking-[0.5em] uppercase font-black">
-               360° Digital Elevation Studio
+               360° Digital Elevation
              </p>
          </div>
       </div>

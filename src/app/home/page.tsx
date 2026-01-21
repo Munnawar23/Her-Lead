@@ -5,6 +5,7 @@ import ServiceCardsSection from './_sections/ServiceCardsSection'
 import ProcessSection from './_sections/ProcessSection'
 import TestimonialSection from './_sections/TestimonialSection'
 import ContentShowcaseSection from './_sections/ContentShowcaseSection'
+import AwardsPartnersSection from './_sections/AwardsPartnersSection'
 import Footer from '@/components/Footer'
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
       <ProcessSection />
       <TestimonialSection />
       <ContentShowcaseSection />
+      <AwardsPartnersSection />
       <Footer />
     </div>
   )

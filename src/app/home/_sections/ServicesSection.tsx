@@ -11,14 +11,17 @@ const ServicesSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState(0)
 
-  // Human-friendly service names (UI only)
   const serviceDisplayNames = [
-    "Public Relations",
-    "Digital Marketing",
-    "Brand Identity",
-    "Corporate Training",
-    "Talent & Careers",
-    "Web & Digital Experience",
+    "PR & Media Services",
+    "Influencer Marketing",
+    "Brand Creation",
+    "Search Engine Optimization",
+    "Paid Ads",
+    "Corporate Training & Development",
+    "Career Confidence & Interview Mastery",
+    "Web Design & Development",
+    "Social Media Management",
+    "Find the Talent",
   ]
 
   const imageSources = [
@@ -28,6 +31,10 @@ const ServicesSection = () => {
     "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop",
   ]
 
   useGSAP(() => {
@@ -57,71 +64,78 @@ const ServicesSection = () => {
   }, { scope: containerRef })
 
   return (
-  <section
-  id="services"
-  ref={containerRef}
-  // Added mt-32 md:mt-48 for external gap, kept pt-20 for internal top space
-  className='mt-32 md:mt-48 min-h-screen w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-20 md:pb-32 flex flex-col items-center overflow-hidden'
->
-      <div className='mb-20 md:mb-32 text-center'>
+    <section 
+      id="services"
+      ref={containerRef}
+      className="mt-4 md:mt-8 w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-4 md:pb-8 overflow-hidden"
+    >
+      {/* Header */}
+      <div className='mb-16 md:mb-20 text-center'>
         <div className='inline-flex items-center justify-center gap-6'>
           <div className='w-12 md:w-20 h-[2px] bg-red-light' />
-          <span className='text-4xl md:text-6xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Services</span>
+          <span className='text-4xl md:text-6xl lg:text-5xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>I am looking for</span>
           <div className='w-12 md:w-20 h-[2px] bg-red-light' />
         </div>
       </div>
 
-      <div className='max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-4 items-start'>
-        
-        {/* Left Image (Span 6) */}
-        <div className='lg:col-span-6 image-stage lg:sticky lg:top-40 relative order-2 lg:order-1 max-w-md lg:max-w-none w-full mx-auto lg:mx-0'>
-          <div className='w-full aspect-square overflow-hidden rounded-sm bg-black/5 relative'>
+      {/* Main Content - Doze Studio Style */}
+      <div className='max-w-7xl mx-auto'>
+        <div className='flex flex-col lg:flex-row gap-8 lg:gap-16 items-start'>
+          
+          {/* Left: Image + Description */}
+          <div className='w-full lg:w-auto lg:shrink-0'>
+            <div className='image-stage lg:sticky lg:top-32 space-y-6'>
+              {/* Square Image */}
+              <div className='w-full lg:w-[320px] xl:w-[380px] aspect-square overflow-hidden rounded-sm bg-black/5 relative'>
+                {services.map((service, index) => (
+                  <div
+                    key={service.id}
+                    className={`absolute inset-0 transition-opacity duration-700 ${
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <img
+                      src={imageSources[index]}
+                      alt={serviceDisplayNames[index]}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Category & Description */}
+              <div className='space-y-3 max-w-[380px] min-h-[280px] md:min-h-[320px]'>
+                <h4 className='font-heading text-xs md:text-sm text-red-light font-black uppercase tracking-wider'>
+                  {services[hoveredIndex].category}
+                </h4>
+                <p className='font-body text-sm md:text-base text-text font-bold leading-relaxed'>
+                  {services[hoveredIndex].description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Service Names List */}
+          <div className='flex-1 services-list space-y-1 md:space-y-2'>
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                }`}
+                className='service-item-row cursor-pointer py-1'
+                onMouseEnter={() => setHoveredIndex(index)}
               >
-                <img
-                  src={imageSources[index]}
-                  alt={serviceDisplayNames[index]}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
+                <h3
+                  className={`font-heading text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight font-black uppercase tracking-widest transition-all duration-700 ${
+                    hoveredIndex === index
+                      ? 'text-red-light'
+                      : 'text-text'
+                  }`}
+                >
+                  {serviceDisplayNames[index]}
+                </h3>
               </div>
             ))}
           </div>
-
-          <div className='mt-8 space-y-4'>
-            <h4 className='font-heading text-sm md:text-base text-red-light font-black uppercase tracking-widest'>
-              {services[hoveredIndex].category}
-            </h4>
-            <p className='font-body text-sm md:text-base text-text/80 leading-relaxed max-w-sm'>
-              {services[hoveredIndex].description}
-            </p>
-          </div>
-        </div>
-
-        {/* Right List (Span 6) */}
-        <div className='lg:col-span-6 services-list space-y-2 md:space-y-3 lg:space-y-4 order-1 lg:order-2'>
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className='service-item-row cursor-pointer'
-              onMouseEnter={() => setHoveredIndex(index)}
-            >
-              <h3
-                className={`font-body text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight font-normal tracking-tight uppercase transition-all duration-700 ${
-                  hoveredIndex === index
-                    ? 'text-text opacity-100'
-                    : 'text-text/20 hover:text-text/40'
-                }`}
-              >
-                {serviceDisplayNames[index]}
-              </h3>
-            </div>
-          ))}
         </div>
       </div>
     </section>

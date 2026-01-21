@@ -36,7 +36,7 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section className="mt-32 md:mt-48 w-full bg-background pt-20 pb-20 md:pb-32 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section className="mt-4 md:mt-8 w-full bg-background pt-4 md:pt-8 pb-4 md:pb-8 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -46,8 +46,8 @@ const ProcessSection = () => {
             <span className='text-4xl md:text-6xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Process</span>
             <div className='w-12 md:w-20 h-[2px] bg-red-light' />
           </div>
-          <p className="text-lg md:text-xl font-body font-bold text-text leading-relaxed max-w-2xl mx-auto">
-            A simple, structured approach designed to deliver clarity, quality, and measurable growth.
+          <p className="text-xl md:text-2xl font-body font-bold text-text leading-relaxed max-w-2xl mx-auto">
+            How does a multi service agency evaluate their clients?
           </p>
         </div>
 
@@ -59,8 +59,8 @@ const ProcessSection = () => {
               className="group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-red-light/30 hover:shadow-2xl transition-all duration-500 animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-500">
-                <span className="text-2xl font-black font-heading text-primary group-hover:text-white transition-colors duration-500">
+              <div className="w-16 h-16 rounded-full bg-red-light/10 flex items-center justify-center mb-6 group-hover:bg-red-light transition-colors duration-500">
+                <span className="text-2xl font-black font-heading text-red-light group-hover:text-white transition-colors duration-500">
                   {step.number}
                 </span>
               </div>

@@ -9,7 +9,6 @@ import {
   Twitter,
   Linkedin,
   Facebook,
-  Youtube,
   Heart,
   MessageCircle,
 } from "lucide-react";
@@ -24,23 +23,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const blogPosts = [
   {
+    id: 1,
+    tag: "Brand Strategy",
+    title: "The Art of Storytelling",
+    description: "How to build a brand that resonates with human emotions.",
+    image: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=1200",
+    rotation: -4,
+  },
+  {
     id: 2,
     tag: "Digital Marketing",
     title: "Designed to Go Viral",
     description: "Creating content that people want to share, not skip.",
     image:
       "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200",
-    size: "medium",
     rotation: 4,
   },
   {
     id: 3,
     tag: "Web & Tech",
-    title: "The Rise of Interactive Websites",
+    title: "Interactive Websites",
     description: "Why motion and interaction matter more than ever.",
     image:
       "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200",
-    size: "small",
     rotation: -10,
   },
 ];
@@ -49,38 +54,49 @@ const socialPosts = [
   {
     id: 1,
     user: "herlead_agency",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop",
+    image: "/images/23.png",
     likes: "12.4k",
     rotation: -6,
   },
   {
     id: 2,
     user: "herlead_agency",
-    image:
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=800&auto=format&fit=crop",
+    image: "/images/22.png",
     likes: "8.9k",
     rotation: 6,
+  },
+  {
+    id: 3,
+    user: "herlead_agency",
+    image: "/images/lion.png",
+    likes: "15.2k",
+    rotation: -4,
+  },
+  {
+    id: 4,
+    user: "herlead_agency",
+    image: "/images/post.png",
+    likes: "10.1k",
+    rotation: 8,
   },
 ];
 
 const ContentShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
   const { transitionTo } = useTransition();
 
   useGSAP(
     () => {
-      const marquee = marqueeRef.current;
-      if (marquee) {
-        const totalWidth = marquee.scrollWidth / 2;
-        gsap.to(marquee, {
-          x: -totalWidth,
-          duration: 30,
-          repeat: -1,
-          ease: "none",
-        });
-      }
+      gsap.from(".showcase-title", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".showcase-title",
+          start: "top 85%",
+        }
+      });
 
       gsap.utils.toArray(".funky-blog-card").forEach((card: any) => {
         gsap.from(card, {
@@ -122,56 +138,25 @@ const ContentShowcaseSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-background overflow-hidden pb-16 md:pb-24"
+      className="relative w-full bg-background overflow-hidden pb-4 md:pb-6 pt-16"
     >
-      {/* BLOG HEADER */}
-      <div className="relative w-full h-[40vh] md:h-[45vh] flex items-center justify-center overflow-hidden bg-red-light mb-12 md:mb-16">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="w-full h-full bg-[radial-gradient(circle,white_1px,transparent_1px)] bg-size-[40px_40px]" />
-        </div>
-
-        <div className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap opacity-20">
-          <div
-            ref={marqueeRef}
-            className="flex gap-10 text-[15vw] md:text-[20vw] font-black uppercase text-text leading-none italic select-none"
-          >
-            <span>THE JOURNAL THE JOURNAL THE JOURNAL THE JOURNAL&nbsp;</span>
-            <span>THE JOURNAL THE JOURNAL THE JOURNAL THE JOURNAL&nbsp;</span>
-          </div>
-        </div>
-
-        <div className="relative z-10 text-center">
-          <div className="mb-6 bg-white text-text px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.5em] inline-block shadow-2xl">
-            <span className="text-primary">Insights</span> & <span className="text-red-light">Stories</span>
-          </div>
-          <h2 className="text-6xl md:text-9xl font-black text-text leading-[0.8] tracking-tighter uppercase drop-shadow-2xl">
-            Lately<span className="text-primary">.</span>
-          </h2>
-        </div>
-
-        <div className="absolute top-20 right-[15%] w-24 h-24 bg-white rounded-full hidden md:flex items-center justify-center -rotate-12 shadow-xl animate-bounce">
-          <span className="text-[10px] font-black text-text text-center px-4 leading-tight">
-            NEW EVERY WEEK
-          </span>
-        </div>
-        <div className="absolute bottom-20 left-[10%] w-32 h-32 bg-text rounded-lg border-4 border-white hidden md:flex items-center justify-center rotate-12 shadow-2xl skew-x-12">
-          <span className="text-lg font-black text-white italic">FRESH!</span>
-        </div>
+      {/* SECTION HEADER */}
+      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24">
+        <h2 className="showcase-title text-3xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-[1.1] tracking-tighter uppercase">
+          You read our <br />
+          <span className="text-red-light">publications</span> right?
+        </h2>
       </div>
 
       {/* BLOG CARDS */}
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-y-12 md:gap-x-12 md:gap-y-20 mb-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-6 mb-16">
         {blogPosts.map((post, index) => (
           <div
             key={post.id}
             className="funky-blog-card group relative w-full"
-            style={{
-              width: "100%",
-              maxWidth: post.size === "large" ? "100%" : post.size === "medium" ? "700px" : "500px",
-            }}
             data-rotate={post.rotation}
           >
-            <div className="relative w-full aspect-square md:aspect-video rounded-none md:rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8 md:mb-10">
+            <div className="relative w-full aspect-square rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8">
               <img
                 src={post.image}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
@@ -182,14 +167,14 @@ const ContentShowcaseSection = () => {
               </div>
             </div>
 
-            <div className="relative px-6 md:px-0">
-              <div className="absolute -top-12 md:-top-16 left-6 md:left-0 text-[12vw] md:text-[10vw] font-black text-black/5 pointer-events-none italic uppercase">
+            <div className="relative">
+              <div className="absolute -top-12 md:-top-16 left-0 text-[12vw] md:text-[8vw] lg:text-[6vw] font-black text-black/5 pointer-events-none italic uppercase">
                 0{index + 1}
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-red-light transition-colors">
+              <h3 className="text-2xl md:text-3xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-red-light transition-colors">
                 {post.title}
               </h3>
-              <p className="mt-4 md:mt-5 text-base md:text-lg text-text font-bold max-w-md leading-relaxed">
+              <p className="mt-4 text-sm md:text-base text-text font-bold leading-relaxed opacity-70">
                 {post.description}
               </p>
             </div>
@@ -199,39 +184,21 @@ const ContentShowcaseSection = () => {
 
       {/* SOCIAL CTA */}
       <div className="w-full py-12 md:py-16 flex flex-col items-center">
-        {/* Tilted IG Cards */}
+        {/* Tilted IG Cards - Top Set */}
         <div className="w-full max-w-7xl mx-auto flex flex-wrap justify-center gap-8 px-6 mb-16">
-          {socialPosts.map((post) => (
+          {socialPosts.slice(0, 2).map((post) => (
             <div
               key={post.id}
-              className="social-card w-[85vw] md:w-[320px]"
+              className="social-card w-[90vw] md:w-[380px] lg:w-[420px]"
               style={{ transform: `rotate(${post.rotation}deg)` }}
             >
-              <div className="social-card-inner bg-white rounded-3xl p-4 shadow-xl border border-black/5">
-                <div className="flex items-center gap-3 mb-4 px-2">
-                  <div className="w-8 h-8 rounded-full bg-linear-to-tr from-yellow-400 via-pink-500 to-purple-600 p-px">
-                    <div className="w-full h-full rounded-full bg-white p-px">
-                      <div className="w-full h-full rounded-full bg-black/5" />
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-black text-text">
-                    herlead_agency
-                  </span>
-                  <div className="ml-auto flex gap-1">
-                    <div className="w-1 h-1 rounded-full bg-text/20" />
-                    <div className="w-1 h-1 rounded-full bg-text/20" />
-                  </div>
-                </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden mb-4">
+              <div className="social-card-inner bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+                <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                   <img
                     src={post.image}
                     className="w-full h-full object-cover"
                     alt="Social Post"
                   />
-                </div>
-                <div className="flex gap-4 px-2">
-                  <Heart size={20} className="text-pink-500 fill-pink-500" />
-                  <MessageCircle size={20} className="text-text/40" />
                 </div>
               </div>
             </div>
@@ -246,8 +213,8 @@ const ContentShowcaseSection = () => {
             </span>
           </div>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-text tracking-tighter uppercase mb-10">
-            Follow along for <br />
-            <span className="text-primary">ideas</span>, <span className="text-red-light">insights</span> & inspiration
+            and obviously you follow our <br />
+            <span className="text-red-light">social media</span>
           </h3>
 
           {/* Social Icon Row */}
@@ -256,7 +223,6 @@ const ContentShowcaseSection = () => {
               { Icon: Instagram, color: "#E1306C", label: "Instagram" },
               { Icon: Linkedin, color: "#0077B5", label: "LinkedIn" },
               { Icon: XIcon, color: "#000000", label: "X" },
-              { Icon: Youtube, color: "#FF0000", label: "YouTube" },
             ].map((social, i) => (
               <a
                 key={i}
@@ -274,6 +240,27 @@ const ContentShowcaseSection = () => {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* Tilted IG Cards - Bottom Set */}
+        <div className="w-full max-w-7xl mx-auto flex flex-wrap justify-center gap-8 px-6 mt-16">
+          {socialPosts.slice(2, 4).map((post) => (
+            <div
+              key={`bottom-${post.id}`}
+              className="social-card w-[90vw] md:w-[380px] lg:w-[420px]"
+              style={{ transform: `rotate(${-post.rotation}deg)` }}
+            >
+              <div className="social-card-inner bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+                <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
+                  <img
+                    src={post.image}
+                    className="w-full h-full object-cover"
+                    alt="Social Post"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

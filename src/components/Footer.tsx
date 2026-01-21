@@ -22,18 +22,23 @@ const Footer = () => {
     <footer className="w-full bg-background border-t border-text/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
-        {/* CTA Cards */}
+        {/* CTA Buttons */}
         <div className="py-16 md:py-20 border-b border-text/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="group p-8 border border-text/20 rounded-2xl hover:border-primary/50 transition-all cursor-pointer">
-              <h3 className="text-xl font-heading font-black text-text">Request a quote</h3>
-            </div>
-            <div className="group p-8 border border-text/20 rounded-2xl hover:border-red-light/50 transition-all cursor-pointer">
-              <h3 className="text-xl font-heading font-black text-text">General inquiries</h3>
-            </div>
-            <div className="group p-8 border border-text/20 rounded-2xl hover:border-primary/50 transition-all cursor-pointer">
-              <h3 className="text-xl font-heading font-black text-text">I'm an influencer</h3>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {[
+              { label: "Request a Quote", bg: "bg-primary", text: "text-white" },
+              { label: "General Inquiries", bg: "bg-red-light", text: "text-white" },
+              { label: "I'm an Influencer", bg: "bg-[#0891B2]", text: "text-white" },
+              { label: "I am Talent", bg: "bg-[#4F46E5]", text: "text-white" },
+              { label: "I Need Talent", bg: "bg-[#FF8A65]", text: "text-white" }
+            ].map((btn, i) => (
+              <button
+                key={i}
+                className={`px-8 py-4 ${btn.bg} ${btn.text} rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-xl`}
+              >
+                {btn.label}
+              </button>
+            ))}
           </div>
         </div>
 
