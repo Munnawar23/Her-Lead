@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
-import { TransitionProvider } from "@/components/TransitionProvider";
+import { TransitionProvider } from "@/context/TransitionProvider";
 import Navbar from "@/components/Navbar";
-import SocialBottomBar from "@/components/SocialBottomBar";
 
 export const metadata: Metadata = {
   title: "Her Lead",

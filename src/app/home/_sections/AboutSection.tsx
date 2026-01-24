@@ -4,9 +4,9 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { useTransition } from '@/components/TransitionProvider'
-import founderImg from '@/assets/images/about-me.png'
-import { aboutContent } from '@/constants/about'
+import { useTransition } from '@/context/TransitionProvider'
+
+import { aboutContent } from '@/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,37 +64,37 @@ const AboutSection = () => {
   }, { scope: containerRef })
 
   return (
-   <section 
-  ref={containerRef} 
-  className='relative w-full bg-background px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-4 md:pb-8 overflow-hidden'
-  id="about"
->
+    <section
+      ref={containerRef}
+      className='relative w-full bg-background px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-4 md:pb-8 overflow-hidden'
+      id="about"
+    >
       <div className='absolute top-20 right-[10%] w-64 h-64 bg-red-light/20 rounded-full blur-3xl floating-circle' />
       <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-red-light/10 rounded-full blur-[100px] floating-circle' />
 
       <div className='max-w-7xl mx-auto'>
-      {/* Centered "Why Herlead" Label */}
-      <div className='mb-16 md:mb-24 text-center'>
-        <div className='inline-flex items-center justify-center gap-6'>
-          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
-          <span className='text-4xl md:text-6xl lg:text-5 xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Why Herlead</span>
-          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+        {/* Centered "Why Herlead" Label */}
+        <div className='mb-16 md:mb-24 text-center'>
+          <div className='inline-flex items-center justify-center gap-6'>
+            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+            <span className='text-4xl md:text-6xl lg:text-5 xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Why Herlead</span>
+            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+          </div>
         </div>
-      </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start'>
-          
+
           {/* Image */}
           <div className='lg:col-span-6 relative order-2 lg:order-1 flex justify-center lg:justify-start transition-transform duration-500'>
-            <div 
+            <div
               ref={imageContainerRef}
               className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm shadow-2xl bg-gray-100'
             >
               <div ref={imageRef} className='absolute inset-0'>
-                <Image 
-                  src="/images/about.png" 
-                  alt="About Us" 
-                  fill 
+                <Image
+                  src="/images/about.png"
+                  alt="About Us"
+                  fill
                   className="object-cover"
                 />
               </div>
@@ -117,12 +117,12 @@ const AboutSection = () => {
                 </div>
               </h2>
             </div>
-            
+
             <div className='max-w-xl space-y-6'>
               <p className='text-lg md:text-xl font-body font-bold text-text leading-relaxed'>
                 {aboutContent.intro}
               </p>
-              
+
               <p className='text-lg font-body text-text leading-relaxed'>
                 {aboutContent.mainDescription}
               </p>
@@ -141,7 +141,7 @@ const AboutSection = () => {
               </div>
 
               <div className='pt-6'>
-                <button 
+                <button
                   onClick={() => transitionTo('/about')}
                   className='group relative flex items-center gap-6'
                 >
@@ -164,7 +164,7 @@ const AboutSection = () => {
 
         {/* Vision from the Founder */}
         <div className='grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-16 items-center mt-20'>
-          
+
           {/* Content */}
           <div className='w-full space-y-4'>
             <div className='space-y-3'>
@@ -172,7 +172,7 @@ const AboutSection = () => {
                 <div className='w-12 h-[2px] bg-red-light' />
                 <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-red-light'>Vision from the Founder</span>
               </div>
-              
+
               <h3 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text'>
                 <div className='overflow-hidden'>
                   <span className='reveal-text inline-block'>EMPOWERING</span>
@@ -205,12 +205,11 @@ const AboutSection = () => {
           {/* Founder Image */}
           <div className='relative flex justify-center lg:justify-end'>
             <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm shadow-xl bg-gray-100'>
-              <Image 
-                src={founderImg} 
-                alt="Founder" 
-                fill 
+              <Image
+                src="/images/about-me.png"
+                alt="Founder"
+                fill
                 className="object-cover"
-                placeholder="blur"
               />
               <div className='absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent' />
             </div>

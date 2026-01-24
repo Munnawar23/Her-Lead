@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
-import { testimonials } from '@/constants/testimonials'
+import { testimonials } from '@/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -50,12 +50,12 @@ const TestimonialSection = () => {
   }, { scope: containerRef })
 
   return (
-    <section 
-      ref={containerRef} 
-      className='relative w-full bg-[#FF1979] py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-4xl'
+    <section
+      ref={containerRef}
+      className='relative w-full bg-[#B0FFFA] py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-4xl'
     >
       <div className='max-w-7xl mx-auto'>
-        
+
         {/* Badge Pill */}
         <div className='testimonial-pill mb-8'>
           <span className='px-6 py-2 rounded-full border border-white/30 text-white text-sm font-heading font-bold lowercase tracking-wider'>

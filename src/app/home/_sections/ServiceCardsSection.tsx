@@ -5,7 +5,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
 import { ArrowUpRight } from "lucide-react"
-import { serviceCards } from "@/constants/serviceCards"
+import { serviceCards } from "@/constants"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,7 +34,7 @@ const ServiceCardsSection = () => {
       className="w-full px-6 md:px-12 lg:px-20 pt-24 pb-8 md:pb-12 bg-background"
     >
       <div className="max-w-7xl mx-auto space-y-10">
-        
+
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
           <div className='inline-flex items-center justify-center gap-6'>

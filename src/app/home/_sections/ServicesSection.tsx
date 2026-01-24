@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { services } from '@/constants/services'
+import { services } from '@/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,7 +64,7 @@ const ServicesSection = () => {
   }, { scope: containerRef })
 
   return (
-    <section 
+    <section
       id="services"
       ref={containerRef}
       className="mt-4 md:mt-8 w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-4 md:pb-8 overflow-hidden"
@@ -81,7 +81,7 @@ const ServicesSection = () => {
       {/* Main Content - Doze Studio Style */}
       <div className='max-w-7xl mx-auto'>
         <div className='flex flex-col lg:flex-row gap-8 lg:gap-16 items-start'>
-          
+
           {/* Left: Image + Description */}
           <div className='w-full lg:w-auto lg:shrink-0'>
             <div className='image-stage lg:sticky lg:top-32 space-y-6'>
@@ -90,9 +90,8 @@ const ServicesSection = () => {
                 {services.map((service, index) => (
                   <div
                     key={service.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ${
-                      hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-700 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                      }`}
                   >
                     <img
                       src={imageSources[index]}
@@ -125,11 +124,10 @@ const ServicesSection = () => {
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 <h3
-                  className={`font-heading text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight font-black uppercase tracking-widest transition-all duration-700 ${
-                    hoveredIndex === index
+                  className={`font-heading text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight font-black uppercase tracking-widest transition-all duration-700 ${hoveredIndex === index
                       ? 'text-red-light'
                       : 'text-text'
-                  }`}
+                    }`}
                 >
                   {serviceDisplayNames[index]}
                 </h3>

@@ -5,11 +5,9 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useTransition } from '@/components/TransitionProvider'
+import { useTransition } from '@/context/TransitionProvider'
 
-import aboutImg from '@/assets/images/about-editorial.png'
-import postImg from '@/assets/images/post.png'
-import lionImg from '@/assets/images/lion.png'
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -36,21 +34,21 @@ const AboutPage = () => {
     })
 
     gsap.from(".reveal-item", {
-       y: 50,
-       opacity: 0,
-       duration: 1.2,
-       ease: "power3.out",
-       scrollTrigger: {
-         trigger: ".reveal-trigger",
-         start: "top 80%",
-       }
+      y: 50,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".reveal-trigger",
+        start: "top 80%",
+      }
     })
   }, { scope: containerRef })
 
   return (
     <main ref={containerRef} className="min-h-screen bg-background text-text font-body selection:bg-primary selection:text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32 reveal-trigger">
-        
+
         {/* Main Hero Header */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-20 md:mb-32 gap-6 overflow-hidden">
           <h1 className="reveal-text text-6xl md:text-8xl lg:text-[9vw] font-heading font-black leading-[0.8] tracking-tighter uppercase relative">
@@ -63,7 +61,7 @@ const AboutPage = () => {
 
         {/* First Content Section Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 border-b border-text/10 pb-16 md:pb-24 mb-16 md:mb-24">
-          
+
           {/* Left Column: Label */}
           <div className="md:col-span-4 overflow-hidden">
             <h2 className="reveal-text text-xs font-heading font-black tracking-[0.4em] uppercase text-red-light">Who we are</h2>
@@ -85,12 +83,12 @@ const AboutPage = () => {
 
             {/* Image Container */}
             <div className="reveal-item w-full relative overflow-hidden grayscale md:hover:grayscale-0 transition-all duration-1000 rounded-sm group aspect-16/9 bg-gray-100">
-               <Image 
-                src={aboutImg} 
+              <Image
+                src="/images/about-editorial.png"
                 alt="Our Team"
                 className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
                 priority
-               />
+              />
             </div>
           </div>
 
@@ -98,7 +96,7 @@ const AboutPage = () => {
 
         {/* Second Content Section Grid: Public Relations */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-16 md:mb-32">
-          
+
           {/* Left Column: Label */}
           <div className="md:col-span-4 overflow-hidden">
             <h2 className="reveal-text text-xs font-heading font-black tracking-[0.4em] uppercase text-primary">Public Relations</h2>
@@ -130,13 +128,13 @@ const AboutPage = () => {
 
         {/* Image Gallery Section */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start reveal-item">
-          
+
           {/* Left Large Image */}
           <div className="md:col-span-5 flex flex-col items-center group">
             <div className="w-full aspect-[4/5] relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-sm mb-6 bg-gray-100">
-              <Image 
-                src={postImg} 
-                alt="Post" 
+              <Image
+                src="/images/post.png"
+                alt="Post"
                 className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-1000"
               />
             </div>
@@ -151,9 +149,9 @@ const AboutPage = () => {
           {/* Right Smaller Image */}
           <div className="md:col-span-5 flex flex-col items-center md:mt-32 group">
             <div className="w-full aspect-square relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-sm mb-6 bg-gray-100">
-              <Image 
-                src={lionImg} 
-                alt="Lion" 
+              <Image
+                src="/images/lion.png"
+                alt="Lion"
                 className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-1000"
               />
             </div>
@@ -166,7 +164,7 @@ const AboutPage = () => {
 
         {/* Back to Home Button Footer */}
         <div className="mt-20 md:mt-40 border-t border-text/10 pt-20 flex justify-center reveal-item">
-          <button 
+          <button
             onClick={handleBackHome}
             className="group relative flex flex-col items-center gap-6 uppercase text-[10px] font-heading font-black tracking-[0.5em] text-text hover:text-red-light transition-all duration-500"
           >

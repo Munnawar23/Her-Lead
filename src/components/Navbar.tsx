@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTransition } from '@/components/TransitionProvider'
+import { useTransition } from '@/context/TransitionProvider'
 import { usePathname } from 'next/navigation'
 import Button from '@/components/common/Button'
 
@@ -16,20 +16,20 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      
+
       // Determine if scrolled past threshold
       setScrolled(currentScrollY > 50)
-      
+
       // Hide navbar when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setHidden(true)
       } else if (currentScrollY < lastScrollY) {
         setHidden(false)
       }
-      
+
       setLastScrollY(currentScrollY)
     }
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [lastScrollY])
@@ -53,7 +53,7 @@ const Navbar = () => {
       window.location.href = link.path;
       return;
     }
-    
+
     if (link.action === 'scroll') {
       if (window.location.pathname === '/home') {
         e.preventDefault();
@@ -73,10 +73,10 @@ const Navbar = () => {
     <>
       <nav className={`fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-lg shadow-blue-500/10 transition-all duration-500 ${scrolled ? 'py-2' : 'py-3'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          
+
           {/* Left: Action Buttons */}
           <div className="hidden lg:flex items-center gap-2">
-            <Button 
+            <Button
               onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
               variant="outlined"
               size="sm"
@@ -84,8 +84,8 @@ const Navbar = () => {
             >
               I Need a Talent
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
               variant="red"
               size="sm"
@@ -112,7 +112,7 @@ const Navbar = () => {
 
           {/* Right: Buttons with Background */}
           <div className="hidden lg:flex items-center gap-2">
-            <Button 
+            <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
               variant="outlined"
               size="sm"
@@ -120,8 +120,8 @@ const Navbar = () => {
             >
               I Am an Influencer
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
               variant="red"
               size="sm"
@@ -132,7 +132,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="lg:hidden z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
@@ -162,7 +162,7 @@ const Navbar = () => {
 
           {/* Mobile Buttons */}
           <div className="flex flex-col gap-4 mt-8 w-full max-w-xs">
-            <Button 
+            <Button
               onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
               variant="outlined"
               size="lg"
@@ -171,8 +171,8 @@ const Navbar = () => {
             >
               I Need a Talent
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
               variant="red"
               size="lg"
@@ -181,8 +181,8 @@ const Navbar = () => {
             >
               I Am a Talent
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
               variant="outlined"
               size="lg"
@@ -191,8 +191,8 @@ const Navbar = () => {
             >
               I Am an Influencer
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
               variant="red"
               size="lg"
