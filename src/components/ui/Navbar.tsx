@@ -40,7 +40,9 @@ const Navbar = () => {
   }, [pathname])
 
   // Don't show navbar on splash screen
-  if (pathname === '/') return null;
+  // Ensure navbar starts hidden if necessary, or just remove the early return
+  // since we want it on the Home page (which is now '/')
+  // if (pathname === '/') return null; 
 
   const navLinks = [
     { name: 'Home', path: '/home', action: 'reload' },
@@ -71,25 +73,25 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-lg shadow-blue-500/10 transition-all duration-500 ${scrolled ? 'py-2' : 'py-3'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-lg shadow-blue-500/10 transition-all duration-500 ${scrolled ? 'py-4' : 'py-6'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
 
           {/* Left: Action Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             <Button
               onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
-              variant="outlined"
+              variant="orange"
               size="sm"
-              className="px-4 py-2 text-[10px]"
+              className="px-5 py-2.5 text-[11px]"
             >
               I Need a Talent
             </Button>
 
             <Button
               onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
-              variant="red"
+              variant="purple"
               size="sm"
-              className="px-4 py-2 text-[10px]"
+              className="px-5 py-2.5 text-[11px]"
             >
               I Am a Talent
             </Button>
@@ -102,7 +104,7 @@ const Navbar = () => {
                 key={link.name}
                 href={link.path}
                 onClick={(e) => handleNavClick(e, link)}
-                className="text-[10px] uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-red-light transition-colors relative group whitespace-nowrap"
+                className="text-[13px] uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-red-light transition-colors relative group whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-light group-hover:w-full transition-all duration-300" />
@@ -114,18 +116,18 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-2">
             <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
-              variant="outlined"
+              variant="cyan"
               size="sm"
-              className="px-4 py-2 text-[10px]"
+              className="px-5 py-2.5 text-[11px]"
             >
               I Am an Influencer
             </Button>
 
             <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
-              variant="red"
+              variant="yellow"
               size="sm"
-              className="px-4 py-2 text-[10px]"
+              className="px-5 py-2.5 text-[11px]"
             >
               Request for Quote
             </Button>
@@ -164,7 +166,7 @@ const Navbar = () => {
           <div className="flex flex-col gap-4 mt-8 w-full max-w-xs">
             <Button
               onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
-              variant="outlined"
+              variant="orange"
               size="lg"
               fullWidth
               className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
@@ -174,7 +176,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
-              variant="red"
+              variant="purple"
               size="lg"
               fullWidth
               className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
@@ -184,7 +186,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
-              variant="outlined"
+              variant="cyan"
               size="lg"
               fullWidth
               className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
@@ -194,7 +196,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
-              variant="red"
+              variant="yellow"
               size="lg"
               fullWidth
               className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
