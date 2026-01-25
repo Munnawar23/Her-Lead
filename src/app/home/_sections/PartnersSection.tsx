@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { useRouter } from 'next/navigation'
 
 const partners = [
     { name: "Meta", logo: "https://svgl.app/library/meta.svg" },
@@ -12,6 +13,7 @@ const partners = [
 ]
 
 const PartnersSection = () => {
+    const router = useRouter()
     return (
         <section className="w-full bg-background pt-24 pb-24 border-t border-text/10 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
@@ -86,11 +88,11 @@ const PartnersSection = () => {
                 <div className="w-full pt-12 border-t border-text/5">
                     <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
                         {[
-                            { label: "Request a Quote", bg: "bg-primary", href: "https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit" },
-                            { label: "General Inquiries", bg: "bg-red-light", href: "mailto:info@herlead.com" },
-                            { label: "I'm an Influencer", bg: "bg-[#0891B2]", href: "https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit" },
-                            { label: "I Am a Talent", bg: "bg-[#4F46E5]", href: "https://forms.gle/3Su19gcu6wWBBAsb7" },
-                            { label: "I Need a Talent", bg: "bg-[#FF8A65]", href: "https://forms.gle/7dS3TUEwf2tEDTvj8" }
+                            { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
+                            { label: "General Inquiries", bg: "bg-red-light", path: "mailto:info@herlead.com" },
+                            { label: "I'm an Influencer", bg: "bg-[#0891B2]", path: "/i-am-influencer" },
+                            { label: "I Am a Talent", bg: "bg-[#4F46E5]", path: "/i-am-talent" },
+                            { label: "I Need a Talent", bg: "bg-[#FF8A65]", path: "/hire-talent" }
                         ].map((btn, i) => (
                             <motion.button
                                 key={i}
@@ -98,7 +100,13 @@ const PartnersSection = () => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                onClick={() => window.open(btn.href, '_blank')}
+                                onClick={() => {
+                                    if (btn.path.startsWith('mailto')) {
+                                        window.open(btn.path, '_blank');
+                                    } else {
+                                        router.push(btn.path);
+                                    }
+                                }}
                                 className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-black/5 text-center`}
                             >
                                 {btn.label}

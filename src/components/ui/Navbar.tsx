@@ -104,7 +104,7 @@ const Navbar = () => {
           {/* Mobile Action Button */}
           <div className="lg:hidden">
             <Button
-              onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
+              onClick={() => router.push('/request-quote')}
               variant="yellow"
               size="sm"
               className="px-4 py-2 text-[10px]"
@@ -116,7 +116,7 @@ const Navbar = () => {
           {/* Left: Action Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             <Button
-              onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
+              onClick={() => router.push('/hire-talent')}
               variant="orange"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
@@ -125,7 +125,7 @@ const Navbar = () => {
             </Button>
 
             <Button
-              onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
+              onClick={() => router.push('/i-am-talent')}
               variant="purple"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
@@ -153,7 +153,7 @@ const Navbar = () => {
           {/* Right: Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             <Button
-              onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
+              onClick={() => router.push('/i-am-influencer')}
               variant="cyan"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
@@ -162,7 +162,7 @@ const Navbar = () => {
             </Button>
 
             <Button
-              onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
+              onClick={() => router.push('/request-quote')}
               variant="yellow"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
@@ -240,13 +240,21 @@ const Navbar = () => {
               {/* Mobile Buttons Grid */}
               <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
                 {[
-                  { label: 'I Need a Talent', variant: 'orange', href: 'https://forms.gle/7dS3TUEwf2tEDTvj8' },
-                  { label: 'I Am a Talent', variant: 'purple', href: 'https://forms.gle/3Su19gcu6wWBBAsb7' },
-                  { label: 'I Am an Influencer', variant: 'cyan', href: 'https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit' }
+                  { label: 'I Need a Talent', variant: 'orange', href: '/hire-talent', isInternal: true },
+                  { label: 'I Am a Talent', variant: 'purple', href: '/i-am-talent', isInternal: true },
+                  { label: 'I Am an Influencer', variant: 'cyan', href: '/i-am-influencer', isInternal: true },
+                  { label: 'Request for Quote', variant: 'yellow', href: '/request-quote', isInternal: true }
                 ].map((btn, i) => (
                   <motion.div key={i} variants={itemVariants}>
                     <Button
-                      onClick={() => window.open(btn.href, '_blank')}
+                      onClick={() => {
+                        if (btn.isInternal) {
+                          router.push(btn.href);
+                          setMobileMenuOpen(false);
+                        } else {
+                          window.open(btn.href, '_blank');
+                        }
+                      }}
                       variant={btn.variant as any}
                       size="lg"
                       fullWidth
