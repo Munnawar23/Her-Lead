@@ -8,9 +8,11 @@
   /* ===== BRAND COLORS ===== */
   --color-background: #fffefc;
   --color-text: #242424;
-  --color-primary: #d4af37; /* Golden */
-  --color-secondary: #e8d4a0; /* Light Golden */
-  
+  --color-primary: #d4af37;
+  /* Golden */
+  --color-secondary: #e8d4a0;
+  /* Light Golden */
+
   /* ===== NEUTRALS ===== */
   --color-white: #ffffff;
   --color-black: #000000;
@@ -19,21 +21,22 @@
   --color-gray-500: #737373;
   --color-gray-700: #404040;
   --color-gray-900: #171717;
-  
+
   /* ===== ACCENT COLORS ===== */
   --color-rose: #ff6b9d;
   --color-purple: #9333ea;
   --color-blue: #3b82f6;
   --color-teal: #14b8a6;
   --color-emerald: #10b981;
-  --color-red-light: #ff6666; /* Light Red - Even Darker */
-  
+  --color-red-light: #ff6666;
+  /* Light Red - Even Darker */
+
   /* ===== SEMANTIC COLORS ===== */
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-info: #3b82f6;
-  
+
   /* ===== TYPOGRAPHY ===== */
   --font-display: "Playfair Display", serif;
   --font-heading: "Space Grotesk", sans-serif;
@@ -48,6 +51,10 @@
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     width: 100dvw;
     overflow-x: hidden;
@@ -58,9 +65,15 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.1;
@@ -88,13 +101,32 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   *:focus-visible {
     outline: 2px solid var(--color-info);
     outline-offset: 2px;
   }
+}
+
+@keyframes scroll-indicator {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
 }

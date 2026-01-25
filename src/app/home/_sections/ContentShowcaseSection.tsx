@@ -1,16 +1,9 @@
 "use client";
-import React, { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import React from "react";
 import { useTransition } from "@/context/TransitionProvider";
 import {
   Instagram,
-  Twitter,
   Linkedin,
-  Facebook,
-  Heart,
-  MessageCircle,
 } from "lucide-react";
 
 const XIcon = ({ size = 20 }: { size?: number }) => (
@@ -18,8 +11,6 @@ const XIcon = ({ size = 20 }: { size?: number }) => (
     <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
   </svg>
 )
-
-gsap.registerPlugin(ScrollTrigger);
 
 const blogPosts = [
   {
@@ -82,67 +73,13 @@ const socialPosts = [
 ];
 
 const ContentShowcaseSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { transitionTo } = useTransition();
-
-  useGSAP(
-    () => {
-      gsap.from(".showcase-title", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".showcase-title",
-          start: "top 85%",
-        }
-      });
-
-      gsap.utils.toArray(".funky-blog-card").forEach((card: any) => {
-        gsap.from(card, {
-          scale: 0.8,
-          opacity: 0,
-          y: 100,
-          rotate: card.dataset.rotate || 0,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            end: "top 60%",
-            scrub: 1,
-          },
-        });
-      });
-
-      gsap.to(".blog-blob", {
-        x: "random(-100, 100)",
-        y: "random(-100, 100)",
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.5,
-      });
-
-      gsap.to(".social-card-inner", {
-        y: -15,
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.3,
-      });
-    },
-    { scope: containerRef },
-  );
-
   return (
     <section
-      ref={containerRef}
       className="relative w-full bg-background overflow-hidden pb-4 md:pb-6 pt-16"
     >
       {/* SECTION HEADER */}
       <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24">
-        <h2 className="showcase-title text-3xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-[1.1] tracking-tighter uppercase">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-[1.1] tracking-tighter uppercase">
           You read our <br />
           <span className="text-red-light">publications</span> right?
         </h2>
@@ -153,8 +90,7 @@ const ContentShowcaseSection = () => {
         {blogPosts.map((post, index) => (
           <div
             key={post.id}
-            className="funky-blog-card group relative w-full"
-            data-rotate={post.rotation}
+            className="group relative w-full"
           >
             <div className="relative w-full aspect-square rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8">
               <img
@@ -189,10 +125,10 @@ const ContentShowcaseSection = () => {
           {socialPosts.slice(0, 2).map((post) => (
             <div
               key={post.id}
-              className="social-card w-[90vw] md:w-[380px] lg:w-[420px]"
+              className="w-[90vw] md:w-[380px] lg:w-[420px]"
               style={{ transform: `rotate(${post.rotation}deg)` }}
             >
-              <div className="social-card-inner bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+              <div className="bg-white rounded-3xl p-3 shadow-xl border border-black/5">
                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                   <img
                     src={post.image}
@@ -247,10 +183,10 @@ const ContentShowcaseSection = () => {
           {socialPosts.slice(2, 4).map((post) => (
             <div
               key={`bottom-${post.id}`}
-              className="social-card w-[90vw] md:w-[380px] lg:w-[420px]"
+              className="w-[90vw] md:w-[380px] lg:w-[420px]"
               style={{ transform: `rotate(${-post.rotation}deg)` }}
             >
-              <div className="social-card-inner bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+              <div className="bg-white rounded-3xl p-3 shadow-xl border border-black/5">
                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                   <img
                     src={post.image}

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useTransition } from '@/context/TransitionProvider'
 import { usePathname } from 'next/navigation'
 import Button from '@/components/common/Button'
+import Image from 'next/image'
 
 const Navbar = () => {
   const { transitionTo } = useTransition()
@@ -45,9 +46,9 @@ const Navbar = () => {
   // if (pathname === '/') return null; 
 
   const navLinks = [
-    { name: 'Home', path: '/home', action: 'reload' },
+    { name: 'Home', path: '/', action: 'reload' },
     { name: 'About', path: '/about', action: 'transition' },
-    { name: 'Services', path: '/home#services', action: 'scroll' },
+    { name: 'Services', path: '/#services', action: 'scroll' },
   ]
 
   const handleNavClick = (e: React.MouseEvent, link: any) => {
@@ -57,7 +58,7 @@ const Navbar = () => {
     }
 
     if (link.action === 'scroll') {
-      if (window.location.pathname === '/home') {
+      if (window.location.pathname === '/') {
         e.preventDefault();
         const element = document.getElementById('services');
         if (element) {
@@ -73,8 +74,20 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-lg shadow-blue-500/10 transition-all duration-500 ${scrolled ? 'py-4' : 'py-6'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${mobileMenuOpen ? 'bg-transparent shadow-none' : 'bg-white/90 backdrop-blur-lg shadow-lg shadow-blue-500/5'} ${scrolled ? 'py-3' : 'py-5'} ${hidden && !mobileMenuOpen ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
+
+          {/* Mobile Action Button (Visible only on mobile/tablet) */}
+          <div className="lg:hidden">
+            <Button
+              onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
+              variant="yellow"
+              size="sm"
+              className="px-4 py-2 text-[10px]"
+            >
+              Request for Quote
+            </Button>
+          </div>
 
           {/* Left: Action Buttons */}
           <div className="hidden lg:flex items-center gap-2">
@@ -133,76 +146,71 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button with Animated Hamburguer */}
           <button
-            className="lg:hidden z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            className="lg:hidden z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`w-6 h-0.5 bg-text transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`w-6 h-0.5 bg-text transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-            <span className={`w-6 h-0.5 bg-text transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`w-6 h-0.5 bg-text transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2 !bg-white' : ''}`} />
+            <span className={`w-3 h-0.5 bg-text self-end mr-2 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-6 h-0.5 bg-text transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2 !bg-white' : ''}`} />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-white z-40 lg:hidden transition-all duration-500 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
+      {/* Mobile Menu Overlay - Premium Dark Version */}
+      <div className={`fixed inset-0 bg-black z-45 lg:hidden transition-all duration-700 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        {/* Decorative background for mobile menu */}
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-screen" />
+        <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-primary/10 rounded-full blur-[100px]" />
+
+        <div className="relative z-10 flex flex-col items-center justify-center h-full gap-12 px-8">
+
           {/* Mobile Nav Links */}
-          {navLinks.map((link, index) => (
-            <a
-              key={link.name}
-              href={link.path}
-              onClick={(e) => handleNavClick(e, link)}
-              className={`text-2xl uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-red-light transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-              style={{ transitionDelay: mobileMenuOpen ? `${index * 50}ms` : '0ms' }}
-            >
-              {link.name}
-            </a>
-          ))}
+          <nav className="flex flex-col items-center gap-6">
+            {navLinks.map((link, index) => (
+              <a
+                key={link.name}
+                href={link.path}
+                onClick={(e) => {
+                  handleNavClick(e, link);
+                  setMobileMenuOpen(false);
+                }}
+                className={`text-3xl uppercase tracking-[0.3em] font-heading font-black text-white hover:text-red-light transition-all duration-500 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                style={{ transitionDelay: mobileMenuOpen ? `${index * 100 + 200}ms` : '0ms' }}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-          {/* Mobile Buttons */}
-          <div className="flex flex-col gap-4 mt-8 w-full max-w-xs">
-            <Button
-              onClick={() => window.open('https://forms.gle/7dS3TUEwf2tEDTvj8', '_blank')}
-              variant="orange"
-              size="lg"
-              fullWidth
-              className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-            >
-              I Need a Talent
-            </Button>
+          {/* Social / Tag line in menu */}
+          <div className={`flex items-center gap-3 transition-all duration-700 delay-500 ${mobileMenuOpen ? 'opacity-40 scale-100' : 'opacity-0 scale-90'}`}>
+            <div className="w-8 h-[1px] bg-white" />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
+            <div className="w-8 h-[1px] bg-white" />
+          </div>
 
-            <Button
-              onClick={() => window.open('https://forms.gle/3Su19gcu6wWBBAsb7', '_blank')}
-              variant="purple"
-              size="lg"
-              fullWidth
-              className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-            >
-              I Am a Talent
-            </Button>
-
-            <Button
-              onClick={() => window.open('https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', '_blank')}
-              variant="cyan"
-              size="lg"
-              fullWidth
-              className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-            >
-              I Am an Influencer
-            </Button>
-
-            <Button
-              onClick={() => window.open('https://docs.google.com/forms/d/1JSJtoIYYg8itgB_-HIdJreCENebvQP9pMOBIWgsooUY/edit', '_blank')}
-              variant="yellow"
-              size="lg"
-              fullWidth
-              className={`transition-all duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-            >
-              Request for Quote
-            </Button>
+          {/* Mobile Buttons Grid */}
+          <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
+            {[
+              { label: 'I Need a Talent', variant: 'orange', href: 'https://forms.gle/7dS3TUEwf2tEDTvj8', delay: 400 },
+              { label: 'I Am a Talent', variant: 'purple', href: 'https://forms.gle/3Su19gcu6wWBBAsb7', delay: 500 },
+              { label: 'I Am an Influencer', variant: 'cyan', href: 'https://docs.google.com/forms/d/1SIP8XCJ7QZI9x_xbT6wdX5Ri9wiVPlEjlwsDRTFd3Gs/edit', delay: 600 }
+            ].map((btn, i) => (
+              <Button
+                key={i}
+                onClick={() => window.open(btn.href, '_blank')}
+                variant={btn.variant as any}
+                size="lg"
+                fullWidth
+                className={`transition-all duration-700 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                style={{ transitionDelay: mobileMenuOpen ? `${btn.delay}ms` : '0ms' }}
+              >
+                {btn.label}
+              </Button>
+            ))}
           </div>
         </div>
       </div>

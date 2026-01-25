@@ -9,6 +9,7 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg'
   className?: string
   fullWidth?: boolean
+  style?: React.CSSProperties
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'md',
   className = '',
   fullWidth = false,
+  style = {},
 }) => {
   const baseStyles = 'flex items-center justify-center gap-2 rounded-full font-heading font-bold uppercase tracking-[0.15em] transition-all duration-300'
 
@@ -44,6 +46,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthStyles} ${className}`}
+      style={style}
     >
       {children}
     </button>

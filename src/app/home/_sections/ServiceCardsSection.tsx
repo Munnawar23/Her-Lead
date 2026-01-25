@@ -1,36 +1,12 @@
 "use client"
 
-import React, { useRef } from "react"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useGSAP } from "@gsap/react"
+import React from "react"
 import { ArrowUpRight } from "lucide-react"
 import { serviceCards } from "@/constants"
 
-gsap.registerPlugin(ScrollTrigger)
-
-
 const ServiceCardsSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useGSAP(() => {
-    gsap.utils.toArray(".service-card").forEach((card: any) => {
-      gsap.from(card, {
-        y: 120,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%"
-        }
-      })
-    })
-  }, { scope: containerRef })
-
   return (
     <section
-      ref={containerRef}
       className="w-full px-6 md:px-12 lg:px-20 pt-24 pb-8 md:pb-12 bg-background"
     >
       <div className="max-w-7xl mx-auto space-y-10">
@@ -50,7 +26,7 @@ const ServiceCardsSection = () => {
         {serviceCards.map((group, idx) => (
           <div
             key={idx}
-            className={`service-card relative w-full 
+            className={`relative w-full 
               min-h-[500px] md:h-[560px] lg:h-[600px]
               ${group.color} ${group.textColor} 
               rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col`}

@@ -17,7 +17,7 @@ const AboutPage = () => {
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault()
-    transitionTo('/home')
+    transitionTo('/')
   }
 
   useGSAP(() => {

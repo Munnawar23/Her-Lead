@@ -1,14 +1,8 @@
 "use client"
-import React, { useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
+import React, { useState } from 'react'
 import { services } from '@/constants'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const ServicesSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState(0)
 
   const serviceDisplayNames = [
@@ -37,36 +31,9 @@ const ServicesSection = () => {
     "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop",
   ]
 
-  useGSAP(() => {
-    gsap.from(".service-item-row", {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".services-list",
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      }
-    })
-
-    gsap.from(".image-stage", {
-      opacity: 0,
-      scale: 0.95,
-      duration: 1.2,
-      ease: "expo.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-      }
-    })
-  }, { scope: containerRef })
-
   return (
     <section
       id="services"
-      ref={containerRef}
       className="mt-4 md:mt-8 w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-4 md:pb-8 overflow-hidden"
     >
       {/* Header */}
@@ -84,7 +51,7 @@ const ServicesSection = () => {
 
           {/* Left: Image + Description */}
           <div className='w-full lg:w-auto lg:shrink-0'>
-            <div className='image-stage lg:sticky lg:top-32 space-y-6'>
+            <div className='lg:sticky lg:top-32 space-y-6'>
               {/* Square Image */}
               <div className='w-full lg:w-[320px] xl:w-[380px] aspect-square overflow-hidden rounded-sm bg-black/5 relative'>
                 {services.map((service, index) => (
@@ -116,17 +83,17 @@ const ServicesSection = () => {
           </div>
 
           {/* Right: Service Names List */}
-          <div className='flex-1 services-list space-y-1 md:space-y-2'>
+          <div className='flex-1 space-y-1 md:space-y-2'>
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className='service-item-row cursor-pointer py-1'
+                className='cursor-pointer py-1'
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 <h3
                   className={`font-heading text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight font-black uppercase tracking-widest transition-all duration-700 ${hoveredIndex === index
-                      ? 'text-red-light'
-                      : 'text-text'
+                    ? 'text-red-light'
+                    : 'text-text'
                     }`}
                 >
                   {serviceDisplayNames[index]}

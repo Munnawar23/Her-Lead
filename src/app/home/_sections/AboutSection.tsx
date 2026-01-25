@@ -1,76 +1,19 @@
 "use client"
-import React, { useRef } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 import { useTransition } from '@/context/TransitionProvider'
-
 import { aboutContent } from '@/constants'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const AboutSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const imageContainerRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
   const { transitionTo } = useTransition()
-
-  useGSAP(() => {
-    gsap.from(imageContainerRef.current, {
-      clipPath: "inset(100% 0% 0% 0%)",
-      duration: 1.5,
-      ease: "power4.inOut",
-      scrollTrigger: {
-        trigger: imageContainerRef.current,
-        start: "top 80%",
-      }
-    })
-
-    const revealTexts = containerRef.current?.querySelectorAll('.reveal-text')
-    revealTexts?.forEach((text) => {
-      gsap.from(text, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: text,
-          start: "top 90%",
-        }
-      })
-    })
-
-    gsap.from(".stat-item", {
-      y: 30,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".stats-grid",
-        start: "top 85%",
-      }
-    })
-
-    gsap.to(".floating-circle", {
-      y: -20,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: 0.5
-    })
-  }, { scope: containerRef })
 
   return (
     <section
-      ref={containerRef}
       className='relative w-full bg-background px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-4 md:pb-8 overflow-hidden'
       id="about"
     >
-      <div className='absolute top-20 right-[10%] w-64 h-64 bg-red-light/20 rounded-full blur-3xl floating-circle' />
-      <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-red-light/10 rounded-full blur-[100px] floating-circle' />
+      <div className='absolute top-20 right-[10%] w-64 h-64 bg-red-light/20 rounded-full blur-3xl' />
+      <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-red-light/10 rounded-full blur-[100px]' />
 
       <div className='max-w-7xl mx-auto'>
         {/* Centered "Why Herlead" Label */}
@@ -87,10 +30,9 @@ const AboutSection = () => {
           {/* Image */}
           <div className='lg:col-span-6 relative order-2 lg:order-1 flex justify-center lg:justify-start transition-transform duration-500'>
             <div
-              ref={imageContainerRef}
               className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm shadow-2xl bg-gray-100'
             >
-              <div ref={imageRef} className='absolute inset-0'>
+              <div className='absolute inset-0'>
                 <Image
                   src="/images/about.png"
                   alt="About Us"
@@ -107,13 +49,13 @@ const AboutSection = () => {
             <div className='space-y-6'>
               <h2 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text uppercase'>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block'>BUILDING</span>
+                  <span className='inline-block'>BUILDING</span>
                 </div>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block text-red-light'>DIGITAL</span>
+                  <span className='inline-block text-red-light'>DIGITAL</span>
                 </div>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block text-primary'>IMPACT.</span>
+                  <span className='inline-block text-primary'>IMPACT.</span>
                 </div>
               </h2>
             </div>
@@ -133,7 +75,7 @@ const AboutSection = () => {
                   { label: 'Brands', value: '50+' },
                   { label: 'Results', value: '100%' }
                 ].map((stat, i) => (
-                  <div key={i} className='stat-item space-y-1'>
+                  <div key={i} className='space-y-1'>
                     <span className='block text-[10px] uppercase tracking-[0.3em] font-heading font-black text-primary'>{stat.label}</span>
                     <span className='text-3xl font-black font-heading text-text'>{stat.value}</span>
                   </div>
@@ -175,13 +117,13 @@ const AboutSection = () => {
 
               <h3 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text'>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block'>EMPOWERING</span>
+                  <span className='inline-block'>EMPOWERING</span>
                 </div>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block text-red-light'>BRANDS</span>
+                  <span className='inline-block text-red-light'>BRANDS</span>
                 </div>
                 <div className='overflow-hidden'>
-                  <span className='reveal-text inline-block text-primary'>THROUGH STORY.</span>
+                  <span className='inline-block text-primary'>THROUGH STORY.</span>
                 </div>
               </h3>
             </div>
