@@ -19,9 +19,9 @@ export const serviceCards = [
     {
         title: "Public Relations & Media Service",
         desc: "We don't chase headlines; we control narratives with credibility, influence, and precision",
-        color: "bg-[#0891B2]", // Cyan
+        color: "bg-accent-blue",
         textColor: "text-white",
-        variant: "single",
+        variant: "video",
         tags: [
             "Public Relations (PR)",
             "Media Outreach & Monitoring",
@@ -30,12 +30,13 @@ export const serviceCards = [
             "Press Release Writing & Distribution",
             "Reputation & Crisis Management"
         ],
-        images: ["/images/media.webp"]
+        video: "/videos/ads.webm",
+        images: []
     },
     {
         title: "Website & Digital Experience",
         desc: "Your website speaks the same language as your brand—clear, current, and conversion-ready",
-        color: "bg-[#ff6666]", // Red
+        color: "bg-secondary",
         textColor: "text-white",
         variant: "double",
         tags: [
@@ -50,9 +51,9 @@ export const serviceCards = [
     {
         title: "Paid Ads",
         desc: "The momentum builder giving your brand instant visibility while everything else compounds",
-        color: "bg-[#d4af37]", // Gold
+        color: "bg-primary",
         textColor: "text-white",
-        variant: "video",
+        variant: "single",
         tags: [
             "Meta Ads",
             "Google ads",
@@ -60,13 +61,12 @@ export const serviceCards = [
             "Instagram ads",
             "LinkedIn ads"
         ],
-        video: "/videos/ads.webm",
-        images: []
+        images: ["/images/media.webp"]
     },
     {
         title: "Corporate Training & Development",
         desc: "We shape people and organizations through systems of clarity, control, and consistent growth",
-        color: "bg-[#4F46E5]", // Purple
+        color: "bg-accent-corporate",
         textColor: "text-white",
         variant: "single",
         tags: [
@@ -80,7 +80,7 @@ export const serviceCards = [
     {
         title: "Make me the brand",
         desc: "We build brands from the ground up that are clear, credible, and impossible to ignore",
-        color: "bg-[#FF8A65]", // Orange
+        color: "bg-accent-orange",
         textColor: "text-white",
         variant: "video",
         tags: [

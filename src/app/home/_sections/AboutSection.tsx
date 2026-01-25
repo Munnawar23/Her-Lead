@@ -1,11 +1,9 @@
 "use client"
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { aboutContent } from '@/constants'
 import { motion } from 'motion/react'
 
 const AboutSection = () => {
-  const router = useRouter()
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -47,11 +45,11 @@ const AboutSection = () => {
 
   return (
     <section
-      className='relative w-full bg-background px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-4 md:pb-8 overflow-hidden'
+      className='relative w-full bg-bg-light px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-4 md:pb-8 overflow-hidden'
       id="about"
     >
-      <div className='absolute top-20 right-[10%] w-64 h-64 bg-red-light/20 rounded-full blur-3xl' />
-      <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-red-light/10 rounded-full blur-[100px]' />
+      <div className='absolute top-20 right-[10%] w-64 h-64 bg-secondary/20 rounded-full blur-3xl' />
+      <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-secondary/10 rounded-full blur-[100px]' />
 
       <div className='max-w-7xl mx-auto'>
         {/* Centered "Why Herlead" Label */}
@@ -66,11 +64,11 @@ const AboutSection = () => {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "circOut" }}
-              className='w-8 md:w-20 h-[2px] bg-red-light origin-right'
+              className='w-8 md:w-20 h-[2px] bg-secondary origin-right'
             />
             <motion.span
               variants={fadeInVariants}
-              className='text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light whitespace-nowrap'
+              className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-secondary whitespace-nowrap'
             >
               Why Herlead
             </motion.span>
@@ -78,7 +76,7 @@ const AboutSection = () => {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "circOut" }}
-              className='w-8 md:w-20 h-[2px] bg-red-light origin-left'
+              className='w-8 md:w-20 h-[2px] bg-secondary origin-left'
             />
           </div>
         </motion.div>
@@ -94,7 +92,7 @@ const AboutSection = () => {
             className='lg:col-span-6 relative order-2 lg:order-1 flex justify-center lg:justify-start'
           >
             <div
-              className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm shadow-2xl bg-gray-100'
+              className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm shadow-2xl bg-text/5'
             >
               <div className='absolute inset-0'>
                 <Image
@@ -117,12 +115,12 @@ const AboutSection = () => {
             className='lg:col-span-6 space-y-8 lg:space-y-12 order-1 lg:order-2'
           >
             <div className='space-y-6'>
-              <h2 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text uppercase'>
+              <h2 className='text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[0.9] tracking-tighter text-text uppercase'>
                 <div className='overflow-hidden'>
                   <motion.span variants={textRevealVariants} className='inline-block'>BUILDING</motion.span>
                 </div>
                 <div className='overflow-hidden'>
-                  <motion.span variants={textRevealVariants} className='inline-block text-red-light'>DIGITAL</motion.span>
+                  <motion.span variants={textRevealVariants} className='inline-block text-secondary'>DIGITAL</motion.span>
                 </div>
                 <div className='overflow-hidden'>
                   <motion.span variants={textRevealVariants} className='inline-block text-primary'>IMPACT.</motion.span>
@@ -131,11 +129,11 @@ const AboutSection = () => {
             </div>
 
             <div className='max-w-xl space-y-6'>
-              <motion.p variants={fadeInVariants} className='text-lg md:text-xl font-body font-bold text-text leading-relaxed'>
+              <motion.p variants={fadeInVariants} className='text-lg md:text-body-custom font-body font-bold text-text leading-relaxed'>
                 {aboutContent.intro}
               </motion.p>
 
-              <motion.p variants={fadeInVariants} className='text-lg font-body text-text leading-relaxed'>
+              <motion.p variants={fadeInVariants} className='text-lg md:text-body-custom font-body text-text leading-relaxed'>
                 {aboutContent.mainDescription}
               </motion.p>
 
@@ -152,24 +150,7 @@ const AboutSection = () => {
                 ))}
               </motion.div>
 
-              <motion.div variants={fadeInVariants} className='pt-6'>
-                <button
-                  onClick={() => router.push('/about')}
-                  className='group relative flex items-center gap-6'
-                >
-                  <div className='relative w-16 h-16 rounded-full border-2 border-text/20 flex items-center justify-center group-hover:border-primary transition-all duration-500'>
-                    <div className='absolute inset-0 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform duration-500' />
-                    <svg className="relative z-10 w-6 h-6 text-text group-hover:text-background transition-colors duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"></line>
-                      <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                  </div>
-                  <div className='flex flex-col text-left'>
-                    <span className='text-[10px] uppercase tracking-[0.4em] font-heading font-black text-text group-hover:text-red-light transition-colors duration-500'>Read More</span>
-                    <span className='text-[10px] uppercase tracking-[0.4em] font-heading font-bold text-text mb-0'>Discover Our Vision</span>
-                  </div>
-                </button>
-              </motion.div>
+
             </div>
           </motion.div>
         </div>
@@ -187,16 +168,16 @@ const AboutSection = () => {
           >
             <div className='space-y-3'>
               <motion.div variants={fadeInVariants} className='inline-flex items-center gap-3'>
-                <div className='w-12 h-[2px] bg-red-light' />
-                <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-red-light'>Vision from the Founder</span>
+                <div className='w-12 h-[2px] bg-secondary' />
+                <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-secondary'>Vision from the Founder</span>
               </motion.div>
 
-              <h3 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text'>
+              <h3 className='text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[0.9] tracking-tighter text-text'>
                 <div className='overflow-hidden'>
                   <motion.span variants={textRevealVariants} className='inline-block'>EMPOWERING</motion.span>
                 </div>
                 <div className='overflow-hidden'>
-                  <motion.span variants={textRevealVariants} className='inline-block text-red-light'>BRANDS</motion.span>
+                  <motion.span variants={textRevealVariants} className='inline-block text-secondary'>BRANDS</motion.span>
                 </div>
                 <div className='overflow-hidden'>
                   <motion.span variants={textRevealVariants} className='inline-block text-primary'>THROUGH STORY.</motion.span>
@@ -206,7 +187,7 @@ const AboutSection = () => {
 
             <div className='w-full space-y-3'>
               {aboutContent.founderVision.map((paragraph, index) => (
-                <motion.p key={index} variants={fadeInVariants} className='text-lg font-body text-text leading-relaxed w-full'>
+                <motion.p key={index} variants={fadeInVariants} className='text-lg md:text-body-custom font-body text-text leading-relaxed w-full'>
                   {paragraph}
                 </motion.p>
               ))}
@@ -228,7 +209,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
             className='relative flex justify-center lg:justify-end'
           >
-            <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm shadow-xl bg-gray-100'>
+            <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm shadow-xl bg-text/5'>
               <Image
                 src="/images/founder.webp"
                 alt="Founder"

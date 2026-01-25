@@ -57,18 +57,43 @@ const ServiceDiscovery = () => {
   return (
     <section
       id="services"
-      className="relative w-full bg-[#d31c8d] pt-32 pb-32 overflow-hidden rounded-t-[2rem] md:rounded-t-[4rem]"
+      className="relative w-full bg-accent-orange mt-12 md:mt-20 pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem]"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        {/* Centered "I'm looking for" Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className='mb-10 md:mb-16 flex justify-center w-full'
+        >
+          <div className='inline-flex items-center justify-center gap-3 md:gap-6 w-max'>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1, ease: "circOut" }}
+              className='w-8 md:w-20 h-[2px] bg-white origin-right'
+            />
+            <h2
+              className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-white whitespace-nowrap'
+            >
+              I'm looking for:
+            </h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1, ease: "circOut" }}
+              className='w-8 md:w-20 h-[2px] bg-white origin-left'
+            />
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-          {/* Left Column: I'm looking for + Active Content */}
+          {/* Left Column: Active Content */}
           <div className="space-y-12">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-heading font-black text-white leading-tight uppercase">
-              I'm looking <br /> for:
-            </h2>
 
-            <div className="min-h-[450px] flex flex-col justify-start">
+            <div className="min-h-[400px] flex flex-col justify-start lg:pt-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={hoveredIndex}
@@ -78,7 +103,7 @@ const ServiceDiscovery = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-sm overflow-hidden shadow-2xl border-2 border-white/20">
                     <img
                       src={imageSources[hoveredIndex]}
                       alt={serviceDisplayNames[hoveredIndex]}
@@ -89,7 +114,7 @@ const ServiceDiscovery = () => {
                     <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-2">
                       {services[hoveredIndex].name}
                     </h3>
-                    <p className="text-white/90 font-body text-sm md:text-base leading-relaxed font-medium">
+                    <p className="text-white/80 font-body text-sm md:text-body-custom leading-relaxed font-medium">
                       {services[hoveredIndex].description}
                     </p>
                   </div>
@@ -99,7 +124,7 @@ const ServiceDiscovery = () => {
           </div>
 
           {/* Right Column: Pill Buttons */}
-          <div className="flex flex-col gap-3 lg:pt-24">
+          <div className="flex flex-col gap-3 lg:pt-4">
             {serviceDisplayNames.map((name, index) => (
               <motion.div
                 key={index}
@@ -107,8 +132,8 @@ const ServiceDiscovery = () => {
                 whileHover={{ scale: 1.02 }}
                 className={`group flex items-center justify-between px-6 py-3.5 rounded-full border-2 transition-all duration-300
                   ${hoveredIndex === index
-                    ? 'bg-white text-[#d31c8d] border-white'
-                    : 'bg-transparent text-white border-white/40 hover:border-white'
+                    ? 'bg-white text-accent-orange border-white'
+                    : 'bg-transparent text-white border-white/20 hover:border-white'
                   }`}
               >
                 <span className="text-xs md:text-sm font-heading font-black uppercase tracking-widest text-left">

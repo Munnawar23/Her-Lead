@@ -5,42 +5,31 @@
 
 /* THEME DEFINITIONS */
 @theme {
-  /* ===== BRAND COLORS ===== */
-  --color-background: #fffefc;
+  --color-bg-light: #fffefc;
+  --color-bg-dark: #1a1a1a;
   --color-text: #242424;
   --color-primary: #d4af37;
-  /* Golden */
-  --color-secondary: #e8d4a0;
-  /* Light Golden */
-
-  /* ===== NEUTRALS ===== */
+  --color-secondary: #ff6666;
+  --color-accent-orange: #d31c8d;
+  --color-accent-corporate: #2563EB;
+  --color-accent-blue: #0891B2;
+  --color-social-instagram: #E1306C;
+  --color-social-linkedin: #0077B5;
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-gray-100: #f5f5f5;
-  --color-gray-300: #d4d4d4;
-  --color-gray-500: #737373;
-  --color-gray-700: #404040;
-  --color-gray-900: #171717;
-
-  /* ===== ACCENT COLORS ===== */
-  --color-rose: #ff6b9d;
-  --color-purple: #9333ea;
-  --color-blue: #3b82f6;
-  --color-teal: #14b8a6;
-  --color-emerald: #10b981;
-  --color-red-light: #ff6666;
-  /* Light Red - Brand Accent */
-
-  /* ===== SEMANTIC COLORS ===== */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-info: #3b82f6;
 
   /* ===== TYPOGRAPHY ===== */
   --font-display: "Playfair Display", serif;
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
+
+  /* Desktop Font Sizes */
+  --text-section-label: 3.20rem;
+  /* 60px */
+  --text-main-heading: 3.20rem;
+  /* 60px */
+  --text-body-custom: 1.25rem;
+  /* 20px */
 }
 
 /* BASE LAYER */
@@ -58,7 +47,7 @@
   body {
     width: 100dvw;
     overflow-x: hidden;
-    background-color: var(--color-background);
+    background-color: var(--color-bg-light);
     font-family: var(--font-body);
     color: var(--color-text);
     font-size: 16px;

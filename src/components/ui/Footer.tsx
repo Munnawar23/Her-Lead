@@ -36,7 +36,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="w-full bg-background border-t border-text/10">
+    <footer className="w-full bg-bg-light border-t border-text/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
 
         {/* Main Footer Content */}
@@ -51,11 +51,11 @@ const Footer = () => {
               variants={containerVariants}
               className="space-y-8"
             >
-              <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-text leading-[0.9] tracking-tighter uppercase">
+              <motion.h2 variants={itemVariants} className="text-main-heading font-heading font-black text-text leading-[0.9] tracking-tighter uppercase">
                 Let's <span className="text-primary italic">Create</span><br />
-                Something <span className="text-red-light italic">Great</span>
+                Something <span className="text-secondary italic">Great</span>
               </motion.h2>
-              <motion.p variants={itemVariants} className="text-base md:text-lg font-body text-text max-w-md leading-relaxed font-bold">
+              <motion.p variants={itemVariants} className="text-sm md:text-body-custom font-body text-text max-w-md leading-relaxed font-bold">
                 Ready to elevate your brand? Get in touch and let's start building your digital presence together.
               </motion.p>
               <motion.button
@@ -63,7 +63,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = 'mailto:munawwarh48@gmail.com'}
-                className="group px-8 py-4 bg-red-light text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3 shadow-lg"
+                className="group px-8 py-4 bg-secondary text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3 shadow-lg"
               >
                 Get In Touch
                 <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
@@ -81,14 +81,14 @@ const Footer = () => {
               <motion.div variants={itemVariants}>
                 <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Contact</h3>
                 <div className="space-y-3">
-                  <p className="text-base font-body font-bold text-text">
+                  <p className="text-sm md:text-body-custom font-body font-bold text-text">
                     213 Sterling Rd. Unit 214<br />
                     Toronto, ON M6R 2B2, Canada
                   </p>
-                  <p className="text-base font-body font-bold text-text">
+                  <p className="text-sm md:text-body-custom font-body font-bold text-text">
                     <a href="tel:4162542944" className="hover:text-primary transition-colors">416.254.2944</a>
                   </p>
-                  <p className="text-base font-body font-bold text-text">
+                  <p className="text-sm md:text-body-custom font-body font-bold text-text">
                     <a href="mailto:info@herlead.com" className="hover:text-primary transition-colors">info@herlead.com</a>
                   </p>
                 </div>
@@ -127,9 +127,9 @@ const Footer = () => {
             <div className="flex items-center gap-4 text-[10px] md:text-xs font-body font-bold text-text uppercase tracking-widest">
               <span>© 2026 Her Lead</span>
               <span className="text-primary italic">•</span>
-              <a href="#" className="hover:text-red-light transition-colors">Privacy</a>
+              <a href="#" className="hover:text-secondary transition-colors">Privacy</a>
               <span className="text-primary italic">•</span>
-              <a href="#" className="hover:text-red-light transition-colors">Terms</a>
+              <a href="#" className="hover:text-secondary transition-colors">Terms</a>
             </div>
           </div>
         </motion.div>

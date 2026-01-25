@@ -19,7 +19,7 @@ const TestimonialSection = () => {
 
   return (
     <section
-      className='relative w-full bg-red-light py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-[2rem] md:rounded-t-[4rem]'
+      className='relative w-full bg-accent-blue mt-12 md:mt-20 py-16 md:py-24 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem]'
     >
       <div className='max-w-7xl mx-auto'>
 
@@ -29,7 +29,7 @@ const TestimonialSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-          className="text-center mb-20 md:mb-32"
+          className="text-center mb-12 md:mb-16"
         >
           <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
             <motion.div
@@ -39,7 +39,9 @@ const TestimonialSection = () => {
               transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
               className='w-12 md:w-20 h-[2px] bg-white/30 origin-right'
             />
-            <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-white'>Testimonials</span>
+            <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-white whitespace-nowrap'>
+              Testimonials
+            </h2>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -48,10 +50,12 @@ const TestimonialSection = () => {
               className='w-12 md:w-20 h-[2px] bg-white/30 origin-left'
             />
           </div>
-          <h2 className='text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white leading-none tracking-tighter uppercase'>
-            What our clients <br className='hidden md:block' />
-            <span className="italic text-white">love about us</span>
-          </h2>
+          <div className='mt-8 md:mt-12'>
+            <h3 className='text-4xl font-heading font-black text-white/90 leading-none tracking-tighter uppercase'>
+              What our clients <br className='hidden md:block' />
+              <span className="italic text-white">love about us</span>
+            </h3>
+          </div>
         </motion.div>
 
         {/* Testimonials Grid */}
@@ -73,7 +77,7 @@ const TestimonialSection = () => {
                 </svg>
               </div>
 
-              <p className='text-white text-base md:text-lg font-body font-bold leading-[1.6] flex-1'>
+              <p className='text-white text-sm md:text-body-custom font-body font-bold leading-[1.6] flex-1'>
                 "{t.quote}"
               </p>
 
@@ -81,7 +85,7 @@ const TestimonialSection = () => {
                 {/* 5 Star Rating */}
                 <div className='flex gap-1'>
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="white" className="text-white" />
+                    <Star key={i} size={16} fill="var(--color-primary)" className="text-primary" />
                   ))}
                 </div>
                 <div className='flex flex-col'>

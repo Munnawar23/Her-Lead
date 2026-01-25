@@ -98,11 +98,11 @@ const Navbar = () => {
         variants={navbarVariants}
         animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${mobileMenuOpen ? 'bg-transparent shadow-none' : 'bg-white/90 backdrop-blur-lg shadow-lg shadow-blue-500/5'} ${scrolled ? 'py-3' : 'py-5'}`}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${mobileMenuOpen ? 'bg-transparent shadow-none' : 'bg-white/90 backdrop-blur-lg shadow-lg shadow-text/5'} ${scrolled ? 'py-3' : 'py-5'}`}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Mobile Action Button */}
-          <div className="lg:hidden">
+          <div className={`lg:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <Button
               onClick={() => router.push('/request-quote')}
               variant="yellow"
@@ -117,7 +117,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-2">
             <Button
               onClick={() => router.push('/hire-talent')}
-              variant="orange"
+              variant="cyan"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
             >
@@ -126,7 +126,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => router.push('/i-am-talent')}
-              variant="purple"
+              variant="red"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
             >
@@ -142,10 +142,10 @@ const Navbar = () => {
                 href={link.path}
                 onClick={(e) => handleNavClick(e, link)}
                 whileHover={{ scale: 1.05 }}
-                className="text-[13px] uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-red-light transition-colors relative group whitespace-nowrap"
+                className="text-[13px] uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-secondary transition-colors relative group whitespace-nowrap"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-light group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
@@ -154,7 +154,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-2">
             <Button
               onClick={() => router.push('/i-am-influencer')}
-              variant="cyan"
+              variant="orange"
               size="sm"
               className="px-5 py-2.5 text-[11px]"
             >
@@ -178,15 +178,15 @@ const Navbar = () => {
             aria-label="Toggle menu"
           >
             <motion.span
-              animate={mobileMenuOpen ? { rotate: 45, y: 8, backgroundColor: "#fff" } : { rotate: 0, y: 0, backgroundColor: "#000" }}
+              animate={mobileMenuOpen ? { rotate: 45, y: 8, backgroundColor: "var(--color-white)" } : { rotate: 0, y: 0, backgroundColor: "var(--color-black)" }}
               className="w-6 h-0.5"
             />
             <motion.span
-              animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1, backgroundColor: "#000" }}
+              animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1, backgroundColor: "var(--color-black)" }}
               className="w-3 h-0.5 self-end mr-2"
             />
             <motion.span
-              animate={mobileMenuOpen ? { rotate: -45, y: -8, backgroundColor: "#fff" } : { rotate: 0, y: 0, backgroundColor: "#000" }}
+              animate={mobileMenuOpen ? { rotate: -45, y: -8, backgroundColor: "var(--color-white)" } : { rotate: 0, y: 0, backgroundColor: "var(--color-black)" }}
               className="w-6 h-0.5"
             />
           </button>
@@ -201,7 +201,7 @@ const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-red-light z-40 lg:hidden"
+            className="fixed inset-0 bg-bg-dark z-40 lg:hidden"
           >
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-screen" />
             <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-primary/10 rounded-full blur-[100px]" />
@@ -224,7 +224,7 @@ const Navbar = () => {
                       handleNavClick(e, link);
                       setMobileMenuOpen(false);
                     }}
-                    className="text-3xl uppercase tracking-[0.3em] font-heading font-black text-white hover:text-red-light transition-colors"
+                    className="text-xl uppercase tracking-[0.4em] font-heading font-black text-white hover:text-primary transition-colors"
                   >
                     {link.name}
                   </motion.a>
@@ -233,16 +233,16 @@ const Navbar = () => {
 
               <motion.div variants={itemVariants} className="flex items-center gap-3 opacity-40">
                 <div className="w-8 h-[1px] bg-white" />
-                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
+                <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
                 <div className="w-8 h-[1px] bg-white" />
               </motion.div>
 
               {/* Mobile Buttons Grid */}
               <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
                 {[
-                  { label: 'I Need a Talent', variant: 'orange', href: '/hire-talent', isInternal: true },
-                  { label: 'I Am a Talent', variant: 'purple', href: '/i-am-talent', isInternal: true },
-                  { label: 'I Am an Influencer', variant: 'cyan', href: '/i-am-influencer', isInternal: true },
+                  { label: 'I Need a Talent', variant: 'cyan', href: '/hire-talent', isInternal: true },
+                  { label: 'I Am a Talent', variant: 'red', href: '/i-am-talent', isInternal: true },
+                  { label: 'I Am an Influencer', variant: 'orange', href: '/i-am-influencer', isInternal: true },
                   { label: 'Request for Quote', variant: 'yellow', href: '/request-quote', isInternal: true }
                 ].map((btn, i) => (
                   <motion.div key={i} variants={itemVariants}>
@@ -256,8 +256,9 @@ const Navbar = () => {
                         }
                       }}
                       variant={btn.variant as any}
-                      size="lg"
+                      size="md"
                       fullWidth
+                      className="py-4 text-[10px]"
                     >
                       {btn.label}
                     </Button>

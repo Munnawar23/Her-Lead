@@ -19,17 +19,17 @@ const SplashScreen = () => {
     useEffect(() => {
         // Animate the counter from 0 to 100
         const controls = animate(count, 100, {
-            duration: 3,
+            duration: 2,
             ease: [0.76, 0, 0.24, 1] as const,
             onComplete: () => {
-                setTimeout(() => setIsComplete(true), 500);
+                setTimeout(() => setIsComplete(true), 200);
             }
         });
 
         // Cycle through words based on progress
         const wordInterval = setInterval(() => {
             setWordIndex((prev) => (prev + 1) % words.length);
-        }, 800);
+        }, 600);
 
         return () => {
             controls.stop();
@@ -46,7 +46,7 @@ const SplashScreen = () => {
                         translateY: '-100%',
                         transition: { duration: 1.2, ease: [0.87, 0, 0.13, 1] }
                     }}
-                    className="fixed top-0 left-0 z-[60] flex h-screen w-full flex-col justify-between bg-red-light p-8 md:p-12 lg:p-20 overflow-hidden"
+                    className="fixed top-0 left-0 z-[60] flex h-screen w-full flex-col justify-between bg-bg-dark p-8 md:p-12 lg:p-20 overflow-hidden"
                 >
                     {/* Top UI */}
                     <div className="relative z-10 flex justify-between items-start">
@@ -54,7 +54,7 @@ const SplashScreen = () => {
                             <motion.span
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-[10px] font-black uppercase tracking-[0.5em] text-white"
+                                className="text-[10px] font-black uppercase tracking-[0.5em] text-white/80"
                             >
                                 HerLead
                             </motion.span>
@@ -71,7 +71,7 @@ const SplashScreen = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.5, ease: "circOut" }}
-                                    className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-white"
+                                    className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-primary"
                                 >
                                     {words[wordIndex]}
                                 </motion.h2>
@@ -91,7 +91,7 @@ const SplashScreen = () => {
                         <div className="w-full h-[1px] bg-white/10 relative overflow-hidden">
                             <motion.div
                                 style={{ width: progressWidth }}
-                                className="absolute top-0 left-0 h-full bg-white"
+                                className="absolute top-0 left-0 h-full bg-primary"
                             />
                         </div>
                     </div>

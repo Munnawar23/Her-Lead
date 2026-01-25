@@ -29,7 +29,7 @@ const BlogsSection = () => {
     };
 
     return (
-        <section className="relative w-full bg-background overflow-hidden pb-4 md:pb-6 pt-16">
+        <section className="relative w-full bg-bg-light overflow-hidden pb-4 md:pb-6 pt-16 mt-12 md:mt-20">
             {/* SECTION HEADER (Centered) */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -44,20 +44,22 @@ const BlogsSection = () => {
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                        className='w-12 md:w-20 h-[2px] bg-red-light origin-right'
+                        className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
                     />
-                    <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-red-light'>Publications</span>
+                    <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-secondary'>
+                        Publications
+                    </h2>
                     <motion.div
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                        className='w-12 md:w-20 h-[2px] bg-red-light origin-left'
+                        className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
                     />
                 </div>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-none tracking-tighter uppercase">
+                <h2 className="text-main-heading font-heading font-black text-text leading-none tracking-tighter uppercase">
                     You read our <br className="hidden md:block" />
-                    <span className="text-red-light italic">publications</span> right?
+                    <span className="text-secondary italic">publications</span> right?
                 </h2>
             </motion.div>
 
@@ -73,13 +75,13 @@ const BlogsSection = () => {
                         variants={cardVariants}
                         className="group relative w-full"
                     >
-                        <div className="relative w-full aspect-square rounded-[3rem] overflow-hidden bg-black md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8">
+                        <div className="relative w-full aspect-square rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-text md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8">
                             <img
                                 src={post.image}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                                 alt={post.title}
                             />
-                            <div className="absolute top-6 left-6 px-4 py-1.5 bg-black text-white text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
+                            <div className="absolute top-6 left-6 px-4 py-1.5 bg-text text-bg-light text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
                                 {post.tag}
                             </div>
                         </div>
@@ -89,14 +91,14 @@ const BlogsSection = () => {
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 0.05, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.5 }}
-                                className="absolute -top-12 md:-top-16 left-0 text-[12vw] md:text-[8vw] lg:text-[6vw] font-black text-black pointer-events-none italic uppercase"
+                                className="absolute -top-12 md:-top-16 left-0 text-[12vw] md:text-[8vw] lg:text-[6vw] font-black text-text pointer-events-none italic uppercase"
                             >
                                 0{index + 1}
                             </motion.div>
-                            <h3 className="text-2xl md:text-3xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-red-light transition-colors">
+                            <h3 className="text-2xl md:text-3xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-secondary transition-colors">
                                 {post.title}
                             </h3>
-                            <p className="mt-4 text-sm md:text-base text-text font-bold leading-relaxed opacity-70">
+                            <p className="mt-4 text-sm md:text-body-custom text-text font-bold leading-relaxed opacity-70">
                                 {post.description}
                             </p>
                         </div>
@@ -117,7 +119,7 @@ const BlogsSection = () => {
                             transition={{ duration: 1, ease: "circOut" }}
                             className="w-[90vw] md:w-[380px] lg:w-[420px]"
                         >
-                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-text/5">
                                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                                     <img
                                         src={post.image}
@@ -138,22 +140,22 @@ const BlogsSection = () => {
                     transition={{ duration: 0.8 }}
                     className="flex flex-col items-center text-center py-12"
                 >
-                    <div className="px-6 py-2 border border-text rounded-full mb-6">
+                    <div className="px-6 py-2 border border-text/20 rounded-full mb-6">
                         <span className="text-[10px] font-bold text-text tracking-widest uppercase italic">
-                            @herlead_agency — <span className="text-primary">STAY</span> <span className="text-red-light">CONNECTED</span>
+                            @herlead_agency — <span className="text-primary">STAY</span> <span className="text-secondary">CONNECTED</span>
                         </span>
                     </div>
-                    <h3 className="text-3xl md:text-4xl lg:text-7xl font-black text-text tracking-tighter uppercase mb-10 leading-none">
+                    <h3 className="text-main-heading font-black text-text tracking-tighter uppercase mb-10 leading-none">
                         and obviously you follow <br className="hidden md:block" />
-                        our <span className="text-red-light italic">social media</span>
+                        our <span className="text-secondary italic">social media</span>
                     </h3>
 
                     {/* Social Icon Row */}
                     <div className="flex items-center gap-4 md:gap-6">
                         {[
-                            { Icon: Instagram, color: "#E1306C", label: "Instagram" },
-                            { Icon: Linkedin, color: "#0077B5", label: "LinkedIn" },
-                            { Icon: XIcon, color: "#000000", label: "X" },
+                            { Icon: Instagram, colorClass: "text-social-instagram", bgClass: "bg-social-instagram/10", label: "Instagram" },
+                            { Icon: Linkedin, colorClass: "text-social-linkedin", bgClass: "bg-social-linkedin/10", label: "LinkedIn" },
+                            { Icon: XIcon, colorClass: "text-text", bgClass: "bg-text/10", label: "X" },
                         ].map((social, i) => (
                             <motion.a
                                 key={i}
@@ -161,14 +163,12 @@ const BlogsSection = () => {
                                 whileHover={{ scale: 1.1, y: -5 }}
                                 whileTap={{ scale: 0.9 }}
                                 aria-label={social.label}
-                                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-text/10 flex items-center justify-center cursor-pointer hover:border-primary transition-all group shadow-lg"
-                                style={{ backgroundColor: `${social.color}10` }}
+                                className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-text/10 flex items-center justify-center cursor-pointer hover:border-primary transition-all group shadow-lg ${social.bgClass}`}
                             >
                                 <social.Icon
                                     size={24}
                                     strokeWidth={2}
-                                    className="group-hover:text-primary transition-colors"
-                                    style={{ color: social.color }}
+                                    className={`group-hover:text-primary transition-colors ${social.colorClass}`}
                                 />
                             </motion.a>
                         ))}
@@ -186,7 +186,7 @@ const BlogsSection = () => {
                             transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
                             className="w-[90vw] md:w-[380px] lg:w-[420px]"
                         >
-                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-black/5">
+                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-text/5">
                                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                                     <img
                                         src={post.image}

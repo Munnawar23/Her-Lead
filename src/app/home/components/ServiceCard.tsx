@@ -137,18 +137,18 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
             className={`relative w-full 
-              min-h-[500px] md:h-[560px] lg:h-[600px]
+              min-h-[400px] md:h-[560px] lg:h-[600px]
               ${group.color} ${group.textColor} 
-              rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col`}
+              rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col`}
         >
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] flex-1">
                 {/* LEFT CONTENT */}
                 <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-                    <motion.h3 variants={itemVariants} className="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.1]">
+                    <motion.h3 variants={itemVariants} className="text-2xl sm:text-3xl md:text-main-heading font-black leading-[1.1] uppercase">
                         {group.title}
                     </motion.h3>
 
-                    <motion.p variants={itemVariants} className="mt-3 max-w-md text-sm md:text-lg font-semibold opacity-80 leading-relaxed">
+                    <motion.p variants={itemVariants} className="mt-2 md:mt-3 max-w-md text-xs md:text-body-custom font-semibold opacity-80 leading-relaxed">
                         {group.desc}
                     </motion.p>
 
@@ -157,27 +157,15 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                             <div
                                 key={i}
                                 className={`flex items-center gap-1.5 px-3 py-1.5 md:px-5 md:py-2 rounded-full
-                                  bg-black/5 backdrop-blur-sm border border-current opacity-70
-                                  text-[10px] md:text-xs font-bold uppercase tracking-wider`}
+                                  bg-black/5 backdrop-blur-sm border border-white
+                                  text-[10px] md:text-xs font-bold uppercase tracking-wider text-white`}
                             >
                                 {tag}
-                                <ArrowUpRight size={12} className="md:w-[14px] md:h-[14px]" />
                             </div>
                         ))}
                     </motion.div>
 
-                    <motion.button
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`mt-8 w-fit flex items-center gap-2 px-7 py-3
-                      rounded-full border-2 border-white hover:bg-white hover:text-black transition-all group/btn`}
-                    >
-                        <span className="text-xs font-black uppercase tracking-wider">
-                            Learn more
-                        </span>
-                        <ArrowUpRight size={16} />
-                    </motion.button>
+
                 </div>
 
                 {/* RIGHT VISUAL STACK */}

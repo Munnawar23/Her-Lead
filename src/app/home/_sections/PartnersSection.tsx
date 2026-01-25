@@ -15,7 +15,7 @@ const partners = [
 const PartnersSection = () => {
     const router = useRouter()
     return (
-        <section className="w-full bg-background pt-24 pb-24 border-t border-text/10 overflow-hidden">
+        <section className="w-full bg-bg-light pt-24 pb-24 border-t border-text/10 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
 
                 {/* Section Header: OUR PARTNERS (Centered) */}
@@ -32,15 +32,17 @@ const PartnersSection = () => {
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                            className='w-12 md:w-20 h-[2px] bg-red-light origin-right'
+                            className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
                         />
-                        <span className='text-sm md:text-base lg:text-5xl font-heading font-black uppercase tracking-[0.3em] text-red-light'>Our Partners</span>
+                        <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-secondary'>
+                            Our Partners
+                        </h2>
                         <motion.div
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                            className='w-12 md:w-20 h-[2px] bg-red-light origin-left'
+                            className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
                         />
                     </div>
 
@@ -52,22 +54,22 @@ const PartnersSection = () => {
                     <div className="relative flex overflow-hidden">
                         <motion.div
                             animate={{
-                                x: ["0%", "-50%"],
+                                x: ["0%", "-33.33%"],
                             }}
                             transition={{
                                 x: {
                                     repeat: Infinity,
                                     repeatType: "loop",
-                                    duration: 25,
+                                    duration: 30, // Slightly slower for more premium feel
                                     ease: "linear",
                                 },
                             }}
                             className="flex items-center gap-24 md:gap-32 whitespace-nowrap"
                         >
-                            {[...partners, ...partners].map((partner, i) => (
+                            {[...partners, ...partners, ...partners].map((partner, i) => (
                                 <div
                                     key={i}
-                                    className="flex items-center justify-center transition-all duration-700 hover:scale-110"
+                                    className="flex-shrink-0 flex items-center justify-center transition-all duration-700 hover:scale-110"
                                 >
                                     <img
                                         src={partner.logo}
@@ -79,8 +81,8 @@ const PartnersSection = () => {
                         </motion.div>
 
                         {/* Fades for smooth edges */}
-                        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-                        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+                        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-bg-light to-transparent z-10" />
+                        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-bg-light to-transparent z-10" />
                     </div>
                 </div>
 
@@ -89,10 +91,10 @@ const PartnersSection = () => {
                     <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
                         {[
                             { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
-                            { label: "General Inquiries", bg: "bg-red-light", path: "mailto:info@herlead.com" },
-                            { label: "I'm an Influencer", bg: "bg-[#0891B2]", path: "/i-am-influencer" },
-                            { label: "I Am a Talent", bg: "bg-[#4F46E5]", path: "/i-am-talent" },
-                            { label: "I Need a Talent", bg: "bg-[#FF8A65]", path: "/hire-talent" }
+                            { label: "General Inquiries", bg: "bg-secondary", path: "mailto:info@herlead.com" },
+                            { label: "I'm an Influencer", bg: "bg-accent-orange", path: "/i-am-influencer" },
+                            { label: "I Am a Talent", bg: "bg-secondary", path: "/i-am-talent" },
+                            { label: "I Need a Talent", bg: "bg-accent-blue", path: "/hire-talent" }
                         ].map((btn, i) => (
                             <motion.button
                                 key={i}

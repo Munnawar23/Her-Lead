@@ -30,14 +30,14 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   const variantStyles = {
-    outlined: 'border-2 border-text hover:border-red-light hover:text-red-light bg-transparent',
-    filled: 'text-white bg-red-light shadow-lg shadow-red-light/20 hover:shadow-red-light/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    gradient: 'text-white bg-gradient-to-r from-red-light to-primary shadow-lg shadow-red-light/20 hover:shadow-red-light/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    yellow: 'text-white bg-[#d4af37] shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    red: 'text-white bg-[#ff6666] shadow-lg shadow-[#ff6666]/30 hover:shadow-[#ff6666]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    cyan: 'text-white bg-[#0891B2] shadow-lg shadow-[#0891B2]/30 hover:shadow-[#0891B2]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    outlined: 'border-2 border-text hover:border-secondary hover:text-secondary bg-transparent',
+    filled: 'text-white bg-secondary shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    gradient: 'text-white bg-gradient-to-r from-secondary to-primary shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    yellow: 'text-white bg-primary shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    red: 'text-white bg-secondary shadow-lg shadow-secondary/30 hover:shadow-secondary/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    cyan: 'text-white bg-accent-blue shadow-lg shadow-accent-blue/30 hover:shadow-accent-blue/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
     purple: 'text-white bg-[#4F46E5] shadow-lg shadow-[#4F46E5]/30 hover:shadow-[#4F46E5]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    orange: 'text-white bg-[#FF8A65] shadow-lg shadow-[#FF8A65]/30 hover:shadow-[#FF8A65]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    orange: 'text-white bg-accent-orange shadow-lg shadow-accent-orange/30 hover:shadow-accent-orange/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
   }
 
   const widthStyles = fullWidth ? 'w-full' : ''
