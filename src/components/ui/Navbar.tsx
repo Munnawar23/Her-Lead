@@ -36,7 +36,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', action: 'reload' },
-    { name: 'About', path: '/about', action: 'transition' },
+    { name: 'About', path: '/#about', action: 'scroll' },
     { name: 'Services', path: '/#services', action: 'scroll' },
   ]
 
@@ -49,7 +49,8 @@ const Navbar = () => {
     if (link.action === 'scroll') {
       if (window.location.pathname === '/') {
         e.preventDefault();
-        const element = document.getElementById('services');
+        const targetId = link.path.split('#')[1];
+        const element = document.getElementById(targetId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
