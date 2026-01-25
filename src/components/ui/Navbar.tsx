@@ -1,13 +1,12 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTransition } from '@/context/TransitionProvider'
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import Button from '@/components/common/Button'
 import Image from 'next/image'
 
 const Navbar = () => {
-  const { transitionTo } = useTransition()
+  const router = useRouter()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -69,7 +68,7 @@ const Navbar = () => {
     }
 
     e.preventDefault()
-    transitionTo(link.path)
+    router.push(link.path)
   }
 
   return (

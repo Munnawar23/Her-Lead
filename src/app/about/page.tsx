@@ -1,60 +1,27 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useTransition } from '@/context/TransitionProvider'
-
-
-
-gsap.registerPlugin(ScrollTrigger)
+import { useRouter } from 'next/navigation'
 
 const AboutPage = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { transitionTo } = useTransition()
+  const router = useRouter()
 
   const handleBackHome = (e: React.MouseEvent) => {
     e.preventDefault()
-    transitionTo('/')
+    router.push('/')
   }
 
-  useGSAP(() => {
-    // Reveal animations for text and split sections
-    gsap.from(".reveal-text", {
-      yPercent: 100,
-      duration: 1,
-      stagger: 0.1,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: ".reveal-trigger",
-        start: "top 90%",
-      }
-    })
-
-    gsap.from(".reveal-item", {
-      y: 50,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".reveal-trigger",
-        start: "top 80%",
-      }
-    })
-  }, { scope: containerRef })
-
   return (
-    <main ref={containerRef} className="min-h-screen bg-background text-text font-body selection:bg-primary selection:text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32 reveal-trigger">
+    <main className="min-h-screen bg-background text-text font-body selection:bg-primary selection:text-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
 
         {/* Main Hero Header */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-20 md:mb-32 gap-6 overflow-hidden">
-          <h1 className="reveal-text text-6xl md:text-8xl lg:text-[9vw] font-heading font-black leading-[0.8] tracking-tighter uppercase relative">
+          <h1 className="text-6xl md:text-8xl lg:text-[9vw] font-heading font-black leading-[0.8] tracking-tighter uppercase relative">
             Her<span className="text-red-light">-</span>Lead
           </h1>
-          <div className="reveal-text text-5xl md:text-7xl font-heading font-black leading-[0.8] tracking-tighter flex items-center">
+          <div className="text-5xl md:text-7xl font-heading font-black leading-[0.8] tracking-tighter flex items-center">
             2026<span className="text-[0.4em] ml-2 text-primary italic">©</span>
           </div>
         </div>
@@ -64,29 +31,31 @@ const AboutPage = () => {
 
           {/* Left Column: Label */}
           <div className="md:col-span-4 overflow-hidden">
-            <h2 className="reveal-text text-xs font-heading font-black tracking-[0.4em] uppercase text-red-light">Who we are</h2>
+            <h2 className="text-xs font-heading font-black tracking-[0.4em] uppercase text-red-light">Who we are</h2>
           </div>
 
           {/* Right Column: Text and Image */}
           <div className="md:col-span-8 space-y-12">
             <div className="overflow-hidden">
-              <p className="reveal-text text-3xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text uppercase">
+              <p className="text-3xl md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter text-text uppercase">
                 An experienced team of in-house experts in <span className="text-primary italic">360° digital</span> elevation.
               </p>
             </div>
 
-            <div className="max-w-2xl reveal-item">
+            <div className="max-w-2xl">
               <p className="text-lg md:text-xl font-body font-bold leading-relaxed text-text">
                 We have the talent and skills to ideate, organize, execute, publish, distribute and scale award winning content that results in impactful and measurable results for some of the world's biggest brands.
               </p>
             </div>
 
             {/* Image Container */}
-            <div className="reveal-item w-full relative overflow-hidden grayscale md:hover:grayscale-0 transition-all duration-1000 rounded-sm group aspect-16/9 bg-gray-100">
+            <div className="w-full relative overflow-hidden grayscale md:hover:grayscale-0 transition-all duration-1000 rounded-sm group aspect-16/9 bg-gray-100">
               <Image
                 src="/images/about-editorial.png"
                 alt="Our Team"
-                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                layout="fill"
+                objectFit="cover"
+                className="scale-110 group-hover:scale-100 transition-transform duration-1000"
                 priority
               />
             </div>
@@ -99,18 +68,18 @@ const AboutPage = () => {
 
           {/* Left Column: Label */}
           <div className="md:col-span-4 overflow-hidden">
-            <h2 className="reveal-text text-xs font-heading font-black tracking-[0.4em] uppercase text-primary">Public Relations</h2>
+            <h2 className="text-xs font-heading font-black tracking-[0.4em] uppercase text-primary">Public Relations</h2>
           </div>
 
           {/* Right Column: Text */}
           <div className="md:col-span-8">
             <div className="max-w-2xl space-y-10">
               <div className="overflow-hidden">
-                <p className="reveal-text text-3xl md:text-5xl lg:text-6xl font-heading font-black leading-[1.1] tracking-tighter text-text uppercase">
+                <p className="text-3xl md:text-5xl lg:text-6xl font-heading font-black leading-[1.1] tracking-tighter text-text uppercase">
                   Where PR meets strategy, <span className="text-red-light italic">your story</span> finds its audience
                 </p>
               </div>
-              <div className="reveal-item space-y-8">
+              <div className="space-y-8">
                 <p className="text-lg md:text-xl font-body leading-relaxed text-text">
                   As a full-service public relations agency, bold storytelling and smart strategy are at the core of everything we do. The cherry on top? Media coverage that moves the needle and makes your brand newsworthy.
                 </p>
@@ -127,7 +96,7 @@ const AboutPage = () => {
         </div>
 
         {/* Image Gallery Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start reveal-item">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
 
           {/* Left Large Image */}
           <div className="md:col-span-5 flex flex-col items-center group">
@@ -135,7 +104,9 @@ const AboutPage = () => {
               <Image
                 src="/images/post.png"
                 alt="Post"
-                className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-1000"
+                layout="fill"
+                objectFit="cover"
+                className="scale-105 group-hover:scale-100 transition-transform duration-1000"
               />
             </div>
             <div className="font-heading font-black text-xs md:text-sm uppercase tracking-[0.3em] transform group-hover:translate-y-[-5px] transition-all duration-300 text-center italic">
@@ -152,7 +123,9 @@ const AboutPage = () => {
               <Image
                 src="/images/lion.png"
                 alt="Lion"
-                className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-1000"
+                layout="fill"
+                objectFit="cover"
+                className="scale-105 group-hover:scale-100 transition-transform duration-1000"
               />
             </div>
             <div className="font-heading font-black text-xs md:text-sm uppercase tracking-[0.3em] transform group-hover:translate-y-[-5px] transition-all duration-300 text-center italic">
@@ -163,7 +136,7 @@ const AboutPage = () => {
         </div>
 
         {/* Back to Home Button Footer */}
-        <div className="mt-20 md:mt-40 border-t border-text/10 pt-20 flex justify-center reveal-item">
+        <div className="mt-20 md:mt-40 border-t border-text/10 pt-20 flex justify-center">
           <button
             onClick={handleBackHome}
             className="group relative flex flex-col items-center gap-6 uppercase text-[10px] font-heading font-black tracking-[0.5em] text-text hover:text-red-light transition-all duration-500"

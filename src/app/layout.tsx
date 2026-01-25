@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import SmoothScroll from "@/components/common/SmoothScroll";
-import { TransitionProvider } from "@/context/TransitionProvider";
 import Navbar from "@/components/ui/Navbar";
 
 export const metadata: Metadata = {
@@ -17,12 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SmoothScroll>
-          <TransitionProvider>
-            <Navbar />
-            {children}
-          </TransitionProvider>
-        </SmoothScroll>
+        <Navbar />
+        {children}
       </body>
     </html>
   );

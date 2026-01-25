@@ -1,6 +1,5 @@
 "use client"
 import React from "react"
-import { useTransition } from "@/context/TransitionProvider"
 import { Instagram, Linkedin } from "lucide-react"
 
 const XIcon = ({ size = 18 }: { size?: number }) => (
@@ -10,8 +9,6 @@ const XIcon = ({ size = 18 }: { size?: number }) => (
 )
 
 const Footer = () => {
-  const { transitionTo } = useTransition()
-
   const socials = [
     { label: "Instagram", href: "#", icon: Instagram },
     { label: "LinkedIn", href: "#", icon: Linkedin },

@@ -1,11 +1,11 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import { useTransition } from '@/context/TransitionProvider'
+import { useRouter } from 'next/navigation'
 import { aboutContent } from '@/constants'
 
 const AboutSection = () => {
-  const { transitionTo } = useTransition()
+  const router = useRouter()
 
   return (
     <section
@@ -84,7 +84,7 @@ const AboutSection = () => {
 
               <div className='pt-6'>
                 <button
-                  onClick={() => transitionTo('/about')}
+                  onClick={() => router.push('/about')}
                   className='group relative flex items-center gap-6'
                 >
                   <div className='relative w-16 h-16 rounded-full border-2 border-text/20 flex items-center justify-center group-hover:border-primary transition-all duration-500'>
