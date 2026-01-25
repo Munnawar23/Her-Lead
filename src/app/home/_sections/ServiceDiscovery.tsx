@@ -1,9 +1,19 @@
 "use client"
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { services } from '@/constants'
+import { ArrowUpRight, Instagram, Linkedin, Facebook, Youtube } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+
+const XIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+  </svg>
+)
 
 const ServiceDiscovery = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0)
+  const router = useRouter()
 
   const serviceDisplayNames = [
     "PR & Media Services",
@@ -11,94 +21,104 @@ const ServiceDiscovery = () => {
     "Brand Creation",
     "Search Engine Optimization",
     "Paid Ads",
-    "Corporate Training & Development",
-    "Career Confidence & Interview Mastery",
-    "Web Design & Development",
-    "Social Media Management",
-    "Find the Talent",
+    "Corporate Training",
+    "Career Mastery",
+    "Web Design",
+    "Social Media",
+    "Find Talent",
   ]
 
   const imageSources = [
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200",
+    "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+    "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200",
+    "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200",
+    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200",
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
+  ]
+
+  const serviceRoutes = [
+    "/request-quote",
+    "/i-am-influencer",
+    "/request-quote",
+    "/request-quote",
+    "/request-quote",
+    "/request-quote",
+    "/i-am-talent",
+    "/request-quote",
+    "/i-am-influencer",
+    "/hire-talent"
   ]
 
   return (
     <section
       id="services"
-      className="mt-4 md:mt-8 w-full bg-background px-6 md:px-12 lg:px-20 pt-20 pb-4 md:pb-8 overflow-hidden"
+      className="relative w-full bg-[#d31c8d] pt-32 pb-32 overflow-hidden rounded-t-[2rem] md:rounded-t-[4rem]"
     >
-      {/* Header */}
-      <div className='mb-16 md:mb-20 text-center'>
-        <div className='inline-flex items-center justify-center gap-6'>
-          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
-          <span className='text-4xl md:text-6xl lg:text-5xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>I am looking for</span>
-          <div className='w-12 md:w-20 h-[2px] bg-red-light' />
-        </div>
-      </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-      {/* Main Content - Doze Studio Style */}
-      <div className='max-w-7xl mx-auto'>
-        <div className='flex flex-col lg:flex-row gap-8 lg:gap-16 items-start'>
+          {/* Left Column: I'm looking for + Active Content */}
+          <div className="space-y-12">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-heading font-black text-white leading-tight uppercase">
+              I'm looking <br /> for:
+            </h2>
 
-          {/* Left: Image + Description */}
-          <div className='w-full lg:w-auto lg:shrink-0'>
-            <div className='lg:sticky lg:top-32 space-y-6'>
-              {/* Square Image */}
-              <div className='w-full lg:w-[320px] xl:w-[380px] aspect-square overflow-hidden rounded-sm bg-black/5 relative'>
-                {services.map((service, index) => (
-                  <div
-                    key={service.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                      }`}
-                  >
+            <div className="min-h-[450px] flex flex-col justify-start">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={hoveredIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-6"
+                >
+                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
                     <img
-                      src={imageSources[index]}
-                      alt={serviceDisplayNames[index]}
+                      src={imageSources[hoveredIndex]}
+                      alt={serviceDisplayNames[hoveredIndex]}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
                   </div>
-                ))}
-              </div>
-
-              {/* Category & Description */}
-              <div className='space-y-3 max-w-[380px] min-h-[280px] md:min-h-[320px]'>
-                <h4 className='font-heading text-xs md:text-sm text-red-light font-black uppercase tracking-wider'>
-                  {services[hoveredIndex].category}
-                </h4>
-                <p className='font-body text-sm md:text-base text-text font-bold leading-relaxed'>
-                  {services[hoveredIndex].description}
-                </p>
-              </div>
+                  <div className="max-w-md">
+                    <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-2">
+                      {services[hoveredIndex].name}
+                    </h3>
+                    <p className="text-white/90 font-body text-sm md:text-base leading-relaxed font-medium">
+                      {services[hoveredIndex].description}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
-          {/* Right: Service Names List */}
-          <div className='flex-1 space-y-1 md:space-y-2'>
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                className='cursor-pointer py-1'
+          {/* Right Column: Pill Buttons */}
+          <div className="flex flex-col gap-3 lg:pt-24">
+            {serviceDisplayNames.map((name, index) => (
+              <motion.div
+                key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
+                whileHover={{ scale: 1.02 }}
+                className={`group flex items-center justify-between px-6 py-3.5 rounded-full border-2 transition-all duration-300
+                  ${hoveredIndex === index
+                    ? 'bg-white text-[#d31c8d] border-white'
+                    : 'bg-transparent text-white border-white/40 hover:border-white'
+                  }`}
               >
-                <h3
-                  className={`font-heading text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight font-black uppercase tracking-widest transition-all duration-700 ${hoveredIndex === index
-                    ? 'text-red-light'
-                    : 'text-text'
-                    }`}
-                >
-                  {serviceDisplayNames[index]}
-                </h3>
-              </div>
+                <span className="text-xs md:text-sm font-heading font-black uppercase tracking-widest text-left">
+                  {name}
+                </span>
+                <ArrowUpRight
+                  size={16}
+                  className={`transition-transform duration-300 ${hoveredIndex === index ? 'rotate-0' : 'group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
