@@ -1,6 +1,6 @@
 "use client"
-import React from "react"
 import { Instagram, Linkedin } from "lucide-react"
+import { motion } from "motion/react"
 
 const XIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
@@ -15,56 +15,71 @@ const Footer = () => {
     { label: "X", href: "#", icon: XIcon },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
+    }
+  }
+
   return (
     <footer className="w-full bg-background border-t border-text/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-
-        {/* CTA Buttons */}
-        <div className="py-16 md:py-20 border-b border-text/10">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {[
-              { label: "Request a Quote", bg: "bg-primary", text: "text-white" },
-              { label: "General Inquiries", bg: "bg-red-light", text: "text-white" },
-              { label: "I'm an Influencer", bg: "bg-[#0891B2]", text: "text-white" },
-              { label: "I am Talent", bg: "bg-[#4F46E5]", text: "text-white" },
-              { label: "I Need Talent", bg: "bg-[#FF8A65]", text: "text-white" }
-            ].map((btn, i) => (
-              <button
-                key={i}
-                className={`px-8 py-4 ${btn.bg} ${btn.text} rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-xl`}
-              >
-                {btn.label}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Main Footer Content */}
         <div className="py-20 md:py-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
 
             {/* Left Column - CTA */}
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-[0.9] tracking-tighter uppercase">
-                Let's <span className="text-primary">Create</span><br />
-                Something <span className="text-red-light">Great</span>
-              </h2>
-              <p className="text-base md:text-lg font-body text-text max-w-md leading-relaxed font-bold">
-                Ready to elevate your brand? Get in touch and let's start building your digital presence.
-              </p>
-              <button
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+              className="space-y-8"
+            >
+              <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-text leading-[0.9] tracking-tighter uppercase">
+                Let's <span className="text-primary italic">Create</span><br />
+                Something <span className="text-red-light italic">Great</span>
+              </motion.h2>
+              <motion.p variants={itemVariants} className="text-base md:text-lg font-body text-text max-w-md leading-relaxed font-bold">
+                Ready to elevate your brand? Get in touch and let's start building your digital presence together.
+              </motion.p>
+              <motion.button
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = 'mailto:munawwarh48@gmail.com'}
-                className="group px-8 py-4 bg-text text-background rounded-full font-heading font-black text-xs uppercase tracking-wider hover:bg-primary transition-all inline-flex items-center gap-3"
+                className="group px-8 py-4 bg-red-light text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3 shadow-lg"
               >
                 Get In Touch
                 <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Right Column - Contact Info */}
-            <div className="space-y-12">
-              <div>
-                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4">Contact</h3>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+              className="space-y-12"
+            >
+              <motion.div variants={itemVariants}>
+                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Contact</h3>
                 <div className="space-y-3">
                   <p className="text-base font-body font-bold text-text">
                     213 Sterling Rd. Unit 214<br />
@@ -77,44 +92,47 @@ const Footer = () => {
                     <a href="mailto:info@herlead.com" className="hover:text-primary transition-colors">info@herlead.com</a>
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
-                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4">Follow</h3>
+              <motion.div variants={itemVariants}>
+                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Follow</h3>
                 <div className="flex flex-wrap gap-4">
                   {socials.map((social, i) => (
-                    <a
+                    <motion.a
                       key={i}
                       href={social.href}
-                      className="w-10 h-10 rounded-full border border-text/10 flex items-center justify-center text-text hover:text-primary hover:border-primary transition-all duration-300"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="w-12 h-12 rounded-full border border-text/10 flex items-center justify-center text-text hover:text-primary hover:border-primary transition-all duration-300 bg-white/5"
                       aria-label={social.label}
                     >
-                      <social.icon size={18} />
-                    </a>
+                      <social.icon size={20} />
+                    </motion.a>
                   ))}
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-8 border-t border-text/10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="py-8 border-t border-text/10"
+        >
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-
-
-            {/* Copyright */}
-            <div className="flex items-center gap-4 text-xs font-body font-bold text-text uppercase tracking-widest">
+            <div className="flex items-center gap-4 text-[10px] md:text-xs font-body font-bold text-text uppercase tracking-widest">
               <span>© 2026 Her Lead</span>
-              <span className="text-primary">•</span>
+              <span className="text-primary italic">•</span>
               <a href="#" className="hover:text-red-light transition-colors">Privacy</a>
-              <span className="text-primary">•</span>
+              <span className="text-primary italic">•</span>
               <a href="#" className="hover:text-red-light transition-colors">Terms</a>
             </div>
-
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </footer>

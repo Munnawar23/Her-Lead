@@ -4,12 +4,12 @@ import React from 'react'
 import SplashScreen from '@/components/ui/SplashScreen'
 import HeroSection from './home/_sections/HeroSection'
 import AboutSection from './home/_sections/AboutSection'
+import ServiceDiscovery from './home/_sections/ServiceDiscovery'
 import ServicesSection from './home/_sections/ServicesSection'
-import ServiceCardsSection from './home/_sections/ServiceCardsSection'
 import ProcessSection from './home/_sections/ProcessSection'
 import TestimonialSection from './home/_sections/TestimonialSection'
-import ContentShowcaseSection from './home/_sections/ContentShowcaseSection'
-import AwardsPartnersSection from './home/_sections/AwardsPartnersSection'
+import BlogsSection from './home/_sections/BlogsSection'
+import PartnersSection from './home/_sections/PartnersSection'
 import Footer from '@/components/ui/Footer'
 
 const RootPage = () => {
@@ -20,12 +20,12 @@ const RootPage = () => {
       <div className="w-full">
         <HeroSection />
         <AboutSection />
+        <ServiceDiscovery />
         <ServicesSection />
-        <ServiceCardsSection />
         <ProcessSection />
         <TestimonialSection />
-        <ContentShowcaseSection />
-        <AwardsPartnersSection />
+        <BlogsSection />
+        <PartnersSection />
         <Footer />
       </div>
     </main>

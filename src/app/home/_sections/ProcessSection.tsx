@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import { motion } from "motion/react"
 
 const steps = [
   {
@@ -35,29 +35,64 @@ const steps = [
 ]
 
 const ProcessSection = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const
+      }
+    })
+  }
+
   return (
     <section className="mt-4 md:mt-8 w-full bg-background pt-4 md:pt-8 pb-4 md:pb-8 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
-        <div className="text-center mb-20 md:mb-32">
-          <div className='inline-flex items-center justify-center gap-6 mb-8'>
-            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
-            <span className='text-4xl md:text-6xl lg:text-6xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Process</span>
-            <div className='w-12 md:w-20 h-[2px] bg-red-light' />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+          className="text-center mb-20 md:mb-32"
+        >
+          <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+              className='w-12 md:w-20 h-[2px] bg-red-light origin-right'
+            />
+            <span className='text-4xl md:text-6xl lg:text-5xl font-heading font-black uppercase tracking-[0.2em] text-red-light'>Process</span>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+              className='w-12 md:w-20 h-[2px] bg-red-light origin-left'
+            />
           </div>
           <p className="text-xl md:text-2xl font-body font-bold text-text leading-relaxed max-w-2xl mx-auto">
             How does a multi service agency evaluate their clients?
           </p>
-        </div>
+        </motion.div>
 
         {/* Process Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div
+            <motion.div
               key={step.number}
-              className="group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-red-light/30 hover:shadow-2xl transition-all duration-500 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={cardVariants}
+              className="group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-red-light/30 hover:shadow-2xl transition-all duration-500"
             >
               <div className="w-16 h-16 rounded-full bg-red-light/10 flex items-center justify-center mb-6 group-hover:bg-red-light transition-colors duration-500">
                 <span className="text-2xl font-black font-heading text-red-light group-hover:text-white transition-colors duration-500">
@@ -74,28 +109,10 @@ const ProcessSection = () => {
               </p>
 
               <div className="absolute bottom-0 left-0 w-full h-1 bg-red-light/0 group-hover:bg-red-light transition-all duration-500 rounded-b-3xl" />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(60px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
     </section>
   )
 }

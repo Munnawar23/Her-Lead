@@ -19,8 +19,9 @@ export const serviceCards = [
     {
         title: "Public Relations & Media Service",
         desc: "We don't chase headlines; we control narratives with credibility, influence, and precision",
-        color: "bg-[#0891B2]", // Vibrant Teal
+        color: "bg-[#0891B2]", // Cyan
         textColor: "text-white",
+        variant: "single",
         tags: [
             "Public Relations (PR)",
             "Media Outreach & Monitoring",
@@ -29,17 +30,14 @@ export const serviceCards = [
             "Press Release Writing & Distribution",
             "Reputation & Crisis Management"
         ],
-        images: [
-            "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=500",
-            "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=500",
-            "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500"
-        ]
+        images: ["/images/media.webp"]
     },
     {
         title: "Website & Digital Experience",
         desc: "Your website speaks the same language as your brand—clear, current, and conversion-ready",
-        color: "bg-[#E11D48]", // Vibrant Red
+        color: "bg-[#ff6666]", // Red
         textColor: "text-white",
+        variant: "double",
         tags: [
             "Website Designing",
             "Website Design & Development",
@@ -47,17 +45,14 @@ export const serviceCards = [
             "Website Content Structuring"
         ],
         video: "/videos/book.mp4",
-        images: [
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=500",
-            "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=500",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=500"
-        ]
+        images: ["/images/web1.webp", "/images/web2.webp"]
     },
     {
         title: "Paid Ads",
         desc: "The momentum builder giving your brand instant visibility while everything else compounds",
-        color: "bg-[#D4AF37]", // Golden
+        color: "bg-[#d4af37]", // Gold
         textColor: "text-white",
+        variant: "video",
         tags: [
             "Meta Ads",
             "Google ads",
@@ -65,34 +60,29 @@ export const serviceCards = [
             "Instagram ads",
             "LinkedIn ads"
         ],
-        images: [
-            "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=500",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=500",
-            "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=500"
-        ]
+        video: "/videos/ads.webm",
+        images: []
     },
     {
         title: "Corporate Training & Development",
         desc: "We shape people and organizations through systems of clarity, control, and consistent growth",
-        color: "bg-[#4F46E5]", // Indigo
+        color: "bg-[#4F46E5]", // Purple
         textColor: "text-white",
+        variant: "single",
         tags: [
             "Corporate Trainings",
             "Leadership & Communication Training",
             "Team Productivity & Culture Workshops",
             "Personal Branding for Professionals"
         ],
-        images: [
-            "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=500",
-            "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=500",
-            "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=500"
-        ]
+        images: ["/images/ads.webp"]
     },
     {
         title: "Make me the brand",
         desc: "We build brands from the ground up that are clear, credible, and impossible to ignore",
-        color: "bg-[#FF8A65]", // Peach/Orange
+        color: "bg-[#FF8A65]", // Orange
         textColor: "text-white",
+        variant: "video",
         tags: [
             "Brand Identity",
             "Visual Branding",
@@ -100,11 +90,8 @@ export const serviceCards = [
             "Brand Guidelines",
             "Videography"
         ],
-        images: [
-            "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=500",
-            "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500",
-            "https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=500"
-        ]
+        video: "/videos/beauty.webm",
+        images: []
     }
 ];
 
@@ -187,4 +174,64 @@ export const testimonials = [
         quote: "HerLead is phenomenal. They're incredible outside-the-box thinkers and we're a great alternative to the traditional marketing efforts taken for the NFP I work for. We worked directly with the team, who had a high level understanding of the industry and a completely professional approach to social promotion. Looking forward to working with their team again!",
         company: "Vogue Collective",
     }
+];
+
+export const blogPosts = [
+    {
+        id: 1,
+        tag: "Brand Strategy",
+        title: "The Art of Storytelling",
+        description: "How to build a brand that resonates with human emotions.",
+        image: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=1200",
+        rotation: -4,
+    },
+    {
+        id: 2,
+        tag: "Digital Marketing",
+        title: "Designed to Go Viral",
+        description: "Creating content that people want to share, not skip.",
+        image:
+            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200",
+        rotation: 4,
+    },
+    {
+        id: 3,
+        tag: "Web & Tech",
+        title: "Interactive Websites",
+        description: "Why motion and interaction matter more than ever.",
+        image:
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200",
+        rotation: -10,
+    },
+];
+
+export const socialPosts = [
+    {
+        id: 1,
+        user: "herlead_agency",
+        image: "/images/media.webp",
+        likes: "12.4k",
+        rotation: -6,
+    },
+    {
+        id: 2,
+        user: "herlead_agency",
+        image: "/images/lion.webp",
+        likes: "8.9k",
+        rotation: 6,
+    },
+    {
+        id: 3,
+        user: "herlead_agency",
+        image: "/images/post.webp",
+        likes: "15.2k",
+        rotation: -4,
+    },
+    {
+        id: 4,
+        user: "herlead_agency",
+        image: "/images/lion.webp",
+        likes: "10.1k",
+        rotation: 8,
+    },
 ];
