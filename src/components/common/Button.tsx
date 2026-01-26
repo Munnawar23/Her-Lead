@@ -5,7 +5,7 @@ import React from 'react'
 interface ButtonProps {
   children: React.ReactNode
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  variant?: 'outlined' | 'filled' | 'gradient' | 'yellow' | 'red' | 'cyan' | 'purple' | 'orange'
+  variant?: 'outlined' | 'filled' | 'gold' | 'yellow' | 'red' | 'cyan' | 'purple' | 'orange'
   size?: 'sm' | 'md' | 'lg'
   className?: string
   fullWidth?: boolean
@@ -31,13 +31,13 @@ const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     outlined: 'border-2 border-text hover:border-secondary hover:text-secondary bg-transparent',
-    filled: 'text-white bg-secondary shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    gradient: 'text-white bg-gradient-to-r from-secondary to-primary shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    yellow: 'text-white bg-primary shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    red: 'text-white bg-secondary shadow-lg shadow-secondary/30 hover:shadow-secondary/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    cyan: 'text-white bg-accent-blue shadow-lg shadow-accent-blue/30 hover:shadow-accent-blue/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    purple: 'text-white bg-[#4F46E5] shadow-lg shadow-[#4F46E5]/30 hover:shadow-[#4F46E5]/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
-    orange: 'text-white bg-accent-orange shadow-lg shadow-accent-orange/30 hover:shadow-accent-orange/50 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    filled: 'text-white bg-secondary hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    gold: 'text-white bg-primary hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    yellow: 'text-white bg-primary hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    red: 'text-white bg-secondary hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    cyan: 'text-white bg-accent-blue hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    purple: 'text-white bg-[#4F46E5] hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
+    orange: 'text-white bg-accent-orange hover:brightness-110 hover:scale-[1.03] active:scale-[0.97] border-2 border-transparent',
   }
 
   const widthStyles = fullWidth ? 'w-full' : ''

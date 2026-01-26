@@ -24,10 +24,10 @@
   --font-body: "Inter", sans-serif;
 
   /* Desktop Font Sizes */
-  --text-section-label: 3.20rem;
-  /* 60px */
-  --text-main-heading: 3.20rem;
-  /* 60px */
+  --text-section-label: clamp(1.5rem, 8vw, 3.20rem);
+  /* ~24px to 52px */
+  --text-main-heading: clamp(2rem, 10vw, 3.20rem);
+  /* ~32px to 52px */
   --text-body-custom: 1.25rem;
   /* 20px */
 }
@@ -40,9 +40,7 @@
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+
 
   body {
     width: 100dvw;
@@ -54,7 +52,6 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
   }
 
   h1,
@@ -102,20 +99,26 @@
   }
 }
 
-@keyframes scroll-indicator {
-  0% {
-    transform: translateY(-100%);
-  }
 
-  50% {
-    transform: translateY(0);
-  }
 
-  100% {
-    transform: translateY(100%);
-  }
+/* LENIS BASE CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-.animate-scroll-indicator {
-  animation: scroll-indicator 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

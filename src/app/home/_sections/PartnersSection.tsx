@@ -34,7 +34,7 @@ const PartnersSection = () => {
                             transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
                             className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
                         />
-                        <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-secondary'>
+                        <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-secondary'>
                             Our Partners
                         </h2>
                         <motion.div
@@ -64,7 +64,7 @@ const PartnersSection = () => {
                                     ease: "linear",
                                 },
                             }}
-                            className="flex items-center gap-24 md:gap-32 whitespace-nowrap"
+                            className="flex items-center gap-24 md:gap-32 whitespace-nowrap will-change-transform"
                         >
                             {[...partners, ...partners, ...partners].map((partner, i) => (
                                 <div
@@ -80,9 +80,7 @@ const PartnersSection = () => {
                             ))}
                         </motion.div>
 
-                        {/* Fades for smooth edges */}
-                        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-bg-light to-transparent z-10" />
-                        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-bg-light to-transparent z-10" />
+
                     </div>
                 </div>
 
@@ -109,7 +107,7 @@ const PartnersSection = () => {
                                         router.push(btn.path);
                                     }
                                 }}
-                                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-black/5 text-center`}
+                                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all text-center`}
                             >
                                 {btn.label}
                             </motion.button>

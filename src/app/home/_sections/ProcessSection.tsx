@@ -92,7 +92,7 @@ const ProcessSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500"
+              className="group relative bg-white border-2 border-text/5 rounded-3xl p-8 hover:border-secondary/30 transition-all duration-500"
             >
               <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary transition-colors duration-500">
                 <span className="text-2xl font-black font-heading text-secondary group-hover:text-white transition-colors duration-500">

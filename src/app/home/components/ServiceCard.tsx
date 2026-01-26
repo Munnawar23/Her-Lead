@@ -73,14 +73,14 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                             <img
                                 src={group.images[0]}
                                 alt={group.title}
-                                className="max-w-full max-h-full object-contain drop-shadow-2xl rounded-lg"
+                                className="max-w-full max-h-full object-contain rounded-lg"
                             />
                         </motion.div>
                     </div>
                 )
             case "video":
                 return group.video ? (
-                    <div className="relative w-[300px] h-[500px] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl bg-black/10">
+                    <div className="relative w-[300px] h-[500px] rounded-[2.5rem] overflow-hidden bg-black/10">
                         <video
                             autoPlay
                             muted
@@ -102,7 +102,7 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                             whileInView={{ opacity: 1, x: 0, y: 0, rotate: -5 }}
                             whileHover={{ scale: 1.08, zIndex: 20 }}
                             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
-                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden border-4 border-white shadow-2xl z-10 translate-x-[-22%] translate-y-[-18%]"
+                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden z-10 translate-x-[-22%] translate-y-[-18%]"
                         >
                             <img
                                 src={group.images[0]}
@@ -115,7 +115,7 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                             whileInView={{ opacity: 1, x: 0, y: 0, rotate: 6 }}
                             whileHover={{ scale: 1.08, zIndex: 20 }}
                             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
-                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden border-4 border-white shadow-2xl z-0 translate-x-[22%] translate-y-[18%]"
+                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden z-0 translate-x-[22%] translate-y-[18%]"
                         >
                             <img
                                 src={group.images[1]}
@@ -139,12 +139,12 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
             className={`relative w-full 
               min-h-[400px] md:h-[560px] lg:h-[600px]
               ${group.color} ${group.textColor} 
-              rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col`}
+              rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col`}
         >
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] flex-1">
                 {/* LEFT CONTENT */}
                 <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-                    <motion.h3 variants={itemVariants} className="text-2xl sm:text-3xl md:text-main-heading font-black leading-[1.1] uppercase">
+                    <motion.h3 variants={itemVariants} className="text-2xl sm:text-3xl md:text-main-heading font-black leading-[1.1] md:leading-[1] uppercase">
                         {group.title}
                     </motion.h3>
 

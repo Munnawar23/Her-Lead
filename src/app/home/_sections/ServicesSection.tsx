@@ -26,7 +26,7 @@ const ServicesSection = () => {
               transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
               className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
             />
-            <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-secondary whitespace-normal sm:whitespace-nowrap'>
+            <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.15em] md:tracking-[0.2em] text-secondary'>
               HerLead Legacy
             </h2>
             <motion.div

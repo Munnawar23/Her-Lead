@@ -57,7 +57,7 @@ const BlogsSection = () => {
                         className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
                     />
                 </div>
-                <h2 className="text-main-heading font-heading font-black text-text leading-none tracking-tighter uppercase">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black text-text leading-[1.1] md:leading-none tracking-tighter uppercase">
                     You read our <br className="hidden md:block" />
                     <span className="text-secondary italic">publications</span> right?
                 </h2>
@@ -75,7 +75,7 @@ const BlogsSection = () => {
                         variants={cardVariants}
                         className="group relative w-full"
                     >
-                        <div className="relative w-full aspect-square rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-text md:shadow-[15px_15px_0px] md:shadow-primary group-hover:shadow-none transition-all duration-500 mb-8">
+                        <div className="relative w-full aspect-square rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-text transition-all duration-500 mb-8">
                             <img
                                 src={post.image}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
@@ -119,7 +119,7 @@ const BlogsSection = () => {
                             transition={{ duration: 1, ease: "circOut" }}
                             className="w-[90vw] md:w-[380px] lg:w-[420px]"
                         >
-                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-text/5">
+                            <div className="bg-white rounded-3xl p-3 border border-text/5">
                                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                                     <img
                                         src={post.image}
@@ -145,7 +145,7 @@ const BlogsSection = () => {
                             @herlead_agency — <span className="text-primary">STAY</span> <span className="text-secondary">CONNECTED</span>
                         </span>
                     </div>
-                    <h3 className="text-main-heading font-black text-text tracking-tighter uppercase mb-10 leading-none">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-black text-text tracking-tighter uppercase mb-10 leading-[1.1] md:leading-none">
                         and obviously you follow <br className="hidden md:block" />
                         our <span className="text-secondary italic">social media</span>
                     </h3>
@@ -163,7 +163,7 @@ const BlogsSection = () => {
                                 whileHover={{ scale: 1.1, y: -5 }}
                                 whileTap={{ scale: 0.9 }}
                                 aria-label={social.label}
-                                className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-text/10 flex items-center justify-center cursor-pointer hover:border-primary transition-all group shadow-lg ${social.bgClass}`}
+                                className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-text/10 flex items-center justify-center cursor-pointer hover:border-primary transition-all group ${social.bgClass}`}
                             >
                                 <social.Icon
                                     size={24}
@@ -176,7 +176,7 @@ const BlogsSection = () => {
                 </motion.div>
 
                 {/* Tilted IG Cards - Bottom Set */}
-                <div className="w-full max-w-7xl mx-auto flex flex-wrap justify-center gap-8 px-6 mt-16 pb-12">
+                <div className="hidden md:flex w-full max-w-7xl mx-auto flex-wrap justify-center gap-8 px-6 mt-16 pb-12">
                     {socialPosts.slice(2, 4).map((post, i) => (
                         <motion.div
                             key={`bottom-${post.id}`}
@@ -186,7 +186,7 @@ const BlogsSection = () => {
                             transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
                             className="w-[90vw] md:w-[380px] lg:w-[420px]"
                         >
-                            <div className="bg-white rounded-3xl p-3 shadow-xl border border-text/5">
+                            <div className="bg-white rounded-3xl p-3 border border-text/5">
                                 <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
                                     <img
                                         src={post.image}

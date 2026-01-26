@@ -75,7 +75,7 @@ const ServiceDiscovery = () => {
               className='w-8 md:w-20 h-[2px] bg-white origin-right'
             />
             <h2
-              className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-white whitespace-nowrap'
+              className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-white text-center'
             >
               I'm looking for:
             </h2>
@@ -91,7 +91,7 @@ const ServiceDiscovery = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left Column: Active Content */}
-          <div className="space-y-12">
+          <div className="hidden lg:block space-y-12">
 
             <div className="min-h-[400px] flex flex-col justify-start lg:pt-4">
               <AnimatePresence mode="wait">
@@ -103,7 +103,7 @@ const ServiceDiscovery = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-sm overflow-hidden shadow-2xl border-2 border-white/20">
+                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-sm overflow-hidden border-2 border-white/20">
                     <img
                       src={imageSources[hoveredIndex]}
                       alt={serviceDisplayNames[hoveredIndex]}

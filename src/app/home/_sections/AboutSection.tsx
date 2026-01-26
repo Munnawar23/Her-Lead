@@ -92,7 +92,7 @@ const AboutSection = () => {
             className='lg:col-span-6 relative order-2 lg:order-1 flex justify-center lg:justify-start'
           >
             <div
-              className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm shadow-2xl bg-text/5'
+              className='relative aspect-square w-full max-w-xl overflow-hidden rounded-sm bg-text/5'
             >
               <div className='absolute inset-0'>
                 <Image
@@ -115,14 +115,14 @@ const AboutSection = () => {
             className='lg:col-span-6 space-y-8 lg:space-y-12 order-1 lg:order-2'
           >
             <div className='space-y-6'>
-              <h2 className='text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[0.9] tracking-tighter text-text uppercase'>
-                <div className='overflow-hidden'>
+              <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[1.1] md:leading-[0.9] tracking-tighter text-text uppercase'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block'>BUILDING</motion.span>
                 </div>
-                <div className='overflow-hidden'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block text-secondary'>DIGITAL</motion.span>
                 </div>
-                <div className='overflow-hidden'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block text-primary'>IMPACT.</motion.span>
                 </div>
               </h2>
@@ -172,14 +172,14 @@ const AboutSection = () => {
                 <span className='text-sm md:text-base font-heading font-black uppercase tracking-[0.3em] text-secondary'>Vision from the Founder</span>
               </motion.div>
 
-              <h3 className='text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[0.9] tracking-tighter text-text'>
-                <div className='overflow-hidden'>
+              <h3 className='text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black leading-[1.1] md:leading-[0.9] tracking-tighter text-text'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block'>EMPOWERING</motion.span>
                 </div>
-                <div className='overflow-hidden'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block text-secondary'>BRANDS</motion.span>
                 </div>
-                <div className='overflow-hidden'>
+                <div className='relative'>
                   <motion.span variants={textRevealVariants} className='inline-block text-primary'>THROUGH STORY.</motion.span>
                 </div>
               </h3>
@@ -209,7 +209,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
             className='relative flex justify-center lg:justify-end'
           >
-            <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm shadow-xl bg-text/5'>
+            <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm bg-text/5'>
               <Image
                 src="/images/founder.webp"
                 alt="Founder"

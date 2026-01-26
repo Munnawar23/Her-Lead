@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "A Next.js application",
 };
 
+import SmoothScroll from "@/components/common/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <SmoothScroll>
+          <Navbar />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

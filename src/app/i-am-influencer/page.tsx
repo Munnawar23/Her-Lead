@@ -32,7 +32,7 @@ const InfluencerPage = () => {
         alert('Thank you! Your interest has been recorded. We will be watching.')
     }
 
-    const inputClasses = "w-full bg-white/40 backdrop-blur-md border border-text/10 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-500 font-body text-sm md:text-base text-black font-bold placeholder:text-text/20 shadow-inner"
+    const inputClasses = "w-full bg-white/40 border border-text/10 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 font-body text-sm md:text-base text-black font-bold placeholder:text-text/20"
     const labelClasses = "block text-[10px] md:text-xs uppercase tracking-[0.3em] font-heading font-black mb-3 text-black pl-1"
 
     const textRevealVariants = {
@@ -70,14 +70,14 @@ const InfluencerPage = () => {
                         <span className='text-xs md:text-sm font-heading font-black uppercase tracking-[0.3em] text-secondary'>Expression of Interest</span>
                     </motion.div>
 
-                    <h1 className="text-main-heading font-heading font-black leading-[0.9] tracking-tighter text-text uppercase">
-                        <div className='overflow-hidden'>
+                    <h1 className="text-3xl md:text-5xl lg:text-main-heading font-heading font-black leading-[1.1] md:leading-[0.9] tracking-tighter text-text uppercase">
+                        <div className='relative'>
                             <motion.span variants={textRevealVariants} className='inline-block'>OKAY!!!</motion.span>
                         </div>
-                        <div className='overflow-hidden'>
+                        <div className='relative'>
                             <motion.span variants={textRevealVariants} className='inline-block text-secondary italic'>SO YOURE</motion.span>
                         </div>
-                        <div className='overflow-hidden'>
+                        <div className='relative'>
                             <motion.span variants={textRevealVariants} className='inline-block text-primary'>HERE.</motion.span>
                         </div>
                     </h1>
@@ -112,7 +112,7 @@ const InfluencerPage = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.3 }}
                         variants={fadeInVariants}
-                        className="lg:col-span-6 bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-sm border border-text/5 shadow-xl shadow-blue-500/5"
+                        className="lg:col-span-6 bg-white/50 p-8 md:p-12 rounded-sm border border-text/5 shadow-xl shadow-blue-500/5"
                     >
                         <p className="text-sm md:text-body-custom font-body text-text/80 leading-relaxed italic border-l-4 border-secondary pl-6">
                             "We look for creators who value their audience and understand that a partnership is more than just a post—it's a shared story."
@@ -128,9 +128,9 @@ const InfluencerPage = () => {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
                     variants={fadeInVariants}
-                    className="relative group block p-px rounded-[2rem] overflow-hidden bg-gradient-to-br from-text/10 via-transparent to-text/5 shadow-2xl"
+                    className="relative group block p-px rounded-[2rem] overflow-hidden bg-text/10 will-change-transform"
                 >
-                    <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-16 relative overflow-hidden">
+                    <div className="bg-white/80 rounded-[2rem] p-8 md:p-16 relative overflow-hidden">
                         {/* Decorative background circle */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
 

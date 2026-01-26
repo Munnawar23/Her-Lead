@@ -51,7 +51,7 @@ const Footer = () => {
               variants={containerVariants}
               className="space-y-8"
             >
-              <motion.h2 variants={itemVariants} className="text-main-heading font-heading font-black text-text leading-[0.9] tracking-tighter uppercase">
+              <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black text-text leading-[1.1] md:leading-[0.9] tracking-tighter uppercase">
                 Let's <span className="text-primary italic">Create</span><br />
                 Something <span className="text-secondary italic">Great</span>
               </motion.h2>
@@ -63,7 +63,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = 'mailto:munawwarh48@gmail.com'}
-                className="group px-8 py-4 bg-secondary text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3 shadow-lg"
+                className="group px-8 py-4 bg-secondary text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3"
               >
                 Get In Touch
                 <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
