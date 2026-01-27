@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
+import SmoothScroll from "@/components/common/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Her Lead",
   description: "A Next.js application",
 };
-
-import SmoothScroll from "@/components/common/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -20,6 +20,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Navbar />
           {children}
+          <Footer />
         </SmoothScroll>
       </body>
     </html>

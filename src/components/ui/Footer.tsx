@@ -1,6 +1,7 @@
 "use client"
 import { Instagram, Linkedin } from "lucide-react"
 import { motion } from "motion/react"
+import { useRouter } from "next/navigation"
 
 const XIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
@@ -9,10 +10,19 @@ const XIcon = ({ size = 18 }: { size?: number }) => (
 )
 
 const Footer = () => {
+  const router = useRouter()
   const socials = [
     { label: "Instagram", href: "#", icon: Instagram },
     { label: "LinkedIn", href: "#", icon: Linkedin },
     { label: "X", href: "#", icon: XIcon },
+  ]
+
+  const buttons = [
+    { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
+    { label: "General Inquiries", bg: "bg-secondary", path: "mailto:info@herlead.com" },
+    { label: "I'm an Influencer", bg: "bg-accent-orange", path: "/i-am-influencer" },
+    { label: "I Am a Talent", bg: "bg-secondary", path: "/i-am-talent" },
+    { label: "I Need a Talent", bg: "bg-accent-blue", path: "/hire-talent" }
   ]
 
   const containerVariants = {
@@ -38,6 +48,31 @@ const Footer = () => {
   return (
     <footer className="w-full bg-bg-light border-t border-text/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+
+        {/* Global CTA Buttons */}
+        <div className="w-full pt-16 pb-8 border-b border-text/5">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            {buttons.map((btn, i) => (
+              <motion.button
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                onClick={() => {
+                  if (btn.path.startsWith('mailto')) {
+                    window.open(btn.path, '_blank');
+                  } else {
+                    router.push(btn.path);
+                  }
+                }}
+                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all text-center`}
+              >
+                {btn.label}
+              </motion.button>
+            ))}
+          </div>
+        </div>
 
         {/* Main Footer Content */}
         <div className="py-20 md:py-32">

@@ -10,7 +10,6 @@ import ProcessSection from './home/_sections/ProcessSection'
 import TestimonialSection from './home/_sections/TestimonialSection'
 import BlogsSection from './home/_sections/BlogsSection'
 import PartnersSection from './home/_sections/PartnersSection'
-import Footer from '@/components/ui/Footer'
 
 const RootPage = () => {
   return (
@@ -26,7 +25,6 @@ const RootPage = () => {
         <TestimonialSection />
         <BlogsSection />
         <PartnersSection />
-        <Footer />
       </div>
     </main>
   );

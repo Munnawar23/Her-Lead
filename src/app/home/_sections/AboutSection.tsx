@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import { aboutContent } from '@/constants'
+import { aboutContent } from '@/constants/about'
 import { motion } from 'motion/react'
 
 const AboutSection = () => {
@@ -133,9 +133,11 @@ const AboutSection = () => {
                 {aboutContent.intro}
               </motion.p>
 
-              <motion.p variants={fadeInVariants} className='text-lg md:text-body-custom font-body text-text leading-relaxed'>
-                {aboutContent.mainDescription}
-              </motion.p>
+              <motion.p
+                variants={fadeInVariants}
+                className='text-lg md:text-body-custom font-body text-text leading-relaxed whitespace-pre-line'
+                dangerouslySetInnerHTML={{ __html: aboutContent.mainDescription }}
+              />
 
               <motion.div variants={fadeInVariants} className='stats-grid grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-text/10'>
                 {[
@@ -187,9 +189,12 @@ const AboutSection = () => {
 
             <div className='w-full space-y-3'>
               {aboutContent.founderVision.map((paragraph, index) => (
-                <motion.p key={index} variants={fadeInVariants} className='text-lg md:text-body-custom font-body text-text leading-relaxed w-full'>
-                  {paragraph}
-                </motion.p>
+                <motion.p
+                  key={index}
+                  variants={fadeInVariants}
+                  className='text-lg md:text-body-custom font-body text-text leading-relaxed w-full'
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
               ))}
 
               <motion.div variants={fadeInVariants} className='pt-2'>

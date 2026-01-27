@@ -32,8 +32,8 @@ const InfluencerPage = () => {
         alert('Thank you! Your interest has been recorded. We will be watching.')
     }
 
-    const inputClasses = "w-full bg-white/40 border border-text/10 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 font-body text-sm md:text-base text-black font-bold placeholder:text-text/20"
-    const labelClasses = "block text-[10px] md:text-xs uppercase tracking-[0.3em] font-heading font-black mb-3 text-black pl-1"
+    const inputClasses = "w-full bg-white/50 border border-text/10 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 font-heading text-base md:text-lg text-black font-black placeholder:text-text/20"
+    const labelClasses = "block text-[10px] md:text-xs uppercase tracking-[0.2em] font-heading font-black mb-3 text-black pl-1"
 
     const textRevealVariants = {
         hidden: { y: "100%" },
@@ -53,7 +53,7 @@ const InfluencerPage = () => {
     }
 
     return (
-        <main className="min-h-screen bg-bg-light pt-32 pb-20">
+        <main className="min-h-screen bg-bg-light pt-32 pb-0">
             {/* Background Decor */}
             <div className='absolute top-20 right-[10%] w-64 h-64 bg-secondary/10 rounded-full blur-3xl -z-10' />
             <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-primary/5 rounded-full blur-[100px] -z-10' />
@@ -122,7 +122,7 @@ const InfluencerPage = () => {
             </section>
 
             {/* Form Section */}
-            <section className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20 mb-32">
+            <section className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20 mb-10">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

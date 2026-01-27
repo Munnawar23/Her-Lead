@@ -80,11 +80,11 @@ const HeroSection = () => {
 
         {/* Heading with Sophisticated Typography */}
         <div className="space-y-6">
-          <motion.h1 variants={itemVariants} className="hero-heading flex flex-col items-center justify-center">
-            <span className="text-3xl md:text-5xl lg:text-7xl font-heading font-black text-text leading-tight tracking-tighter uppercase inline-block">
+          <motion.h1 variants={itemVariants} className="hero-heading flex flex-col lg:flex-row items-center justify-center lg:gap-x-5">
+            <span className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-text leading-tight tracking-tighter uppercase">
               360° <span className="text-secondary italic">DIGITAL</span>
             </span>
-            <span className="relative text-3xl md:text-5xl lg:text-7xl font-heading font-black text-primary leading-tight tracking-[0.05em] md:tracking-[0.1em] uppercase mt-2">
+            <span className="relative text-3xl md:text-5xl lg:text-7xl font-heading font-black text-primary leading-tight tracking-tighter lg:tracking-[0.05em] uppercase mt-2 lg:mt-0">
               ELEVATION
               <span className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-[2px] md:h-1 bg-primary/30" />
             </span>

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { services } from '@/constants'
+import { services } from '@/constants/services'
 import { ArrowUpRight, Instagram, Linkedin, Facebook, Youtube } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -29,16 +29,16 @@ const ServiceDiscovery = () => {
   ]
 
   const imageSources = [
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200",
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200",
-    "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200",
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
-    "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200",
-    "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200",
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200",
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200",
-    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200",
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
+    "/images/services/pr-media.webp",
+    "/images/services/influencer-marketing.webp",
+    "/images/services/brand-creation.webp",
+    "/images/services/seo.webp",
+    "/images/services/paid-ads.webp",
+    "/images/services/corporate-training.webp",
+    "/images/services/career-mastery.webp",
+    "/images/services/web-design.webp",
+    "/images/services/social-media.webp",
+    "/images/services/find-talent.webp",
   ]
 
   const serviceRoutes = [
@@ -77,7 +77,7 @@ const ServiceDiscovery = () => {
             <h2
               className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-white text-center'
             >
-              I'm looking for:
+              I'm looking for
             </h2>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -88,7 +88,7 @@ const ServiceDiscovery = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 items-start">
 
           {/* Left Column: Active Content */}
           <div className="hidden lg:block space-y-12">
@@ -103,18 +103,18 @@ const ServiceDiscovery = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <div className="w-full max-w-[400px] aspect-[4/3] rounded-sm overflow-hidden border-2 border-white/20">
+                  <div className="w-full max-w-[550px] aspect-[4/3] rounded-sm overflow-hidden border-2 border-white/20">
                     <img
                       src={imageSources[hoveredIndex]}
                       alt={serviceDisplayNames[hoveredIndex]}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="max-w-md">
+                  <div className="max-w-[650px]">
                     <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-2">
                       {services[hoveredIndex].name}
                     </h3>
-                    <p className="text-white/80 font-body text-sm md:text-body-custom leading-relaxed font-medium">
+                    <p className="text-white/80 font-body text-sm md:text-lg leading-relaxed font-medium">
                       {services[hoveredIndex].description}
                     </p>
                   </div>

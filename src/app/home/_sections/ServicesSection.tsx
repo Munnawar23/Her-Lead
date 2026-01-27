@@ -1,6 +1,6 @@
 "use client"
 
-import { serviceCards } from "@/constants"
+import { serviceCards } from "@/constants/services"
 import ServiceCard from "../components/ServiceCard"
 import { motion } from "motion/react"
 

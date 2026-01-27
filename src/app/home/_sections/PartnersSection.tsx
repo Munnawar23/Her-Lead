@@ -15,7 +15,7 @@ const partners = [
 const PartnersSection = () => {
     const router = useRouter()
     return (
-        <section className="w-full bg-bg-light pt-24 pb-24 border-t border-text/10 overflow-hidden">
+        <section className="w-full bg-bg-light pt-12 md:pt-24 pb-8 md:pb-24 border-t border-text/10 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
 
                 {/* Section Header: OUR PARTNERS (Centered) */}
@@ -24,7 +24,7 @@ const PartnersSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-                    className="text-center mb-16 md:mb-24"
+                    className="text-center mb-10 md:mb-24"
                 >
                     <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
                         <motion.div
@@ -49,7 +49,7 @@ const PartnersSection = () => {
                 </motion.div>
 
                 {/* Bottom: Brands Marquee */}
-                <div className="w-full mb-32">
+                <div className="w-full mb-12 md:mb-32">
                     {/* Infinite Marquee */}
                     <div className="relative flex overflow-hidden">
                         <motion.div
@@ -81,37 +81,6 @@ const PartnersSection = () => {
                         </motion.div>
 
 
-                    </div>
-                </div>
-
-                {/* CTA Buttons - Relocated to Bottom, No Heading */}
-                <div className="w-full pt-12 border-t border-text/5">
-                    <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                        {[
-                            { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
-                            { label: "General Inquiries", bg: "bg-secondary", path: "mailto:info@herlead.com" },
-                            { label: "I'm an Influencer", bg: "bg-accent-orange", path: "/i-am-influencer" },
-                            { label: "I Am a Talent", bg: "bg-secondary", path: "/i-am-talent" },
-                            { label: "I Need a Talent", bg: "bg-accent-blue", path: "/hire-talent" }
-                        ].map((btn, i) => (
-                            <motion.button
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                onClick={() => {
-                                    if (btn.path.startsWith('mailto')) {
-                                        window.open(btn.path, '_blank');
-                                    } else {
-                                        router.push(btn.path);
-                                    }
-                                }}
-                                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all text-center`}
-                            >
-                                {btn.label}
-                            </motion.button>
-                        ))}
                     </div>
                 </div>
 

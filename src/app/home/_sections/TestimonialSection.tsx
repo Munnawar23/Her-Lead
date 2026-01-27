@@ -1,5 +1,5 @@
 "use client"
-import { testimonials } from '@/constants'
+import { testimonials } from '@/constants/testimonials'
 import { motion } from 'motion/react'
 import { Star } from 'lucide-react'
 

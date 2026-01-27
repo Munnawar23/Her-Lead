@@ -12,7 +12,8 @@ const XIcon = ({ size = 20 }: { size?: number }) => (
     </svg>
 )
 
-import { blogPosts, socialPosts } from "@/constants";
+import { blogPosts } from "@/constants/blogs";
+import { socialPosts } from "@/constants/socials";
 
 const BlogsSection = () => {
     const cardVariants = {
@@ -59,7 +60,7 @@ const BlogsSection = () => {
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black text-text leading-[1.1] md:leading-none tracking-tighter uppercase">
                     You read our <br className="hidden md:block" />
-                    <span className="text-secondary italic">publications</span> right?
+                    publications right?
                 </h2>
             </motion.div>
 
@@ -73,7 +74,7 @@ const BlogsSection = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                         variants={cardVariants}
-                        className="group relative w-full"
+                        className={`group relative w-full ${index === 2 ? 'hidden lg:block' : index === 1 ? 'hidden md:block' : ''}`}
                     >
                         <div className="relative w-full aspect-square rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-text transition-all duration-500 mb-8">
                             <img
@@ -174,30 +175,6 @@ const BlogsSection = () => {
                         ))}
                     </div>
                 </motion.div>
-
-                {/* Tilted IG Cards - Bottom Set */}
-                <div className="hidden md:flex w-full max-w-7xl mx-auto flex-wrap justify-center gap-8 px-6 mt-16 pb-12">
-                    {socialPosts.slice(2, 4).map((post, i) => (
-                        <motion.div
-                            key={`bottom-${post.id}`}
-                            initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50, rotate: -post.rotation }}
-                            whileInView={{ opacity: 1, x: 0, rotate: -post.rotation }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                            className="w-[90vw] md:w-[380px] lg:w-[420px]"
-                        >
-                            <div className="bg-white rounded-3xl p-3 border border-text/5">
-                                <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
-                                    <img
-                                        src={post.image}
-                                        className="w-full h-full object-cover"
-                                        alt="Social Post"
-                                    />
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
 
             </div>
         </section>
