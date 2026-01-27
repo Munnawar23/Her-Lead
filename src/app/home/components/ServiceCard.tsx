@@ -2,10 +2,12 @@
 
 import { ArrowUpRight } from "lucide-react"
 import { motion } from "motion/react"
+import { useRouter } from "next/navigation"
 
 interface ServiceCardProps {
     group: {
         title: string
+        slug: string
         desc: string
         color: string
         textColor: string
@@ -17,6 +19,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ group }: ServiceCardProps) => {
+    const router = useRouter()
     const cardVariants = {
         hidden: { opacity: 0, y: 40, scale: 0.98 },
         visible: {
@@ -136,7 +139,8 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
-            className={`relative w-full 
+            onClick={() => router.push(`/services/${group.slug}`)}
+            className={`relative w-full cursor-pointer group/card
               min-h-[400px] md:h-[560px] lg:h-[600px]
               ${group.color} ${group.textColor} 
               rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col`}
@@ -152,7 +156,7 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                         {group.desc}
                     </motion.p>
 
-                    <motion.div variants={itemVariants} className="mt-4 flex flex-wrap gap-2 max-w-lg">
+                    <motion.div variants={itemVariants} className="mt-4 flex flex-wrap gap-2 max-w-lg mb-8">
                         {group.tags.map((tag, i) => (
                             <div
                                 key={i}

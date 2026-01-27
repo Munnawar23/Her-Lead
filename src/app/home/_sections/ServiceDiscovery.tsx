@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { services } from '@/constants/services'
+import { services } from '@/constants/serviceShowcase'
 import { ArrowUpRight, Instagram, Linkedin, Facebook, Youtube } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -14,45 +14,6 @@ const XIcon = ({ size = 18 }: { size?: number }) => (
 const ServiceDiscovery = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0)
   const router = useRouter()
-
-  const serviceDisplayNames = [
-    "PR & Media Services",
-    "Influencer Marketing",
-    "Brand Creation",
-    "Search Engine Optimization",
-    "Paid Ads",
-    "Corporate Training",
-    "Career Mastery",
-    "Web Design",
-    "Social Media",
-    "Find Talent",
-  ]
-
-  const imageSources = [
-    "/images/services/pr-media.webp",
-    "/images/services/influencer-marketing.webp",
-    "/images/services/brand-creation.webp",
-    "/images/services/seo.webp",
-    "/images/services/paid-ads.webp",
-    "/images/services/corporate-training.webp",
-    "/images/services/career-mastery.webp",
-    "/images/services/web-design.webp",
-    "/images/services/social-media.webp",
-    "/images/services/find-talent.webp",
-  ]
-
-  const serviceRoutes = [
-    "/request-quote",
-    "/i-am-influencer",
-    "/request-quote",
-    "/request-quote",
-    "/request-quote",
-    "/request-quote",
-    "/i-am-talent",
-    "/request-quote",
-    "/i-am-influencer",
-    "/hire-talent"
-  ]
 
   return (
     <section
@@ -105,8 +66,8 @@ const ServiceDiscovery = () => {
                 >
                   <div className="w-full max-w-[550px] aspect-[4/3] rounded-sm overflow-hidden border-2 border-white/20">
                     <img
-                      src={imageSources[hoveredIndex]}
-                      alt={serviceDisplayNames[hoveredIndex]}
+                      src={services[hoveredIndex].images[0]}
+                      alt={services[hoveredIndex].name}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -125,19 +86,21 @@ const ServiceDiscovery = () => {
 
           {/* Right Column: Pill Buttons */}
           <div className="flex flex-col gap-3 lg:pt-4">
-            {serviceDisplayNames.map((name, index) => (
+            {services.map((service, index) => (
               <motion.div
                 key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
+                onClick={() => router.push(`/services/${service.slug}`)}
                 whileHover={{ scale: 1.02 }}
-                className={`group flex items-center justify-between px-6 py-3.5 rounded-full border-2 transition-all duration-300
+                whileTap={{ scale: 0.98 }}
+                className={`group flex items-center justify-between px-6 py-3.5 rounded-full border-2 transition-all duration-300 cursor-pointer
                   ${hoveredIndex === index
                     ? 'bg-white text-accent-orange border-white'
                     : 'bg-transparent text-white border-white/20 hover:border-white'
                   }`}
               >
                 <span className="text-xs md:text-sm font-heading font-black uppercase tracking-widest text-left">
-                  {name}
+                  {service.name}
                 </span>
                 <ArrowUpRight
                   size={16}

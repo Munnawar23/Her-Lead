@@ -146,8 +146,8 @@ const AboutSection = () => {
                   { label: 'Results', value: '100%' }
                 ].map((stat, i) => (
                   <div key={i} className='space-y-1'>
-                    <span className='block text-[10px] uppercase tracking-[0.3em] font-heading font-black text-primary'>{stat.label}</span>
-                    <span className='text-3xl font-black font-heading text-text'>{stat.value}</span>
+                    <span className='block text-xs uppercase tracking-[0.3em] font-heading font-black text-primary'>{stat.label}</span>
+                    <span className='text-4xl md:text-5xl font-black font-heading text-text'>{stat.value}</span>
                   </div>
                 ))}
               </motion.div>

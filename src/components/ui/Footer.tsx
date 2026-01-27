@@ -55,10 +55,14 @@ const Footer = () => {
             {buttons.map((btn, i) => (
               <motion.button
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.1,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
                 onClick={() => {
                   if (btn.path.startsWith('mailto')) {
                     window.open(btn.path, '_blank');
@@ -66,9 +70,10 @@ const Footer = () => {
                     router.push(btn.path);
                   }
                 }}
-                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all text-center`}
+                className={`w-full md:w-auto px-8 py-4 ${btn.bg} text-white rounded-full font-heading font-black text-xs uppercase tracking-[0.15em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all text-center group relative overflow-hidden`}
               >
-                {btn.label}
+                <span className="relative z-10">{btn.label}</span>
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.button>
             ))}
           </div>

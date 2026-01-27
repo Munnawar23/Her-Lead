@@ -5,7 +5,8 @@ import { motion, AnimatePresence, useMotionValue, useTransform, animate, useMoti
 
 const SplashScreen = () => {
     const [wordIndex, setWordIndex] = useState(0);
-    const [isComplete, setIsComplete] = useState(false);
+    const [isComplete, setIsComplete] = useState(true);
+    const [shouldRender, setShouldRender] = useState(false);
     const [displayCount, setDisplayCount] = useState(0);
     const count = useMotionValue(0);
     const progressWidth = useTransform(count, (latest: number) => `${latest}%`);
@@ -17,6 +18,17 @@ const SplashScreen = () => {
     });
 
     useEffect(() => {
+        const hasShownSplash = sessionStorage.getItem('hasShownSplash');
+
+        if (hasShownSplash) {
+            setShouldRender(false);
+            return;
+        }
+
+        setShouldRender(true);
+        setIsComplete(false);
+        sessionStorage.setItem('hasShownSplash', 'true');
+
         // Animate the counter from 0 to 100
         const controls = animate(count, 100, {
             duration: 2,
@@ -35,7 +47,9 @@ const SplashScreen = () => {
             controls.stop();
             clearInterval(wordInterval);
         };
-    }, [count, words.length]);
+    }, [count]);
+
+    if (!shouldRender) return null;
 
     return (
         <AnimatePresence>
