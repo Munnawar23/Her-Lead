@@ -4,18 +4,19 @@ export const services = [
         slug: "pr-media-services",
         name: "PR & Media Services",
         category: "PR & MEDIA SERVICES",
-        description: "We don't chase headlines; we control narratives. Our PR & Media Services are built to position brands with credibility, influence, and precision. From media outreach, press releases, influencer PR, and event publicity to reputation and crisis management, every move is intentional. We protect your image, place your story where it matters, and ensure your brand speaks with authority, always composed, always in control.",
-        images: ["/images/services/pr-media.webp", "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200", "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200"],
+        description: "Public Relations is the new marketing strategy—shaping perception, building trust, and establishing long-term brand authority. Our 360° PR & Media solutions blend online visibility, media coverage, and creative storytelling. We don’t just promote; we create a brand presence that inspires trust and dominates both online and offline landscapes.",
+        images: ["/images/services/pr-media.webp", "/images/services/pr-media-1.webp", "/images/services/pr-media-2.webp"],
         faqs: [
-            { q: "What is your media outreach strategy?", a: "We don't blast generic pitches. We curate highly targeted media lists relevant to your niche, ensuring your story lands in front of journalists who actually care." },
-            { q: "How quickly can we see results?", a: "PR is a marathon, not a sprint. While we can secure quick wins with press releases, building sustained thought leadership typically takes 3-6 months of consistent effort." },
-            { q: "Do you handle crisis communication?", a: "Yes. Our crisis management protocol is swift and discreet. We monitor narratives, prepare reactive statements, and guide you to mitigate reputational damage effectively." },
-            { q: "Can you guarantee placement in specific outlets?", a: "No reputable PR agency guarantees editorial coverage, as it depends on the publication's discretion. However, our track record of high-tier placements speaks for itself." }
+            { q: "What exactly do your PR & Media Services include?", a: "Our services cover brand strategy, digital/offline PR, brand naming, professional photoshoots, content creation, and reputation management." },
+            { q: "Can you help create our business or brand name?", a: "Yes. We specialize in brand naming and identity development, ensuring your name reflects your values and resonates with your audience." },
+            { q: "How is PR different from marketing?", a: "Marketing promotes the product; PR builds your reputation. It’s about credibility, relationships, and long-term trust—not just sales." },
+            { q: "Do you handle visual production?", a: "Absolutely. We manage professional photoshoots, brand commercials, and testimonial videos to make your brand camera-ready." },
+            { q: "How soon can we see results?", a: "Visible media visibility and engagement typically start within 4–6 weeks, with stronger brand authority building over time." }
         ],
         impactCards: [
-            { icon: "Search", title: "Narrative Control", desc: "We don't just get you in the news; we ensure the story is told on your terms, protecting your legacy." },
-            { icon: "TrendingUp", title: "Authority Building", desc: "Position yourself as the go-to expert in your field with strategic placements in high-tier publications." },
-            { icon: "Infinity", title: "Crisis Resilience", desc: "Build a reputation so strong that it can weather any storm, with pro-active management protocols." }
+            { icon: "Infinity", title: "Brand Authority", desc: "Build a reputation that inspires trust and creates a story worth sharing with the world." },
+            { icon: "TrendingUp", title: "Media Dominance", desc: "A blend of online visibility and offline events ensures your brand resonates across all landscapes." },
+            { icon: "Search", title: "Narrative Mastery", desc: "Our 360° solutions ensure your brand story is told with precision and professional clarity." }
         ]
     },
     {
@@ -23,18 +24,19 @@ export const services = [
         slug: "influencer-marketing",
         name: "Influencer Marketing",
         category: "INFLUENCER MARKETING",
-        description: "At HerLead, influencer marketing is never about numbers—it's about alignment and authority. When you work with us, expect carefully curated creators who reflect your brand values, audience, and positioning. We manage everything from influencer identification and outreach to collaboration strategy, content direction, and performance tracking.",
-        images: ["/images/services/influencer-marketing.webp", "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200", "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200"],
+        description: "Step into the spotlight with HerLead PR & Influencer Network. We create exclusive opportunities for influencers and creators to collaborate with high-profile brands and attend strategic events. Our network is built for those who want to grow their reach, build real impact, and thrive in a community focused on authenticity and visibility.",
+        images: ["/images/services/influencer-marketing.webp", "/images/services/common-business-1.webp", "/images/services/influencer-2.webp"],
         faqs: [
-            { q: "How do you select influencers?", a: "We vet for engagement, authenticity, and audience alignment—not just follower count. We ensure their values match yours to prevent reputational risk." },
-            { q: "What platforms do you cover?", a: "We specialize in Instagram, TikTok, YouTube, and LinkedIn, tailoring the platform mix to where your specific audience spends their time." },
-            { q: "Do you handle the contracts?", a: "Yes, we manage the entire lifecycle: negotiation, contracting, content rights, and compliance, protecting your brand from legal grey areas." },
-            { q: "How is ROI measured?", a: "We track direct metrics like clicks, conversions, and code usage, as well as soft metrics like sentiment analysis and brand lift." }
+            { q: "What is the HerLead Influencer Network?", a: "A community for creators and thought leaders to connect with high-profile brand partnerships and strategic collaborations." },
+            { q: "What kind of opportunities are available?", a: "We provide access to exclusive events, brand campaigns, and visibility opportunities designed to elevate your professional presence." },
+            { q: "Who can join the network?", a: "Influencers, creators, and thought leaders who value authenticity and want to build a real impact in the corporate and creative space." },
+            { q: "How does HerLead support creators?", a: "We don't just connect; we curate experiences that matter, helping you grow and engage with audiences effectively." },
+            { q: "How do I join the spotlight?", a: "You can submit an expression of interest through our Influencer Partnership forms to be considered for our exclusive network." }
         ],
         impactCards: [
-            { icon: "TrendingUp", title: "Authentic Reach", desc: "Connect with audiences through creators they actually trust, driving meaningful engagement." },
-            { icon: "Search", title: "Perfect Alignment", desc: "Our deep vetting process ensures influencers reflect your luxury positioning and values." },
-            { icon: "Infinity", title: "Sustained Growth", desc: "Turn influencer spikes into long-term brand equity with our relationship-first strategy." }
+            { icon: "TrendingUp", title: "Strategic Exposure", desc: "Gain access to high-profile events and brand partnerships that elevate your narrative." },
+            { icon: "Search", title: "Authentic Growth", desc: "Focus on communities that thrive on real impact, visibility, and value-driven engagement." },
+            { icon: "Infinity", title: "Brand Resilience", desc: "Build an influencer persona that resonates with authority in both creative and corporate spaces." }
         ]
     },
     {
@@ -42,18 +44,19 @@ export const services = [
         slug: "brand-creation",
         name: "Brand Creation",
         category: "BRAND CREATION",
-        description: "Brand Creation at HerLead goes beyond logos and color palettes. We shape brands from the inside out—strategy first, identity next, impact always. Alongside defining your positioning, messaging, and visual identity, we strategically optimize your social media presence to reflect authority, consistency, and clarity. Every platform, every visual, and every word is designed to build recognition and make you the go-to name in your space.",
-        images: ["/images/services/brand-creation.webp", "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=1200", "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=1200"],
+        description: "Tell your brand’s story like only you can. The best way to share your brand’s message is with our creative services, building a unique identity that resonates on a personal level and drives conversions.\n\nFrom charismatic copywriting to professional video production, HerLead is a one-stop source for all your digital advertising, marketing, and creative design needs. We help you build a brand identity that people don't just like, but love.\n\nOur Creative Strategy Process:\n- Step 1: Discovery – Learning about your brand values, target audience, and competitors to figure out how to do it better.\n- Step 2: Creative Strategy – Developing a game plan that plays to your brand’s strengths while capturing market opportunities.\n- Step 3: Pre-production – Laying the groundwork with photo shoot planning, mood boards, and scriptwriting for flawless execution.\n- Step 4: Production – Bringing the vision to life through professional video, photography, and high-impact media.\n- Step 5: Post-production – Polishing through careful editing, spending countless hours nailing every single detail.\n\nWe don't settle for average; we play to win, driving industry-leading results for our partners with an award-winning mindset.",
+        images: ["/images/services/brand-creation.webp", "/images/services/brand-creation-1.webp", "/images/services/brand-creation-2.webp"],
         faqs: [
-            { q: "What is included in Brand Creation?", a: "It's more than a logo. We deliver a comprehensive Brand Bible: strategy, visual identity system, typography, color palette, voice & tone guidelines, and key brand assets." },
-            { q: "How long does the branding process take?", a: "Typically 4-8 weeks. We believe in deep research and iterative design to ensure the final identity is timeless and robust." },
-            { q: "Do you help with naming?", a: "Yes, we offer naming workshops and services, ensuring your brand name is memorable, pronounceable, and available (trademark/domain checks included)." },
-            { q: "Can we refresh an existing brand?", a: "Absolutely. We specialize in brand evolutions that modernize your image while retaining the equity and recognition you've already built." }
+            { q: "What types of creative services do you offer?", a: "We provide custom still photos, top-notch videography, meticulously crafted copywriting, custom AI/AR face filters, graphic design, and branded GIF creation." },
+            { q: "Do you specialize in specific industries?", a: "No. Our wealth of experience across hundreds of companies allows us to be flexible and versatile, no matter what your brand sells or who you reach." },
+            { q: "Can you assist with digital and traditional projects?", a: "Yes, we are full-service and all-encompassing. We handle both digital advertising and traditional creative projects with identical precision." },
+            { q: "How do you ensure alignment with our objectives?", a: "It comes down to our detailed discovery phase. We take a personalized approach to learn the ins and outs of your brand before building the strategy." },
+            { q: "Do you offer revisions during the process?", a: "Absolutely. We aren’t happy unless you’re happy. We prioritize your satisfaction to ensure you are overjoyed with the final delivery." }
         ],
         impactCards: [
-            { icon: "Infinity", title: "Visual Dominance", desc: "Create an identity so strong that it commands attention across every touchpoint instantly." },
-            { icon: "Search", title: "Clear Positioning", desc: "Define exactly who you are and why you're the only choice in a crowded, noisy market." },
-            { icon: "TrendingUp", title: "Market Resonance", desc: "Build a brand that doesn't just look good, but creates deep emotional connections." }
+            { icon: "Infinity", title: "Creative Storytelling", desc: "Build a brand that people love by sharing your message through charismatic and high-impact content." },
+            { icon: "Search", title: "Strategic Discovery", desc: "A methodical approach to learning your brand values and target audience to outshine your competition." },
+            { icon: "TrendingUp", title: "Conversion Assets", desc: "Top-notch assets are the quintessence of every successful campaign, directly improving your business results." }
         ]
     },
     {
@@ -61,18 +64,19 @@ export const services = [
         slug: "seo",
         name: "Search Engine Optimization",
         category: "SEARCH ENGINE OPTIMIZATION",
-        description: "SEO remains the foundation of digital visibility because credibility starts with being found first and being trusted. At HerLead, we treat SEO as a long-term authority-building tool, not a short-term traffic hack. By optimizing your content, structure, and search presence, we position your brand as the most relevant answer when your audience is actively looking. While trends come and go, strong SEO ensures your brand stands out consistently, earns trust organically, and stays discoverable long after ads stop running.",
-        images: ["/images/services/seo.webp", "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200", "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200"],
+        description: "Your search for an industry-leading SEO agency ends here. Search Engine Optimization is an 'earned' strategy that focuses on increasing high-quality website traffic through organic results. We don't just help you rank; we help you dominate Google's first page.\n\nBy following Google’s webmaster guidelines and industry best practices, we ensure your brand and content are what ultimately get the click that leads to a conversion. SEO is the key to ensuring your digital presence is built for long-term growth and visibility.\n\nOur Dominant SEO Process:\n- Step 1: Initial Consultation – A discovery call to review your past, present, and future marketing goals to build a custom proposal.\n- Step 2: SEO Audit – A thorough audit scoping out technical issues, current visibility, and market share.\n- Step 3: Customized Action Plan – Combining high-quality content with the latest AEO (Answer Engine Optimization) and technical techniques.\n- Step 4: Quarterly Reporting – SEO is a slow burn (3-6 months); we keep you updated with no secrets and clear data validation.\n- Step 5: Agile Responses – We pride ourselves on being quick on our feet, adapting rapidly to algorithm changes and market shifts.\n\nOur services encompass everything from Technical and Ecommerce SEO to Answer Engine Optimization (AEO), making your brand the definitive answer in AI search and snippets.",
+        images: ["/images/services/seo.webp", "/images/services/seo-1.webp", "/images/services/common-business-1.webp"],
         faqs: [
-            { q: "Is SEO a one-time service?", a: "No. SEO is an ongoing battle for dominance. Algorithms change, and competitors adapt. We provide monthly optimization to maintain and grow your rankings." },
-            { q: "Do you focus on technical SEO?", a: "Yes. We start with a deep technical audit (site speed, mobile usability, schema markup) because content cannot rank if the foundation is broken." },
-            { q: "How long until we rank #1?", a: "Beware of anyone promising #1 rankings overnight. Legitimate, sustainable SEO results typically compound over 3-6 months." },
-            { q: "Do you do local SEO?", a: "Yes. For businesses with a physical presence, we optimize Google Business Profiles and local citations to capture high-intent local traffic." }
+            { q: "What is the difference between on-page and technical SEO?", a: "On-page focuses on content and keyword optimization, while technical SEO involves wizards improving site flow, speed, structure, and schema to ensure the foundation is perfect." },
+            { q: "What are the key SEO metrics to track?", a: "We monitor organic traffic, keyword rankings, conversion rates from organic users, and engagement metrics like bounce rate to ensure your ROI is clearly visible." },
+            { q: "How do you measure SEO ROI?", a: "The traditional formula is: (Value from SEO leads/sales − Cost of SEO) ÷ Cost of SEO × 100. We track the lifetime value of organic users to prove long-term profitability." },
+            { q: "What are some common SEO mistakes?", a: "The most common errors include skipping keyword research, having thin or duplicate content, poor mobile experience, and ignoring internal linking or UX." },
+            { q: "Why is SEO so hard to execute?", a: "Search algorithms change constantly and competitors fight for the same spots. It requires a rare blend of technical know-how and strong content skills to win consistently." }
         ],
         impactCards: [
-            { icon: "Search", title: "Improve search rankings", desc: '"How\'s the weather over there?" That\'s what you\'ll be asking your competitors when you own the top spots.' },
-            { icon: "TrendingUp", title: "Increase organic traffic", desc: '"Oh, hello there!" You\'ll be saying this to all the new customers who have organically discovered your brand.' },
-            { icon: "Infinity", title: "Enhance brand visibility", desc: '"They see me and they love me!" Your brand is more visible than it\'s ever been thanks to our SEO.' }
+            { icon: "Search", title: "Improve Search Rankings", desc: "'How’s the weather over there?' That’s what you’ll be asking competitors whose content appears outside the top 10." },
+            { icon: "TrendingUp", title: "Increase Organic Traffic", desc: "'Oh, hello there!' You’ll be saying this to all the new customers who have organically discovered your brand." },
+            { icon: "Infinity", title: "Enhance Brand Visibility", desc: "'They see me and they love me!' Your brand is more visible than it’s ever been thanks to our calculated optimization." }
         ]
     },
     {
@@ -80,18 +84,19 @@ export const services = [
         slug: "paid-ads",
         name: "Paid Ads",
         category: "PAID ADS",
-        description: "No matter what people say, paid ads are the starting push every brand needs. At HerLead, we use paid media as the momentum builder giving your brand instant visibility while everything else compounds. From Meta, Google, Facebook, Instagram, to LinkedIn ads, we run tightly structured, data-led campaigns designed to test, learn, and scale. Paid ads don't replace strategy they accelerate it. When done right, they create traction, validate messaging, and put your brand in front of the right audience from day one.",
-        images: ["/images/services/paid-ads.webp", "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200", "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200"],
+        description: "Ads that deliver more than you paid for. Investing in our paid media services pays dividends, growing your business with targeted ads that drive conversions across Google, Meta, TikTok, LinkedIn, and more.\n\nAttention isn’t earned—it’s bought through strategic video ads, PPC, and social media placements. We turn your ad spend into a powerful growth engine through a tailored approach that ensures you get the absolute most out of every campaign.\n\nOur Paid Media Marketing Process:\n- Step 1: Discovery & Research – We familiarize ourselves with your brand and target audience while researching the market to identify growth opportunities.\n- Step 2: Branded Content Production – We create amazing assets in-house, from short-form videos to product photos, ensuring your ads are worthy of promotion.\n- Step 3: Campaign Execution – We purposefully unleash your branded content into the market, backed by a precise and tested strategy.\n- Step 4: Set up Retargeting – We reconnect with would-be customers, knowing that people often need to see your message more than once before they are sold.\n- Step 5: Review Strategy & Report Results – Linear validation through detailed reporting, identifying what worked and where we will scale next.",
+        images: ["/images/services/paid-ads.webp", "/images/services/paid-ads-1.webp", "/images/services/paid-ads-2.webp"],
         faqs: [
-            { q: "What is the minimum ad spend?", a: "We recommend a minimum media budget of $1500-$3000/month to generate statistically significant data for optimization, though this varies by industry." },
-            { q: "Which platforms work best?", a: "It depends on your goal. Meta (FB/IG) is great for demand generation and visual brands. Google Ads captures high-intent search traffic. LinkedIn is king for B2B." },
-            { q: "Do you create the ad creatives?", a: "Yes. Creative is the biggest lever in performance. We design high-converting static and video assets and test variations rigorously." },
-            { q: "How do you charge?", a: "We operate on a transparent management fee model. Your media spend goes directly to the ad platforms—we never markup your ad budget." }
+            { q: "What is paid media and how does it work?", a: "Paid media refers to any promotional content for which you pay a fee for placement. Advertisers bid for placements based on targeting criteria like demographics, interests, and budget." },
+            { q: "What are the advantages of paid media?", a: "It offers precise audience targeting, immediate visibility, and detailed analytics for optimization, building brand credibility and industry authority instantly." },
+            { q: "What is the difference between paid and earned media?", a: "Paid media is promotional content you pay to place. Earned media is organic publicity gained through word-of-mouth, shares, or press coverage without direct payment." },
+            { q: "Are paid ads worth the investment?", a: "Absolutely. It is one of the most effective ways to reach your target audience, increase visibility, and generate leads or sales through strategic placement." },
+            { q: "Which platforms can I advertise on?", a: "We manage every major channel—from Google and Meta to Instagram, TikTok, and LinkedIn. There’s no corner of the digital advertising world you can’t reach." }
         ],
         impactCards: [
-            { icon: "TrendingUp", title: "Instant Traction", desc: "Skip the wait and get immediate eyes on your brand while your organic efforts compound." },
-            { icon: "Search", title: "Data-Led Scaling", desc: "We test, learn, and optimize in real-time to ensure every dollar of your budget works harder." },
-            { icon: "Infinity", title: "Omnichannel Reach", desc: "Dominate Meta, Google, and LinkedIn simultaneously with a unified, high-performance strategy." }
+            { icon: "Search", title: "Targeted Reach", desc: "Maximize relevance by targeting specific demographics, interests, and behaviors that align with your goals." },
+            { icon: "Infinity", title: "Immediate Results", desc: "This isn’t a slow-drip process; paid media drives instant traffic to your website for quick, measurable gains." },
+            { icon: "TrendingUp", title: "Measurable ROI", desc: "There’s no guesstimating; we establish a linear and proven connection between your investment and your return." }
         ]
     },
     {
@@ -99,18 +104,19 @@ export const services = [
         slug: "corporate-training",
         name: "Corporate Training & Development",
         category: "CORPORATE TRAINING & DEVELOPMENT",
-        description: "We've seen even well-known brands struggle not because their people lacked talent, but because teams were never developed the right way. Traditional training often feels like classroom teaching, creating distance instead of understanding and sometimes leading to misalignment or conflict. At HerLead, our approach is practical and people-focused. We design training that reflects real workplace challenges, strengthens communication, builds leadership maturity, and helps teams work better together. The goal is simple: healthier teams, clearer thinking, and performance that lasts.",
-        images: ["/images/services/corporate-training.webp", "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200", "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200"],
+        description: "Empowering Teams. Building Leaders. Transforming Culture.\n\nOur Corporate Training & Development Program is designed to help organizations at every level, from startups to enterprises, build stronger teams, smarter leaders, and sustainable growth cultures. We focus on truth over theory, helping employees and leaders understand what professionalism, leadership, and accountability really mean in today’s corporate ecosystem.\n\nYour Growth Roadmap with HerLead:\nStep 1: Understand the Need - We identify what your team truly needs from leadership development to culture-building.\nStep 2: Customize Your Training Plan - We design a personalized roadmap tailored to your workplace goals.\nStep 3: Engage, Learn & Apply - Hands-on sessions focused on real-world examples and action.\nStep 4: Measure Impact - We track improvements to ensure lasting change.\nStep 5: Grow Together - A workplace culture built on clarity, confidence, and collaboration.\n\nWe provide end-to-end training for Leadership Mastery, Executive Presence, and Team Productivity Workshops that eliminate silos and build authentic ownership.",
+        images: ["/images/services/corporate-training.webp", "/images/services/corporate-training-1.webp", "/images/services/corporate-training-2.webp"],
         faqs: [
-            { q: "Can training be customized?", a: "100%. We don't do 'off-the-shelf'. We audit your team's specific gaps and design a curriculum that addresses your unique cultural and performance challenges." },
-            { q: "Is it virtual or in-person?", a: "Both. We offer high-energy on-site workshops and interactive virtual sessions designed to keep remote teams engaged and participating." },
-            { q: "How do you ensure retention?", a: "We use active learning methodologies—role-playing, real-time feedback, and post-session accountability frameworks—to ensure skills stick." },
-            { q: "What topics do you cover?", a: "Leadership development, communication mastery, conflict resolution, emotional intelligence, and high-performance team dynamics." }
+            { q: "What is your Growth Roadmap?", a: "A 5-step process: Understand Needs -> Customize Roadmap -> Engage & Learn -> Measure Impact -> Grow Together." },
+            { q: "How is your training different?", a: "We focus on real-world leadership and communication—our sessions are hands-on, action-driven, and built for immediate workplace impact." },
+            { q: "What areas do you specialize in?", a: "We specialize in Leadership Presence, Executive Communication, Team Productivity, and Building High-Performance Culture." },
+            { q: "Can you fix team cultural blockers?", a: "Yes. Our workshops help teams move from friction to flow by replacing confusion with ownership, accountability, and trust." },
+            { q: "Is the training suitable for senior leaders?", a: "Absolutely. Our advanced modules refine executive presence, decision-making, and empathy-driven leadership for C-suite and senior managers." }
         ],
         impactCards: [
-            { icon: "Infinity", title: "Cultural Alignment", desc: "Build teams that share a unified vision and work in perfect harmony toward your goals." },
-            { icon: "TrendingUp", title: "Leader Maturity", desc: "Develop the next generation of leadership within your company with practical, high-stakes coaching." },
-            { icon: "Search", title: "Gap Resolution", desc: "Identify and fix the subtle communication breakdowns that are silently costing you performance." }
+            { icon: "Infinity", title: "Cultural Flow", desc: "Identify and eliminate cultural blockers to build teams that work with clarity, trust, and purpose." },
+            { icon: "TrendingUp", title: "Leader Maturity", desc: "Empower leaders who know how to inspire, influence, and drive progress through deep listening." },
+            { icon: "Search", title: "Frictionless Teams", desc: "Convert wasted time and messy workflows into accountability and measurable group productivity." }
         ]
     },
     {
@@ -118,37 +124,39 @@ export const services = [
         slug: "career-mastery",
         name: "Career Confidence & Interview Mastery",
         category: "CAREER CONFIDENCE & INTERVIEW MASTERY",
-        description: "This is not a basic course or a generic program. When we promise career readiness, it becomes our responsibility to make you truly interview-ready—not just prepared, but confident, clear, and credible. This program is built for candidates who have the right skills yet struggle to express their value in interviews or understand why they aren't getting selected despite being a strong fit on paper. We break down real hiring expectations, refine how you communicate your experience, and help you show up with presence and clarity. The goal is simple: when opportunity comes, you are ready to own it.",
-        images: ["/images/services/career-mastery.webp", "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200", "https://images.unsplash.com/photo-1521791136364-798a730bb3be?q=80&w=1200"],
+        description: "Step Into the Career You Deserve, Not Just the One You Apply For.\n\nAt Herlead, we understand that resumes don’t get people hired. People do. Our Career Confidence Mastery program is built on a decade of real HR experience, bridging the gap between talent and opportunity. We don't teach surface-level theory; we work on the communication, confidence, and presence that truly makes recruiters remember you.\n\nProgram Highlights:\n- One-Month Intensive Live Training: Structured 4-week journey guided by real HR professionals.\n- Real Interview Simulations: participating in real-time mock interviews with specific, honest feedback.\n- Resume & LinkedIn Reinvention: Telling your story clearly to attract the right opportunities.\n- Walk, Talk & Presentation Skills: Mastering the small details—posture, gestures, and eye contact—that silently communicate power.\n- Professional Grooming: Building a professional yet approachable image aligned with corporate culture.\n\nHerlead is more than training—it's a transformation where you learn the powerful details that make people say, 'That’s the one we should hire.'",
+        images: ["/images/services/career-mastery.webp", "/images/services/career-mastery-1.webp", "/images/services/career-mastery-2.webp"],
         faqs: [
-            { q: "Is this just resume writing?", a: "No. While we refine your documents, our focus is on *you*. We coach you on interview presence, negotiation, and articulating your unique value proposition." },
-            { q: "Who are the coaches?", a: "You work with seasoned recruiters and leadership coaches who know exactly what hiring managers are thinking and looking for behind closed doors." },
-            { q: "Is this for executives or entry-level?", a: "We tailor the program. We have tracks for early-career professionals needing direction and executive tracks for leaders refining their boardroom presence." },
-            { q: "Do you guarantee a job?", a: "We guarantee you will be the best prepared candidate in the room. We cannot control market variables, but we maximize your conversion rate from interview to offer." }
+            { q: "What is the One-Month Live Training?", a: "A 18-20 session focused bootcamp designed around real hiring expectations, not theory. We fix the gaps that stop you from getting hired." },
+            { q: "Are mock interviews realistic?", a: "Yes. They are conducted by decade-experienced HR professionals who judge you exactly the way real employers do, with direct feedback." },
+            { q: "Do you help with personal branding?", a: "Absolutely. We teach you to own your story, ownership of career positioning, and communicating your value with confidence naturally." },
+            { q: "Is professional grooming included?", a: "Yes. We cover professional etiquette, posture, and virtual/in-person appearance to ensure your presentation matches your performance." },
+            { q: "How do you help with resumes?", a: "We don't use templates. We analyze your background and rebuild your resume to reflect your real value so recruiters actually notice you." }
         ],
         impactCards: [
-            { icon: "TrendingUp", title: "Interview Mastery", desc: "Learn to articulate your value with such clarity and confidence that you become the only choice." },
-            { icon: "Search", title: "Presence Coaching", desc: "Master the subtle body language and vocal cues that command respect in the boardroom." },
-            { icon: "Infinity", title: "Career Longevity", desc: "Build a personal brand that ensures you are never just 'hunting' for jobs, but attracting them." }
+            { icon: "TrendingUp", title: "Confidence Mastery", desc: "Overcome nervousness and learn to speak with authority through practical confidence-building." },
+            { icon: "Search", title: "Gap Resolution", desc: "Identify and fix the small mistakes in communication or resumes that quietly lose you jobs." },
+            { icon: "Infinity", title: "Professional Presence", desc: "Walk into every interview with the calm power, clear words, and unshakable confidence of an expert." }
         ]
     },
     {
         id: 8,
-        slug: "web-design",
+        slug: "web-development",
         name: "Web Design & Development",
         category: "WEB DESIGN & DEVELOPMENT",
-        description: "You can say all the right things on social media, but if your website doesn't back it up, trust breaks instantly. An outdated, misaligned website quietly costs you credibility, clients, and conversions. At HerLead, we redesign and develop websites that match your voice, values, and growth stage. From structure and UX to content flow and visual identity, we ensure your website speaks the same language as your brand, clear, current, and conversion-ready.",
-        images: ["/images/services/web-design.webp", "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200", "https://images.unsplash.com/photo-1522542550221-31fd19b45aeb?q=80&w=1200"],
+        description: "We help businesses use their website as a growth engine. Discover pixel-perfect web design that puts the 'fun' in functionality and turns clicks into customers. 360 digital evolution starts here!\n\nYour website is your brand’s online base—the first impression determines whether they choose you or your competitor. We combine customer conversion strategies with a passion for aesthetically pleasing designs to get results.\n\nOur 6-Step Web Engineering Process:\n- Step 1: Discovery & Scope – Mapping out a custom plan that aligns with your website's purpose and business goals.\n- Step 2: Crafting Your Digital Canvas – Creating mood board mockups to ensure the creative vision is perfect before development.\n- Step 3: Turning Art into Code – Building high-performance sites in Webflow, Shopify, or WordPress from the ground up.\n- Step 4: Refining All the Details – Optimizing for search (SEO), site speed, and flawless responsiveness across all devices.\n- Step 5: Hunting for Bugs – A rigorous quality assurance process to guarantee a smooth user experience.\n- Step 6: Time for Takeoff – Launching with reliable hosting and continued support to maximize your site's potential.\n\nFrom high-end eCommerce stores to scalable B2B platforms, we build digital tools that are instrumental to your brand's success.",
+        images: ["/images/services/web-dev.webp", "/images/services/web-dev-1.webp", "/images/services/web-dev-2.webp"],
         faqs: [
-            { q: "What platforms do you use?", a: "We build primarily on Next.js/React for varied, high-performance needs, but can also work with Webflow or WordPress depending on client manageability requirements." },
-            { q: "Is the site mobile responsive?", a: "Always. We design mobile-first. With over 60% of traffic coming from mobile, we ensure your site is flawless on every device." },
-            { q: "Will I be able to update it?", a: "Yes. We implement user-friendly CMS (Content Management Systems) so your team can easily update blogs, products, and text without touching code." },
-            { q: "How do you handle hosting?", a: "We can recommend and set up high-performance hosting (like Vercel or AWS) or work with your existing infrastructure." }
+            { q: "What platform is best for my website?", a: "It depends on your goals—Webflow for design flexibility, WordPress for content management, or Shopify for e-commerce. We help you choose the ideal fit." },
+            { q: "How much input will I have in the design?", a: "Full collaboration. We provide mood boards and mockups for your review at every stage to ensure the design exceeds your expectations." },
+            { q: "How long does it take to complete a site?", a: "Our average estimate is 12 to 16 weeks, depending on the scope. We prioritize methodical planning to ensure a world-class result." },
+            { q: "Will I find it easy to update my site later?", a: "Yes. Our advanced CMS solutions give you the freedom to update themes, products, and blogs with zero technical friction after launch." },
+            { q: "Do you provide hosting and continued support?", a: "Absolutely. We offer secure, reliable hosting and ongoing support contracts to grow your business with digital marketing strategies." }
         ],
         impactCards: [
-            { icon: "Infinity", title: "Flawless UX", desc: "Every click, scroll, and interaction is designed to lead the user toward your ultimate goal." },
-            { icon: "TrendingUp", title: "High Performance", desc: "Speed is a luxury. We build sites that load instantly and perform flawlessly even at scale." },
-            { icon: "Search", title: "Authority Design", desc: "Your website will look and feel like the industry leader you are, from the first pixel." }
+            { icon: "Infinity", title: "Pixel Perfect", desc: "Flawless functional designs that make your brand stand out from the second a user lands on the page." },
+            { icon: "TrendingUp", title: "Growth Engine", desc: "We turn your website into a dynamic tool that achieves your goals and maximizes conversion potential." },
+            { icon: "Search", title: "Full-Service UX", desc: "A 360-degree approach from information architecture to final launch bugs-hunting and speed optimization." }
         ]
     },
     {
@@ -156,18 +164,19 @@ export const services = [
         slug: "social-media",
         name: "Social Media Management",
         category: "SOCIAL MEDIA MANAGEMENT",
-        description: "Not every brand needs to be online all the time just in the right way. At HerLead, we fix scattered and inconsistent social media and turn it into a clear, reliable presence. We manage your platforms so your brand stays visible, relevant, and aligned, without demanding your constant attention. The result is a presence that feels active, thoughtful, and trusted even when you're not posting every day.",
-        images: ["/images/services/social-media.webp", "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200", "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200"],
+        description: "Need social media marketing? Follow our lead. Social Media Marketing is all about leveraging social media channels to educate, build brand awareness, and turn prospects into customers. It all starts with building a strong online presence fueled by innovative strategies—the glow-up your brand strategy never knew it needed!\n\nOur 4-Step Social Acceleration Process:\n- Step 1: Social Discovery – We perform extensive research to understand your ideal user and business objectives as clearly as possible.\n- Step 2: Content Production Schedule – Channel selection, posting frequency, and deployment strategies are developed based on gathered data.\n- Step 3: Execution – Producing innovative content, sticking to a schedule, and tracking KPIs through real-time social analytics.\n- Step 4: Reporting – Precise reporting to know what worked and how to revamp your strategies moving forward.\n\nFrom full-service account management and strategy consulting to social advertising and listening, we help you crush algorithms with follow-worthy posts that keep you top of mind with your audience.",
+        images: ["/images/services/social-media.webp", "/images/services/social-media-1.webp", "/images/services/common-business-1.webp"],
         faqs: [
-            { q: "How often do you post?", a: "Strategy first, volume second. We typically recommend 3-5 high-quality posts per week per platform to maintain consistency without burn-out." },
-            { q: "Do you do community management?", a: "Yes. Social media is a two-way street. We monitor comments and DMs to engage with your audience and foster a loyal community." },
-            { q: "Do you take the photos?", a: "We can. We offer content creation add-ons for photography/videography, or we can work with assets you provide/stock, stylized to your brand." },
-            { q: "Which platforms should we be on?", a: "Less is more. It's better to be amazing on one platform than mediocre on five. We'll identify where your audience lives and focus there." }
+            { q: "What exactly is social media marketing?", a: "It's the usage of platforms like Facebook, TikTok, and Instagram to connect with your target audience through interactive and awareness-building content." },
+            { q: "How much does social media management cost?", a: "Our programs typically start at $5,500 plus media spend, varying based on posting frequency, content mix, and platform count." },
+            { q: "What is the most effective platform?", a: "There’s no one-size-fits-all answer; it depends on who you’re reaching. TikTok and Facebook attracts different audiences, so we focus where your brand fits best." },
+            { q: "What are social media monitoring services?", a: "These services track and analyze mentions, discussions, and interactions related to your brand so we can inform future directives correctly." },
+            { q: "Why is social media presence so important?", a: "With 60% of the world on social media, it's the most powerful way to build trust, establish a unified brand, and reach customers where they live." }
         ],
         impactCards: [
-            { icon: "Infinity", title: "Brand Consistency", desc: "Stop the scattered posting. We build a presence that reflects your brand's true authority daily." },
-            { icon: "TrendingUp", title: "Social Momentum", desc: "Maintain an active, engaging pulse that keeps your audience connected to your journey." },
-            { icon: "Search", title: "Targeted Influence", desc: "Focus where it matters. We put your brand in front of the exact people who need to see it." }
+            { icon: "Infinity", title: "Brand Awareness", desc: "Unlock a whole new level of visibility and open up endless possibilities with superior social media marketing." },
+            { icon: "Search", title: "Social Listening", desc: "We monitor your brand mentions to understand what people think and feed that knowledge back into your strategy." },
+            { icon: "TrendingUp", title: "Unified Influence", desc: "Establish a magnetizing brand identity that demands attention and crushes algorithms with follow-worthy posts." }
         ]
     },
     {
@@ -175,18 +184,19 @@ export const services = [
         slug: "find-talent",
         name: "Find the Talent",
         category: "FIND THE TALENT",
-        description: "Oh dear hiring managers!!! We understand this journey all too well. At HerLead, we know hiring isn't just about filling a role; it's about finding people you can rely on. That's why our candidates are carefully developed before they reach you. They are clear about their skills, aware of their responsibilities, and honest about what they can deliver. When a HerLead candidate commits, they know what they're promising—so you get talent that aligns, performs, and stays.",
-        images: ["/images/services/find-talent.webp", "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200", "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1200"],
+        description: "HerLead is not a recruitment consultancy. We are a Creation Lab for Talent.\n\nWe provide deployment-ready professionals aligned to your business reality. Built by a CHRO who understands HR beyond theory, our staffing ecosystem delivers talent that fits, performs, and lasts. We don't flood inboxes with resumes; we fuel growth through precision and pre-screened excellence.\n\nWhy HerLead Talent Is Different:\n- No Adjustment Period: Our candidates walk in ready to perform, equipped with professional accountability and team collaboration instincts.\n- Precision Over Speed: Every candidate goes through a CHRO-grade evaluation system, not basic filters.\n- Aligned With Vision: We audit your company’s DNA to ensure teams feel seamless and driven by shared purpose.\n- Cut Time-to-Productivity: Skip the settling-in phase entirely with professionals who know how to take ownership immediately.\n\nServing global teams across India, US, UK, and UAE, HerLead focuses on professionals who don't just survive—they thrive.",
+        images: ["/images/services/find-talent.webp", "/images/services/find-talent-1.webp", "/images/services/find-talent-2.webp"],
         faqs: [
-            { q: "What is your screening process?", a: "It's rigorous. We go beyond the resume with behavioral interviews, skill assessments, and reference checks before a candidate ever reaches your desk." },
-            { q: "What industries do you serve?", a: "We have deep networks in Creative, Tech, Marketing, and Executive Leadership roles, matching high-calibre talent with forward-thinking companies." },
-            { q: "Do you offer a replacement guarantee?", a: "Yes. If a hire doesn't work out within the probationary period (typically 90 days), we conduct a replacement search at no additional cost." },
-            { q: "Contingency or Retained?", a: "We offer both models. Contingency for lower-risk roles, and Retained Executive Search for critical C-suite or specialized placements." }
+            { q: "How is HerLead different from a staffing agency?", a: "We don't just source; we shape. Every candidate goes through a CHRO-grade evaluation and training in business etiquette before meeting you." },
+            { q: "What roles do you specialize in?", a: "Leadership, HR Operations, Marketing, Growth, Digital Roles, and large-scale Ground Staffing for logistics and operations." },
+            { q: "Do you eliminate the 'adjustment period'?", a: "Yes. Our candidates are pre-trained in accountability and time management, coming equipped as impact-ready professionals from day one." },
+            { q: "What markets do you serve?", a: "We work with global teams across India, US, UK, and UAE, providing end-to-end staffing for startups and global enterprises." },
+            { q: "How do you ensure a cultural fit?", a: "We audit your company's DNA—your goals, culture, and leadership tone—to create a talent-readiness blueprint custom-aligned to you." }
         ],
         impactCards: [
-            { icon: "Search", title: "Elite Vetting", desc: "We find the 1% who don't just have the skills, but the maturity and commitment to stay." },
-            { icon: "TrendingUp", title: "Team Acceleration", desc: "Hire talent that arrives ready to perform, reducing your onboarding time and risk." },
-            { icon: "Infinity", title: "Culture-First", desc: "We don't just fill boxes. We find people who enhance your culture and drive your legacy forward." }
+            { icon: "Search", title: "Precision Staffing", desc: "Eliminate guesswork with candidates who have already been polished and tested for professional life." },
+            { icon: "Infinity", title: "Global Network", desc: "10,000+ successful placements across India, US, UK, and UAE with a focus on precision over speed." },
+            { icon: "TrendingUp", title: "Culture Builders", desc: "We find and shape talent that doesn't just fit your culture, but actively strengthens and fuels your growth." }
         ]
     }
 ];

@@ -94,7 +94,7 @@ export const serviceCards = [
             "Professional Grooming and Appearance Training",
             "Resume Building & Job Search"
         ],
-        images: ["https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200"]
+        images: ["/images/services/career-talent.webp"]
     }
 ];
 
