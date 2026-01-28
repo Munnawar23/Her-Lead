@@ -3,9 +3,13 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useMotionValueEvent } from 'motion/react';
 
-const SplashScreen = () => {
+interface SplashScreenProps {
+    onComplete?: () => void;
+}
+
+const SplashScreen = ({ onComplete }: SplashScreenProps) => {
     const [wordIndex, setWordIndex] = useState(0);
-    const [isComplete, setIsComplete] = useState(true);
+    const [isComplete, setIsComplete] = useState(false);
     const [shouldRender, setShouldRender] = useState(false);
     const [displayCount, setDisplayCount] = useState(0);
     const count = useMotionValue(0);
@@ -22,6 +26,7 @@ const SplashScreen = () => {
 
         if (hasShownSplash) {
             setShouldRender(false);
+            onComplete?.();
             return;
         }
 
@@ -34,7 +39,13 @@ const SplashScreen = () => {
             duration: 2,
             ease: [0.76, 0, 0.24, 1] as const,
             onComplete: () => {
-                setTimeout(() => setIsComplete(true), 200);
+                setTimeout(() => {
+                    setIsComplete(true);
+                    // Wait for the exit animation duration (approx 1.2s) before signaling completion
+                    setTimeout(() => {
+                        onComplete?.();
+                    }, 1200);
+                }, 200);
             }
         });
 
@@ -47,7 +58,7 @@ const SplashScreen = () => {
             controls.stop();
             clearInterval(wordInterval);
         };
-    }, [count]);
+    }, [count, onComplete]);
 
     if (!shouldRender) return null;
 

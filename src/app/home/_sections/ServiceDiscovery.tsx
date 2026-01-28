@@ -2,14 +2,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { services } from '@/constants/serviceShowcase'
-import { ArrowUpRight, Instagram, Linkedin, Facebook, Youtube } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-
-const XIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
-    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-  </svg>
-)
 
 const ServiceDiscovery = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0)
@@ -18,21 +12,22 @@ const ServiceDiscovery = () => {
   return (
     <section
       id="services"
-      className="relative w-full bg-accent-orange mt-12 md:mt-20 pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem]"
+      className="relative w-full bg-accent-orange mt-8 md:mt-12 pt-12 md:pt-16 pb-12 md:pb-16 overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem]"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Centered "I'm looking for" Label */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          className='mb-10 md:mb-16 flex justify-center w-full'
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6 }}
+          className='mb-8 md:mb-12 flex justify-center w-full'
         >
           <div className='inline-flex items-center justify-center gap-3 md:gap-6 w-max'>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1, ease: "circOut" }}
+              transition={{ duration: 0.6, ease: "circOut" }}
               className='w-8 md:w-20 h-[2px] bg-white origin-right'
             />
             <h2
@@ -43,39 +38,40 @@ const ServiceDiscovery = () => {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1, ease: "circOut" }}
+              transition={{ duration: 0.6, ease: "circOut" }}
               className='w-8 md:w-20 h-[2px] bg-white origin-left'
             />
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 md:gap-16 items-start">
 
           {/* Left Column: Active Content */}
           <div className="hidden lg:block space-y-12">
-
             <div className="min-h-[400px] flex flex-col justify-start lg:pt-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={hoveredIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-6"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5, ease: "circOut" }}
+                  className="space-y-8 flex flex-col items-start"
                 >
-                  <div className="w-full max-w-[550px] aspect-[4/3] rounded-sm overflow-hidden border-2 border-white/20">
+                  {/* Circular Visual with White Border */}
+                  <div className="w-[380px] aspect-square rounded-full overflow-hidden border-[10px] border-white shadow-[0_30px_60px_rgba(0,0,0,0.2)]">
                     <img
                       src={services[hoveredIndex].images[0]}
                       alt={services[hoveredIndex].name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                   </div>
-                  <div className="w-full">
-                    <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-2">
+
+                  <div className="w-full max-w-lg">
+                    <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-3">
                       {services[hoveredIndex].name}
                     </h3>
-                    <p className="text-white/80 font-body text-sm md:text-lg leading-relaxed font-medium line-clamp-3">
+                    <p className="text-white/80 font-body text-sm md:text-base leading-relaxed font-bold uppercase tracking-widest opacity-80 line-clamp-5">
                       {services[hoveredIndex].description}
                     </p>
                   </div>
@@ -84,31 +80,43 @@ const ServiceDiscovery = () => {
             </div>
           </div>
 
-          {/* Right Column: Pill Buttons */}
+          {/* Right Column: Pill Buttons with "Liquid Fill" Background */}
           <div className="flex flex-col gap-3 lg:pt-4">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onClick={() => router.push(`/services/${service.slug}`)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`group flex items-center justify-between px-6 py-3.5 rounded-full border-2 transition-all duration-300 cursor-pointer
-                  ${hoveredIndex === index
-                    ? 'bg-white text-accent-orange border-white'
-                    : 'bg-transparent text-white border-white/20 hover:border-white'
-                  }`}
+                className="relative group cursor-pointer overflow-hidden rounded-full border-2 border-white/20 transition-all duration-300"
               >
-                <span className="text-xs md:text-sm font-heading font-black uppercase tracking-widest text-left">
-                  {service.name}
-                </span>
-                <ArrowUpRight
-                  size={16}
-                  className={`transition-transform duration-300 ${hoveredIndex === index ? 'rotate-0' : 'group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
+                {/* Animated Background Layer */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    x: hoveredIndex === index ? "0%" : "-102%",
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 18,
+                    mass: 0.8
+                  }}
+                  className="absolute inset-0 bg-white z-0"
                 />
-              </motion.div>
+
+                <div className="relative z-10 w-full flex items-center justify-between px-8 py-3.5">
+                  <span className={`text-[10px] md:text-sm font-heading font-black uppercase tracking-widest transition-colors duration-500 ${hoveredIndex === index ? 'text-accent-orange' : 'text-white'}`}>
+                    {service.name}
+                  </span>
+                  <ArrowUpRight
+                    size={20}
+                    className={`transition-all duration-500 ${hoveredIndex === index ? 'text-accent-orange rotate-0 translate-x-1' : 'text-white group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
+                  />
+                </div>
+              </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

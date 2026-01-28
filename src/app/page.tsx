@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import SplashScreen from '@/components/ui/SplashScreen'
 import HeroSection from './home/_sections/HeroSection'
 import AboutSection from './home/_sections/AboutSection'
@@ -12,12 +12,14 @@ import BlogsSection from './home/_sections/BlogsSection'
 import PartnersSection from './home/_sections/PartnersSection'
 
 const RootPage = () => {
+  const [isSplashFinished, setIsSplashFinished] = useState(false);
+
   return (
     <main className="relative w-full overflow-hidden">
-      <SplashScreen />
+      <SplashScreen onComplete={() => setIsSplashFinished(true)} />
 
       <div className="w-full">
-        <HeroSection />
+        <HeroSection isSplashFinished={isSplashFinished} />
         <AboutSection />
         <ServiceDiscovery />
         <ServicesSection />

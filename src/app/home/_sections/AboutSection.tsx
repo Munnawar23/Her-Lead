@@ -10,7 +10,7 @@ const AboutSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }
     }
   }
 
@@ -20,7 +20,7 @@ const AboutSection = () => {
       opacity: 1,
       scale: 1,
       x: 0,
-      transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const }
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
     }
   }
 
@@ -28,7 +28,7 @@ const AboutSection = () => {
     hidden: { y: "100%" },
     visible: {
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }
     }
   }
 
@@ -37,8 +37,8 @@ const AboutSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.08,
+        delayChildren: 0.05
       }
     }
   }
@@ -56,14 +56,14 @@ const AboutSection = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.1 }}
           className='mb-16 md:mb-24 flex justify-center w-full'
         >
           <div className='inline-flex items-center justify-center gap-3 md:gap-6 w-max'>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1, ease: "circOut" }}
+              transition={{ duration: 0.6, ease: "circOut" }}
               className='w-8 md:w-20 h-[2px] bg-secondary origin-right'
             />
             <motion.span
@@ -75,7 +75,7 @@ const AboutSection = () => {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1, ease: "circOut" }}
+              transition={{ duration: 0.6, ease: "circOut" }}
               className='w-8 md:w-20 h-[2px] bg-secondary origin-left'
             />
           </div>
@@ -87,7 +87,7 @@ const AboutSection = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={imageVariants}
             className='lg:col-span-6 relative order-2 lg:order-1 flex justify-center lg:justify-start'
           >
@@ -110,7 +110,7 @@ const AboutSection = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={containerVariants}
             className='lg:col-span-6 space-y-8 lg:space-y-12 order-1 lg:order-2'
           >
@@ -164,7 +164,7 @@ const AboutSection = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={containerVariants}
             className='w-full space-y-4'
           >
@@ -210,8 +210,8 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
             className='relative flex justify-center lg:justify-end'
           >
             <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm bg-text/5'>

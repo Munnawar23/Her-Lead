@@ -1,6 +1,5 @@
 "use client"
 import { Instagram, Linkedin } from "lucide-react"
-import { motion } from "motion/react"
 import { useRouter } from "next/navigation"
 
 const XIcon = ({ size = 18 }: { size?: number }) => (
@@ -9,41 +8,22 @@ const XIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 )
 
+const socials = [
+  { label: "Instagram", href: "#", icon: Instagram },
+  { label: "LinkedIn", href: "#", icon: Linkedin },
+  { label: "X", href: "#", icon: XIcon },
+]
+
+const buttons = [
+  { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
+  { label: "General Inquiries", bg: "bg-secondary", path: "mailto:info@herlead.com" },
+  { label: "I'm an Influencer", bg: "bg-accent-orange", path: "/i-am-influencer" },
+  { label: "I Am a Talent", bg: "bg-secondary", path: "/i-am-talent" },
+  { label: "I Need a Talent", bg: "bg-accent-blue", path: "/hire-talent" }
+]
+
 const Footer = () => {
   const router = useRouter()
-  const socials = [
-    { label: "Instagram", href: "#", icon: Instagram },
-    { label: "LinkedIn", href: "#", icon: Linkedin },
-    { label: "X", href: "#", icon: XIcon },
-  ]
-
-  const buttons = [
-    { label: "Request a Quote", bg: "bg-primary", path: "/request-quote" },
-    { label: "General Inquiries", bg: "bg-secondary", path: "mailto:info@herlead.com" },
-    { label: "I'm an Influencer", bg: "bg-accent-orange", path: "/i-am-influencer" },
-    { label: "I Am a Talent", bg: "bg-secondary", path: "/i-am-talent" },
-    { label: "I Need a Talent", bg: "bg-accent-blue", path: "/hire-talent" }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-    }
-  }
 
   return (
     <footer className="w-full bg-bg-light border-t border-text/10">
@@ -53,16 +33,8 @@ const Footer = () => {
         <div className="w-full pt-16 pb-8 border-b border-text/5">
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             {buttons.map((btn, i) => (
-              <motion.button
+              <button
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.1,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
                 onClick={() => {
                   if (btn.path.startsWith('mailto')) {
                     window.open(btn.path, '_blank');
@@ -74,7 +46,7 @@ const Footer = () => {
               >
                 <span className="relative z-10">{btn.label}</span>
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>
@@ -84,41 +56,26 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
 
             {/* Left Column - CTA */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={containerVariants}
-              className="space-y-8"
-            >
-              <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black text-text leading-[1.1] md:leading-[0.9] tracking-tighter uppercase">
+            <div className="space-y-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-main-heading font-heading font-black text-text leading-[1.1] md:leading-[0.9] tracking-tighter uppercase">
                 Let's <span className="text-primary italic">Create</span><br />
                 Something <span className="text-secondary italic">Great</span>
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-sm md:text-body-custom font-body text-text max-w-md leading-relaxed font-bold">
+              </h2>
+              <p className="text-sm md:text-body-custom font-body text-text max-w-md leading-relaxed font-bold">
                 Ready to elevate your brand? Get in touch and let's start building your digital presence together.
-              </motion.p>
-              <motion.button
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </p>
+              <button
                 onClick={() => window.location.href = 'mailto:munawwarh48@gmail.com'}
                 className="group px-8 py-4 bg-secondary text-white rounded-full font-heading font-black text-xs uppercase tracking-wider hover:brightness-110 transition-all inline-flex items-center gap-3"
               >
                 Get In Touch
                 <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
             {/* Right Column - Contact Info */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={containerVariants}
-              className="space-y-12"
-            >
-              <motion.div variants={itemVariants}>
+            <div className="space-y-12">
+              <div>
                 <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Contact</h3>
                 <div className="space-y-3">
                   <p className="text-sm md:text-body-custom font-body font-bold text-text">
@@ -132,37 +89,30 @@ const Footer = () => {
                     <a href="mailto:info@herlead.com" className="hover:text-primary transition-colors">info@herlead.com</a>
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants}>
+              <div>
                 <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Follow</h3>
                 <div className="flex flex-wrap gap-4">
                   {socials.map((social, i) => (
-                    <motion.a
+                    <a
                       key={i}
                       href={social.href}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
                       className="w-12 h-12 rounded-full border border-text/10 flex items-center justify-center text-text hover:text-primary hover:border-primary transition-all duration-300 bg-white/5"
                       aria-label={social.label}
                     >
                       <social.icon size={20} />
-                    </motion.a>
+                    </a>
                   ))}
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="py-8 border-t border-text/10"
-        >
+        <div className="py-8 border-t border-text/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-4 text-[10px] md:text-xs font-body font-bold text-text uppercase tracking-widest">
               <span>© 2026 Her Lead</span>
@@ -172,7 +122,7 @@ const Footer = () => {
               <a href="#" className="hover:text-secondary transition-colors">Terms</a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </footer>

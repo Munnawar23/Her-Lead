@@ -10,8 +10,8 @@ const TestimonialSection = () => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.8,
+        delay: i * 0.08,
+        duration: 0.6,
         ease: [0.22, 1, 0.36, 1] as const
       }
     })
@@ -27,8 +27,8 @@ const TestimonialSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
           className="text-center mb-12 md:mb-16"
         >
           <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
@@ -36,7 +36,7 @@ const TestimonialSection = () => {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
               className='w-12 md:w-20 h-[2px] bg-white/30 origin-right'
             />
             <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-white whitespace-nowrap'>
@@ -46,7 +46,7 @@ const TestimonialSection = () => {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
               className='w-12 md:w-20 h-[2px] bg-white/30 origin-left'
             />
           </div>
@@ -66,7 +66,7 @@ const TestimonialSection = () => {
               custom={index}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
               variants={cardVariants}
               className='space-y-6 flex flex-col'
             >

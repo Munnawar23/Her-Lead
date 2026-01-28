@@ -2,14 +2,14 @@ export const socialPosts = [
     {
         id: 1,
         user: "herlead_agency",
-        image: "/images/media.webp",
+        image: "/images/lion.webp",
         likes: "12.4k",
         rotation: -6,
     },
     {
         id: 2,
         user: "herlead_agency",
-        image: "/images/lion.webp",
+        image: "/images/post.webp",
         likes: "8.9k",
         rotation: 6,
     },

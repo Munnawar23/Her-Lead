@@ -1,3 +1,4 @@
+'use client'
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 
@@ -22,8 +23,8 @@ const PartnersSection = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
                     className="text-center mb-10 md:mb-24"
                 >
                     <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
@@ -31,7 +32,7 @@ const PartnersSection = () => {
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+                            transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
                             className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
                         />
                         <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-secondary'>
@@ -41,11 +42,10 @@ const PartnersSection = () => {
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
+                            transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
                             className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
                         />
                     </div>
-
                 </motion.div>
 
                 {/* Bottom: Brands Marquee */}
@@ -79,11 +79,8 @@ const PartnersSection = () => {
                                 </div>
                             ))}
                         </motion.div>
-
-
                     </div>
                 </div>
-
             </div>
         </section>
     )
