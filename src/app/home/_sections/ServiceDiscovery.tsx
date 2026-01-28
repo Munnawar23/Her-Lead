@@ -71,11 +71,11 @@ const ServiceDiscovery = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="max-w-[650px]">
+                  <div className="w-full">
                     <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-2">
                       {services[hoveredIndex].name}
                     </h3>
-                    <p className="text-white/80 font-body text-sm md:text-lg leading-relaxed font-medium">
+                    <p className="text-white/80 font-body text-sm md:text-lg leading-relaxed font-medium line-clamp-3">
                       {services[hoveredIndex].description}
                     </p>
                   </div>
