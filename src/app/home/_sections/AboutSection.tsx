@@ -96,7 +96,7 @@ const AboutSection = () => {
             >
               <div className='absolute inset-0'>
                 <Image
-                  src="/images/about.webp"
+                  src="/images/about/about.webp"
                   alt="About Us"
                   fill
                   className="object-cover"
@@ -216,7 +216,7 @@ const AboutSection = () => {
           >
             <div className='relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-sm bg-text/5'>
               <Image
-                src="/images/founder.webp"
+                src="/images/about/founder.webp"
                 alt="Founder"
                 fill
                 className="object-cover"

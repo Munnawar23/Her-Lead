@@ -31,7 +31,7 @@ export const serviceCards = [
             "Website Content Structuring"
         ],
         video: "/videos/book.mp4",
-        images: ["/images/web1.webp", "/images/web2.webp"]
+        images: ["/images/service-legacy/web1.webp", "/images/service-legacy/web2.webp"]
     },
     {
         title: "Paid Ads",
@@ -47,7 +47,7 @@ export const serviceCards = [
             "Instagram ads",
             "LinkedIn ads"
         ],
-        images: ["/images/media.webp"]
+        images: ["/images/service-legacy/media.webp"]
     },
     {
         title: "Corporate Training & Development",
@@ -62,7 +62,7 @@ export const serviceCards = [
             "Team Productivity & Culture Workshops",
             "Personal Branding for Professionals"
         ],
-        images: ["/images/ads.webp"]
+        images: ["/images/service-legacy/ads.webp"]
     },
     {
         title: "Make me the brand",
@@ -94,7 +94,7 @@ export const serviceCards = [
             "Professional Grooming and Appearance Training",
             "Resume Building & Job Search"
         ],
-        images: ["/images/services/career-talent.webp"]
+        images: ["/images/service-legacy/career-talent.webp"]
     }
 ];
 

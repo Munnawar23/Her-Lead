@@ -39,7 +39,7 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
       {/* --- LIGHTWEIGHT PERFORMANCE BACKGROUND --- */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {/* Simple geometric accents instead of heavy blurs */}
-        <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] bg-size-[40px_40px]" />
 
         {/* Subtle non-blurred accents */}
         <div className="absolute top-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-primary/5 rounded-full" />
@@ -132,7 +132,7 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
               className="relative w-[70%] md:w-[60%] lg:w-[70%] z-10 will-change-transform"
             >
               <Image
-                src="/images/logo.webp"
+                src="/images/brand/logo.webp"
                 alt="HerLead Hero"
                 width={800}
                 height={800}
@@ -215,7 +215,7 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
             </div>
 
             {/* 8. Performance Graphic (Bottom Left) */}
-            <div className="absolute bottom-[5%] left-0 bg-secondary text-white px-6 py-5 rounded-[2rem] shadow-2xl rotate-[-8deg] hidden md:block z-20 border-2 border-white/20">
+            <div className="absolute bottom-[5%] left-0 bg-secondary text-white px-6 py-5 rounded-4xl shadow-2xl rotate-[-8deg] hidden md:block z-20 border-2 border-white/20">
               <div className="flex flex-col items-center">
                 <span className="text-3xl font-heading font-black">250%</span>
                 <span className="text-[9px] font-black uppercase tracking-widest opacity-90">Verified Results</span>
@@ -230,7 +230,7 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
       {/* Simplified Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
         <span className="text-[8px] font-black uppercase tracking-[0.4em]">Scroll</span>
-        <div className="w-[1px] h-8 bg-black animate-bounce" />
+        <div className="w-px h-8 bg-black animate-bounce" />
       </div>
 
     </motion.section>

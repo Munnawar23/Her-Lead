@@ -14,7 +14,7 @@ const IAmTalentPage = () => {
                 line2: "US."
             }}
             description="Yes, we’ll ask for your resume. No, we won’t judge you for the font. Probably."
-            heroImage="/images/services/career-talent.webp"
+            heroImage="/images/service-legacy/career-talent.webp"
             heroTestimonial="We don't scan resumes, we see potential."
             philosophyTitle="We take talent <span class='text-secondary italic'>seriously</span> (and careers personally)."
             philosophyText="This space is for people who know they have more to offer than their current role or job portal luck suggests."
@@ -24,7 +24,7 @@ const IAmTalentPage = () => {
                 "Personalized Career Advocacy",
                 "Exclusive High-Impact Roles"
             ]}
-            philosophyImages={["/images/services/career-mastery.webp", "/images/services/career-talent.webp"]}
+            philosophyImages={["/images/services/12.webp", "/images/service-legacy/career-talent.webp"]}
             formTitle="Talent Profile"
             formSubtitle="Bring your best. We’re paying attention."
             submitText="Submit Application"

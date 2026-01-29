@@ -128,9 +128,9 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                             transition={{ duration: 1.2, ease: "easeOut" }}
                             className="lg:col-span-5 relative hidden lg:block"
                         >
-                            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl">
+                            <div className="relative aspect-4/5 rounded-[3rem] overflow-hidden border-12 border-white shadow-2xl">
                                 <img src={heroImage} alt="" className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                                 {heroTestimonial && (
                                     <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20">
                                         <p className="text-white text-xs font-body italic tracking-wide">
@@ -146,7 +146,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
             </section>
 
             {/* Content Divider */}
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.05] to-transparent" />
+            <div className="w-full h-px bg-linear-to-r from-transparent via-black/5 to-transparent" />
 
             {/* Philosophy Section - Minimalist Grid */}
             <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 md:py-16">
@@ -160,8 +160,8 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
-                            {philosophyChecks.map((item, i) => (
-                                <div key={i} className="flex items-start gap-4 group">
+                            {philosophyChecks.map((item) => (
+                                <div key={item} className="flex items-start gap-4 group">
                                     <div className="w-6 h-6 rounded-full border border-black/10 flex items-center justify-center text-secondary shrink-0 mt-1 transition-colors group-hover:bg-secondary group-hover:border-secondary group-hover:text-white">
                                         <CheckCircle2 className="w-3.5 h-3.5" />
                                     </div>
@@ -173,12 +173,12 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
 
                     <div className="relative grid grid-cols-2 gap-8">
                         <div className="space-y-8 pt-12">
-                            <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
+                            <div className="aspect-3/4 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
                                 <img src={philosophyImages[0]} alt="" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                             </div>
                         </div>
                         <div className="space-y-8">
-                            <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
+                            <div className="aspect-3/4 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
                                 <img src={philosophyImages[1]} alt="" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                             </div>
                         </div>
@@ -187,7 +187,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
             </section>
 
             {/* Form Section - Clean Integrated Look */}
-            <section className="relative w-full bg-white py-12 md:py-20 border-t border-black/[0.03]">
+            <section className="relative w-full bg-white py-12 md:py-20 border-t border-black/3">
                 <div className="max-w-4xl mx-auto px-6">
                     <div className="text-center mb-20 space-y-4">
                         <h2 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-tighter">{formTitle}</h2>
@@ -205,18 +205,18 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                         <form onSubmit={handleSubmit} className="space-y-12">
                             <div className="space-y-16">
                                 {formSections.map((section, idx) => (
-                                    <div className="space-y-10 group">
+                                    <div key={section.title} className="space-y-10 group">
                                         <div className="flex items-center gap-6">
                                             <div className="flex flex-col">
                                                 <span className="text-[10px] font-heading font-black text-black tracking-[0.4em] uppercase mb-1">Step 0{idx + 1}</span>
                                                 <h3 className="text-xl font-heading font-black uppercase tracking-widest text-black">{section.title}</h3>
                                             </div>
-                                            <div className="flex-1 h-px bg-black/[0.15] group-hover:bg-black/30 transition-colors" />
+                                            <div className="flex-1 h-px bg-black/15 group-hover:bg-black/30 transition-colors" />
                                         </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-                                            {section.fields.map((field, fIdx) => (
-                                                <div key={fIdx} className={field.fullWidth ? 'md:col-span-2' : ''}>
+                                            {section.fields.map((field) => (
+                                                <div key={field.name} className={field.fullWidth ? 'md:col-span-2' : ''}>
                                                     <label className={labelClasses}>{field.label}{field.required && <span className="text-secondary ml-1">*</span>}</label>
                                                     {field.type === 'textarea' ? (
                                                         <textarea
@@ -237,8 +237,8 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                                                 className={`${inputClasses} appearance-none pr-10`}
                                                             >
                                                                 <option value="">Select Option</option>
-                                                                {field.options?.map((opt, oIdx) => (
-                                                                    <option key={oIdx} value={opt.value}>{opt.label}</option>
+                                                                {field.options?.map((opt) => (
+                                                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
                                                                 ))}
                                                             </select>
                                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
@@ -263,7 +263,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                 ))}
                             </div>
 
-                            <div className="pt-12 flex flex-col items-center border-t border-black/[0.05]">
+                            <div className="pt-12 flex flex-col items-center border-t border-black/5">
                                 <button className="group relative w-full max-w-sm bg-text text-white py-6 rounded-lg font-heading font-black uppercase text-[11px] tracking-[0.4em] overflow-hidden transition-all hover:bg-secondary hover:scale-[1.01] active:scale-[0.99] shadow-xl hover:shadow-secondary/20">
                                     <span className="relative z-10 flex items-center justify-center gap-4">
                                         {submitText}

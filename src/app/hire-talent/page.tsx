@@ -14,7 +14,7 @@ const HireTalentPage = () => {
                 line2: "Without the Grind."
             }}
             description="Stop sifted through endless resumes. We deliver pre-vetted, high-impact talent ready to scale your vision from Day 1."
-            heroImage="/images/services/find-talent.webp"
+            heroImage="/images/services/16.webp"
             heroTestimonial="Quality that accelerated our growth."
             philosophyTitle="Our talent doesn't <span class='text-secondary italic'>walk in</span> off the street."
             philosophyText="Rigorous verification, interviews, and real-world testing before you ever see a CV."
@@ -24,7 +24,7 @@ const HireTalentPage = () => {
                 "Prior Experience Verification",
                 "Communication & Soft Skills Testing"
             ]}
-            philosophyImages={["/images/services/find-talent-1.webp", "/images/services/find-talent-2.webp"]}
+            philosophyImages={["/images/services/16.webp", "/images/services/1.webp"]}
             formTitle="Start Your Brief"
             formSubtitle="Ready to perform from day one."
             submitText="Send Request"

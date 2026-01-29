@@ -14,7 +14,7 @@ const RequestQuotePage = () => {
                 line2: "WITH US."
             }}
             description="At HerLead, we support brands that are ready to grow with clarity and confidence. Starting a conversation, not a sales process."
-            heroImage="/images/services/pr-media.webp"
+            heroImage="/images/services/1.webp"
             heroTestimonial="Strategic support for the build."
             philosophyTitle="Growth should be <span class='text-secondary italic'>intentional.</span>"
             philosophyText="We help businesses strengthen their presence, tell their story with purpose, and build the right teams to support their journey."
@@ -24,7 +24,7 @@ const RequestQuotePage = () => {
                 "Talent Scaling Support",
                 "Performance-Led Insights"
             ]}
-            philosophyImages={["/images/services/pr-media-1.webp", "/images/services/pr-media-2.webp"]}
+            philosophyImages={["/images/services/1.webp", "/images/services/2.webp"]}
             formTitle="Service Inquiry"
             formSubtitle="Let's start the conversation."
             submitText="Submit Request"

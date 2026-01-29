@@ -14,7 +14,7 @@ const InfluencerPage = () => {
                 line2: "HERE."
             }}
             description="Influencer Partnerships. That tells us you know your worth. We're always watching for creators who understand the power of their voice."
-            heroImage="/images/services/influencer-2.webp"
+            heroImage="/images/services/4.webp"
             heroTestimonial="We value creators who value their audience."
             philosophyTitle="Noise is cheap. <span class='text-secondary italic'>Influence</span> is earned."
             philosophyText="We’re looking for creators who understand that a partnership is more than just a post—it’s a shared story."
@@ -24,7 +24,7 @@ const InfluencerPage = () => {
                 "Direct PR Network Access",
                 "Creative Freedom Commitment"
             ]}
-            philosophyImages={["/images/services/influencer-marketing.webp", "/images/services/influencer-2.webp"]}
+            philosophyImages={["/images/services/3.webp", "/images/services/4.webp"]}
             formTitle="Creator Profile"
             formSubtitle="Show us your creative energy."
             submitText="Submit Interest"
