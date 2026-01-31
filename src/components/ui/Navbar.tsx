@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Button from '@/components/common/Button'
-import { motion, AnimatePresence } from 'motion/react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const Navbar = () => {
   const router = useRouter()
@@ -12,6 +13,10 @@ const Navbar = () => {
   const [hidden, setHidden] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const navRef = useRef<HTMLElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const menuContentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +38,37 @@ const Navbar = () => {
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [pathname])
+
+  useGSAP(() => {
+    if (hidden && !mobileMenuOpen) {
+      gsap.to(navRef.current, { y: '-100%', opacity: 0, duration: 0.6, ease: "power2.inOut" });
+    } else {
+      gsap.to(navRef.current, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" });
+    }
+  }, { dependencies: [hidden, mobileMenuOpen] });
+
+  useGSAP(() => {
+    if (mobileMenuOpen) {
+      gsap.set(menuRef.current, { display: 'block', x: '100%' });
+      gsap.to(menuRef.current, { x: 0, duration: 0.7, ease: "power3.out" });
+
+      // Stagger child elements
+      const elements = menuContentRef.current?.querySelectorAll('.menu-item');
+      if (elements) {
+        gsap.fromTo(elements,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.2, ease: "power2.out" }
+        );
+      }
+    } else {
+      gsap.to(menuRef.current, {
+        x: '100%',
+        duration: 0.6,
+        ease: "power3.in",
+        onComplete: () => { gsap.set(menuRef.current, { display: 'none' }); }
+      });
+    }
+  }, { dependencies: [mobileMenuOpen] });
 
   const navLinks = [
     { name: 'Home', path: '/', action: 'reload' },
@@ -63,41 +99,10 @@ const Navbar = () => {
     router.push(link.path)
   }
 
-  const navbarVariants = {
-    visible: { y: 0, opacity: 1 },
-    hidden: { y: '-100%', opacity: 0 },
-  }
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const } },
-    exit: { opacity: 0, y: 10, transition: { duration: 0.3 } },
-  }
-
   return (
     <>
-      <motion.nav
-        variants={navbarVariants}
-        animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+      <nav
+        ref={navRef}
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${mobileMenuOpen ? 'bg-transparent' : 'bg-white/95'} ${scrolled ? 'py-3' : 'py-5'}`}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -137,16 +142,15 @@ const Navbar = () => {
           {/* Center: Nav Links */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-10 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
-              <motion.a
+              <a
                 key={link.name}
                 href={link.path}
                 onClick={(e) => handleNavClick(e, link)}
-                whileHover={{ scale: 1.05 }}
                 className="text-[13px] uppercase tracking-[0.2em] font-heading font-bold text-text hover:text-secondary transition-colors relative group whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary group-hover:w-full transition-all duration-300" />
-              </motion.a>
+              </a>
             ))}
           </div>
 
@@ -177,101 +181,85 @@ const Navbar = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <motion.span
-              animate={mobileMenuOpen ? { rotate: 45, y: 8, backgroundColor: "var(--color-white)" } : { rotate: 0, y: 0, backgroundColor: "var(--color-black)" }}
-              className="w-6 h-0.5"
+            <span
+              className={`w-6 h-0.5 transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2 bg-white' : 'bg-black'}`}
             />
-            <motion.span
-              animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1, backgroundColor: "var(--color-black)" }}
-              className="w-3 h-0.5 self-end mr-2"
+            <span
+              className={`w-3 h-0.5 self-end mr-2 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'bg-black'}`}
             />
-            <motion.span
-              animate={mobileMenuOpen ? { rotate: -45, y: -8, backgroundColor: "var(--color-white)" } : { rotate: 0, y: 0, backgroundColor: "var(--color-black)" }}
-              className="w-6 h-0.5"
+            <span
+              className={`w-6 h-0.5 transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2 bg-white' : 'bg-black'}`}
             />
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-bg-dark z-40 lg:hidden"
-          >
+      <div
+        ref={menuRef}
+        className="fixed inset-0 bg-bg-dark z-40 lg:hidden hidden"
+        style={{ transform: 'translateX(100%)' }}
+      >
 
-            <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-primary/10 rounded-full" />
+        <div
+          ref={menuContentRef}
+          className="relative z-10 flex flex-col items-center justify-center h-full gap-12 px-8"
+        >
+          {/* Mobile Nav Links */}
+          <nav className="flex flex-col items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.path}
+                onClick={(e) => {
+                  handleNavClick(e, link);
+                  setMobileMenuOpen(false);
+                }}
+                className="menu-item text-xl uppercase tracking-[0.4em] font-heading font-black text-white hover:text-primary transition-colors opacity-0"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="relative z-10 flex flex-col items-center justify-center h-full gap-12 px-8"
-            >
-              {/* Mobile Nav Links */}
-              <nav className="flex flex-col items-center gap-6">
-                {navLinks.map((link) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.path}
-                    variants={itemVariants}
-                    onClick={(e) => {
-                      handleNavClick(e, link);
+          <div className="menu-item flex items-center gap-3 opacity-0">
+            <div className="w-8 h-px bg-white opacity-40" />
+            <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap opacity-40">Strategy • Creativity • Growth</span>
+            <div className="w-8 h-px bg-white opacity-40" />
+          </div>
+
+          {/* Mobile Buttons Grid */}
+          <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
+            {[
+              { label: 'I Need a Talent', variant: 'cyan', href: '/hire-talent', isInternal: true },
+              { label: 'I Am a Talent', variant: 'red', href: '/i-am-talent', isInternal: true },
+              { label: 'I Am an Influencer', variant: 'orange', href: '/i-am-influencer', isInternal: true },
+              { label: 'Request for Quote', variant: 'yellow', href: '/request-quote', isInternal: true }
+            ].map((btn, i) => (
+              <div key={i} className="menu-item opacity-0">
+                <Button
+                  onClick={() => {
+                    if (btn.isInternal) {
+                      router.push(btn.href);
                       setMobileMenuOpen(false);
-                    }}
-                    className="text-xl uppercase tracking-[0.4em] font-heading font-black text-white hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </motion.a>
-                ))}
-              </nav>
-
-              <motion.div variants={itemVariants} className="flex items-center gap-3 opacity-40">
-                <div className="w-8 h-px bg-white" />
-                <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
-                <div className="w-8 h-px bg-white" />
-              </motion.div>
-
-              {/* Mobile Buttons Grid */}
-              <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
-                {[
-                  { label: 'I Need a Talent', variant: 'cyan', href: '/hire-talent', isInternal: true },
-                  { label: 'I Am a Talent', variant: 'red', href: '/i-am-talent', isInternal: true },
-                  { label: 'I Am an Influencer', variant: 'orange', href: '/i-am-influencer', isInternal: true },
-                  { label: 'Request for Quote', variant: 'yellow', href: '/request-quote', isInternal: true }
-                ].map((btn, i) => (
-                  <motion.div key={i} variants={itemVariants}>
-                    <Button
-                      onClick={() => {
-                        if (btn.isInternal) {
-                          router.push(btn.href);
-                          setMobileMenuOpen(false);
-                        } else {
-                          window.open(btn.href, '_blank');
-                        }
-                      }}
-                      variant={btn.variant as any}
-                      size="md"
-                      fullWidth
-                      className="py-4 text-[10px]"
-                    >
-                      {btn.label}
-                    </Button>
-                  </motion.div>
-                ))}
+                    } else {
+                      window.open(btn.href, '_blank');
+                    }
+                  }}
+                  variant={btn.variant as any}
+                  size="md"
+                  fullWidth
+                  className="py-4 text-[10px]"
+                >
+                  {btn.label}
+                </Button>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   )
 }
 
 export default Navbar
-

@@ -137,10 +137,11 @@ const AboutSection = () => {
 
     // Marquee
     if (marqueeRef.current) {
-      gsap.to(marqueeRef.current.querySelector('.marquee-inner'), {
+      const inner = marqueeRef.current.querySelector('.marquee-inner');
+      gsap.to(inner, {
         xPercent: -50,
         repeat: -1,
-        duration: 10,
+        duration: 5, // Much faster speed
         ease: "none",
       });
     }
@@ -168,19 +169,28 @@ const AboutSection = () => {
 
   }, { scope: containerRef })
 
+  const marqueeWords = [
+    { text: "ELEVATING AUTHORITY", font: "font-heading font-black uppercase" },
+    { text: "DIGITAL IMPACT", font: "font-heading font-black uppercase" },
+    { text: "STRATEGIC GROWTH", font: "font-heading font-black uppercase" },
+    { text: "MODERN BRANDING", font: "font-heading font-black uppercase" },
+    { text: "CREATIVE EXCELLENCE", font: "font-heading font-black uppercase" },
+    { text: "VISUAL IDENTITY", font: "font-heading font-black uppercase" },
+    { text: "NEXT-GEN SOLUTIONS", font: "font-heading font-black uppercase" },
+    { text: "PREMIUM DESIGN", font: "font-heading font-black uppercase" }
+  ];
+
   return (
     <section
       ref={containerRef}
-      className='relative w-full bg-[#FDFDFD] px-6 md:px-12 lg:px-20 pt-20 md:pt-32 pb-0 overflow-hidden'
+      className='relative w-full bg-[#FDFDFD] px-6 md:px-12 lg:px-20 pt-10 md:pt-32 pb-0 overflow-hidden'
       id="about"
     >
       {/* Background Decor - Removed Blurs for performance */}
-      <div className='absolute top-20 right-[10%] w-64 h-64 bg-secondary/5 rounded-full' />
-      <div className='absolute bottom-20 left-[5%] w-96 h-96 bg-primary/5 rounded-full' />
 
       <div className='max-w-7xl mx-auto'>
         {/* Centered Label */}
-        <div className='section-label-container mb-20 md:mb-28 flex justify-center w-full overflow-hidden'>
+        <div className='section-label-container mb-6 md:mb-28 flex justify-center w-full overflow-hidden'>
           <div className='inline-flex items-center justify-center gap-6 w-max'>
             <div className='section-line w-12 md:w-24 h-px bg-secondary/30 origin-right' />
             <div className='section-label-inner'>
@@ -218,7 +228,7 @@ const AboutSection = () => {
                   <span className='inline-block text-secondary'>DIGITAL</span>
                 </div>
                 <div className='reveal-text overflow-hidden'>
-                  <span className='inline-block text-primary'>IMPACT.</span>
+                  <span className='inline-block text-secondary'>IMPACT.</span>
                 </div>
               </h2>
             </div>
@@ -240,7 +250,7 @@ const AboutSection = () => {
                   { label: 'Results', value: '100%' }
                 ].map((stat, i) => (
                   <div key={i} className='stat-item space-y-1'>
-                    <span className='block text-xs uppercase tracking-[0.3em] font-heading font-black text-primary'>{stat.label}</span>
+                    <span className='block text-xs uppercase tracking-[0.3em] font-heading font-black text-secondary'>{stat.label}</span>
                     <span className='text-4xl md:text-5xl font-black font-heading text-text'>{stat.value}</span>
                   </div>
                 ))}
@@ -251,9 +261,9 @@ const AboutSection = () => {
       </div>
 
       {/* --- NEW SHOWCASE EFFECT SECTION (Full Bleed Breakout) --- */}
-      <div className="showcase-visual-wrapper relative w-screen left-1/2 -translate-x-1/2 h-screen md:h-[130vh] bg-bg-light flex flex-col items-center justify-center overflow-hidden mt-0 md:mt-0">
+      <div className="showcase-visual-wrapper relative w-screen left-1/2 -translate-x-1/2 h-screen md:h-[130vh] bg-bg-light flex flex-col items-center justify-center overflow-hidden mt-0 md:mb-0">
         {/* --- CENTRAL VISUAL --- */}
-        <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[60vh] md:w-[45vw] md:h-[70vh] z-10 flex items-center justify-center pointer-events-none">
+        <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[60vh] md:w-[45vw] md:h-[70vh] z-10 flex items-center justify-center pointer-events-none">
           <div className="showcase-img-wrapper w-full h-full overflow-hidden relative">
             <Image
               src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop"
@@ -267,13 +277,13 @@ const AboutSection = () => {
         </div>
 
         {/* --- TYPOGRAPHY LAYERS --- */}
-        <div className="absolute top-[17%] md:top-[20%] left-1/2 -translate-x-1/2 z-20 w-full text-center mix-blend-difference text-white pointer-events-none">
+        <div className="absolute top-[13%] md:top-[15%] left-1/2 -translate-x-1/2 z-20 w-full text-center mix-blend-difference text-white pointer-events-none">
           <div className="showcase-title-top font-display font-bold text-[22vw] md:text-[10vw] leading-none uppercase tracking-tighter">
             {splitText("Modern")}
           </div>
         </div>
 
-        <div className="absolute bottom-[17%] md:bottom-[20%] left-1/2 -translate-x-1/2 z-20 w-full text-center mix-blend-difference text-white pointer-events-none">
+        <div className="absolute bottom-[23%] md:bottom-[23%] left-1/2 -translate-x-1/2 z-20 w-full text-center mix-blend-difference text-white pointer-events-none">
           <div className="showcase-title-bottom font-heading font-black text-[22vw] md:text-[10vw] leading-none uppercase tracking-tighter">
             {splitText("Brand")}
           </div>
@@ -288,7 +298,6 @@ const AboutSection = () => {
         <div className="absolute top-12 right-8 md:top-16 md:right-12 z-30 flex flex-col items-end gap-2">
           <span className="font-heading font-black text-[10px] uppercase tracking-widest text-right text-black/40">Global Reach</span>
           <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></div>
             <div className="w-2.5 h-2.5 rounded-full bg-black/10"></div>
           </div>
         </div>
@@ -296,18 +305,18 @@ const AboutSection = () => {
 
 
         {/* --- MARQUEE --- */}
-        <div ref={marqueeRef} className="absolute bottom-0 w-full bg-bg-dark text-white py-12 z-50 overflow-hidden border-t border-white/5">
+        <div ref={marqueeRef} className="absolute bottom-0 w-full bg-secondary text-white py-10 md:py-14 z-50 overflow-hidden border-t border-white/5 mt-10">
           <div className="marquee-inner flex whitespace-nowrap will-change-transform">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="flex items-center gap-20 px-10">
-                <span className="text-3xl md:text-5xl font-display italic font-light tracking-wider text-white">
-                  Elevating Authority
-                </span>
-                <span className="w-3 h-3 rounded-full bg-secondary"></span>
-                <span className="text-3xl md:text-5xl font-heading font-black uppercase tracking-widest text-white/40">
-                  Digital Impact
-                </span>
-                <span className="w-3 h-3 rounded-full bg-secondary"></span>
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex items-center gap-12 md:gap-20 pr-12 md:pr-20">
+                {marqueeWords.map((word, idx) => (
+                  <React.Fragment key={idx}>
+                    <span className={`text-2xl md:text-5xl tracking-widest text-white ${word.font}`}>
+                      {word.text}
+                    </span>
+                    <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white"></span>
+                  </React.Fragment>
+                ))}
               </div>
             ))}
           </div>
@@ -316,7 +325,7 @@ const AboutSection = () => {
 
       {/* Decorative Side Text */}
       <div className='side-text absolute -right-32 top-1/2 -translate-y-1/2 rotate-90 hidden xl:block pointer-events-none'>
-        <span className='text-[14vh] font-black font-heading text-black/3 select-none whitespace-nowrap uppercase tracking-widest'>
+        <span className='text-[14vh] font-black font-heading text-secondary/10 select-none whitespace-nowrap uppercase tracking-widest'>
           DIGITAL ELEVATION
         </span>
       </div>

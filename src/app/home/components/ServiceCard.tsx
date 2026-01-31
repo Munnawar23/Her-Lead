@@ -4,7 +4,12 @@ import { ArrowUpRight, Zap, Globe, BarChart3, GraduationCap, Box, UserCheck } fr
 import { useRouter } from "next/navigation"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lottie from "lottie-react"
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger)
+}
 
 interface ServiceCardProps {
     group: {
@@ -38,6 +43,8 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
     const cardRef = useRef<HTMLDivElement>(null)
     const visualRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
+    const videoRef = useRef<HTMLVideoElement>(null)
+    const lottieRef = useRef<any>(null)
     const [animationData, setAnimationData] = useState<any>(null)
 
     useEffect(() => {
@@ -50,16 +57,40 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
     }, [group.variant, group.animation])
 
     useGSAP(() => {
-        // Decorative parallax only - optimized
+        // --- 1. Parallax Animation ---
         gsap.to(visualRef.current, {
-            y: -20,
+            y: -30,
             ease: "none",
             force3D: true,
             scrollTrigger: {
                 trigger: cardRef.current,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: true,
+                scrub: 1, // Smooth scrub delay
+            }
+        });
+
+        // --- 2. Media Playback Control ---
+        // Optimize Lottie & Video: Only play when card is active (pinned) or in view
+        ScrollTrigger.create({
+            trigger: cardRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            onEnter: () => {
+                lottieRef.current?.play();
+                videoRef.current?.play().catch(() => { });
+            },
+            onLeave: () => {
+                lottieRef.current?.pause();
+                videoRef.current?.pause();
+            },
+            onEnterBack: () => {
+                lottieRef.current?.play();
+                videoRef.current?.play().catch(() => { });
+            },
+            onLeaveBack: () => {
+                lottieRef.current?.pause();
+                videoRef.current?.pause();
             }
         });
     }, { scope: cardRef });
@@ -68,11 +99,13 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
         switch (group.variant) {
             case "lottie":
                 return animationData ? (
-                    <div className="relative w-full h-full flex items-center justify-center p-2 md:p-4 lg:p-6">
+                    <div className="relative w-full h-full flex items-center justify-center p-2 md:p-4 lg:p-6 transition-opacity duration-500">
                         <div className="w-full max-w-[620px] h-auto scale-110 lg:scale-125">
                             <Lottie
+                                lottieRef={lottieRef}
                                 animationData={animationData}
                                 loop={true}
+                                autoplay={false}
                                 className="w-full h-full"
                             />
                         </div>
@@ -97,9 +130,9 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
             case "video":
                 return group.video ? (
                     <div className="relative w-full h-full flex items-center justify-center p-6 md:p-10 lg:p-12">
-                        <div className="relative w-full max-w-[260px] aspect-9/16 rounded-[2rem] overflow-hidden bg-bg-dark border-8 border-white/10">
+                        <div className="relative w-full max-w-[260px] aspect-9/16 rounded-4xl overflow-hidden bg-bg-dark border-8 border-white/10">
                             <video
-                                autoPlay
+                                ref={videoRef}
                                 muted
                                 loop
                                 playsInline
@@ -117,7 +150,7 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                         <div className="absolute w-[400px] aspect-video rounded-3xl overflow-hidden z-20 translate-y-[-10%] translate-x-[-10%] -rotate-2 border border-white/20">
                             <img src={group.images[0]} alt="" className="w-full h-full object-cover" />
                         </div>
-                        <div className="absolute w-[350px] aspect-video rounded-3xl overflow-hidden z-10 translate-y-[15%] translate-x-[15%] rotate-[4deg] border border-white/10 opacity-80">
+                        <div className="absolute w-[350px] aspect-video rounded-3xl overflow-hidden z-10 translate-y-[15%] translate-x-[15] rotate-[4deg] border border-white/10 shadow-lg">
                             <img src={group.images[1]} alt="" className="w-full h-full object-cover" />
                         </div>
                     </div>
@@ -130,34 +163,34 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
     return (
         <div
             ref={cardRef}
-            className={`relative w-full h-full group/card overflow-hidden rounded-[3.5rem] md:rounded-[4.5rem] transition-all duration-500
-              ${group.color} ${group.textColor} border border-white/10 hover:border-white/20 will-change-transform`}
+            className={`relative w-[90%] h-[90%] group/card overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] transition-all duration-500
+              ${group.color} ${group.textColor} border border-white/10 hover:border-white/20 will-change-transform shadow-2xl mx-auto`}
         >
             {/* Optimized Simple Light Effect */}
             <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-white/5 rounded-full pointer-events-none" />
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] h-full">
                 {/* CONTENT SIDE */}
-                <div ref={contentRef} className="relative z-10 p-7 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-between h-full">
+                <div ref={contentRef} className="relative z-10 p-5 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-between h-full">
                     <div>
-                        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 service-top-badge">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6 service-top-badge">
                             <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/10 border border-white/20">
                                 {getIcon(group.slug)}
                             </div>
-                            <span className="text-xs sm:text-[11px] md:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/70">
+                            <span className="text-[10px] sm:text-[11px] md:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/70">
                                 Premium Solution
                             </span>
                         </div>
 
-                        <h3 className="service-title text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-heading font-black leading-[0.9] tracking-tighter uppercase mb-6 sm:mb-8">
+                        <h3 className="service-title text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-heading font-black leading-[0.9] sm:leading-[0.85] tracking-tighter uppercase mb-4 sm:mb-8">
                             {group.title.split(' ').map((word, i) => (
-                                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden">
+                                <span key={i} className="inline-block mr-2 sm:mr-4 overflow-hidden">
                                     <span className="inline-block">{word}</span>
                                 </span>
                             ))}
                         </h3>
 
-                        <p className="service-desc text-base sm:text-sm md:text-sm lg:text-base font-medium text-white/80 leading-tight sm:leading-relaxed max-w-lg mb-6 sm:mb-10">
+                        <p className="service-desc text-sm sm:text-md md:text-sm lg:text-lg font-medium text-white leading-snug sm:leading-relaxed max-w-xl mb-4 sm:mb-10">
                             {group.desc}
                         </p>
 
@@ -177,14 +210,14 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
 
                     <div
                         onClick={() => router.push(`/services/${group.slug}`)}
-                        className="service-btn flex items-center gap-4 sm:gap-8 group/btn mt-auto w-fit cursor-pointer"
+                        className="service-btn flex items-center gap-4 sm:gap-6 group/btn mt-auto w-fit cursor-pointer"
                     >
-                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover/card:bg-white overflow-hidden">
-                            <ArrowUpRight className="text-white transition-all duration-500 group-hover/card:text-black" size={26} />
+                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover/card:bg-white overflow-hidden">
+                            <ArrowUpRight className="text-white transition-all duration-500 group-hover/card:text-black" size={22} />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[11px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/40">View Impact</span>
-                            <span className="text-3xl sm:text-2xl md:text-2xl lg:text-3xl font-heading font-black uppercase tracking-tight">Explore More</span>
+                            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/40">View Impact</span>
+                            <span className="text-xl sm:text-xl md:text-xl lg:text-2xl font-heading font-black uppercase tracking-tight">Explore More</span>
                         </div>
                     </div>
                 </div>
@@ -192,7 +225,7 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
                 {/* VISUAL SIDE */}
                 <div
                     ref={visualRef}
-                    className="hidden lg:flex relative h-full items-center justify-center bg-white/5 p-12"
+                    className="hidden lg:flex relative h-full items-center justify-center p-12"
                 >
                     {renderVisual()}
                 </div>

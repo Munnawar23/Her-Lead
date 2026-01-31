@@ -5,14 +5,14 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
 const partners = [
-    { name: "Meta", logo: "https://svgl.app/library/meta.svg" },
-    { name: "Google", logo: "https://svgl.app/library/google.svg" },
-    { name: "Shopify", logo: "https://svgl.app/library/shopify.svg" },
-    { name: "Mailchimp", logo: "https://svgl.app/library/mailchimp.svg" },
-    { name: "Amazon", logo: "https://svgl.app/library/amazon.svg" },
-    { name: "Microsoft", logo: "https://svgl.app/library/microsoft.svg" },
-    { name: "Adobe", logo: "https://svgl.app/library/adobe.svg" },
-    { name: "Slack", logo: "https://svgl.app/library/slack.svg" },
+    { name: "Duolingo", logo: "https://svgl.app/library/duolingo.svg" },
+    { name: "Strava", logo: "https://svgl.app/library/strava.svg" },
+    { name: "Loom", logo: "https://svgl.app/library/loom.svg" },
+    { name: "Notion", logo: "https://svgl.app/library/notion.svg" },
+    { name: "Vercel", logo: "https://svgl.app/library/vercel.svg" },
+    { name: "Figma", logo: "https://svgl.app/library/figma.svg" },
+    { name: "Zoom", logo: "https://svgl.app/library/zoom.svg" },
+    { name: "Spline", logo: "https://svgl.app/library/spline.svg" },
 ]
 
 const PartnersSection = () => {

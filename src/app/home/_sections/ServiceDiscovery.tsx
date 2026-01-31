@@ -95,7 +95,7 @@ const ServiceDiscovery = () => {
     <section
       ref={containerRef}
       id="services"
-      className="relative w-full bg-accent-orange mt-12 md:mt-40 pt-12 md:pt-16 pb-12 md:pb-16 overflow-hidden rounded-t-3xl md:rounded-t-[2.5rem]"
+      className="relative w-full bg-black pt-12 md:pt-16 pb-12 md:pb-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Centered "I'm looking for" Label */}
@@ -112,8 +112,8 @@ const ServiceDiscovery = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-48 items-start">
           {/* Left Column: Active Content */}
           <div className="hidden lg:block space-y-12">
-            <div className="min-h-[400px] flex flex-col justify-start lg:pt-4 lg:items-end">
-              <div ref={contentRef} className="space-y-8 flex flex-col items-end">
+            <div className="min-h-[400px] flex flex-col justify-start lg:pt-4 lg:items-center">
+              <div ref={contentRef} className="space-y-8 flex flex-col items-center">
                 <div className="w-[380px] aspect-square rounded-full overflow-hidden border-10 border-white">
                   <img
                     src={services[displayIndex].images[0]}
@@ -122,11 +122,11 @@ const ServiceDiscovery = () => {
                   />
                 </div>
 
-                <div className="w-full max-w-lg text-right">
+                <div className="w-full max-w-lg text-center">
                   <h3 className="text-2xl font-heading font-black text-white uppercase tracking-wider mb-3">
                     {services[displayIndex].name}
                   </h3>
-                  <p className="text-white/80 font-body text-sm md:text-base leading-relaxed font-bold uppercase tracking-widest opacity-80 line-clamp-5">
+                  <p className="text-white font-body text-sm md:text-base leading-relaxed font-bold uppercase tracking-widest">
                     {services[displayIndex].description}
                   </p>
                 </div>
@@ -151,12 +151,12 @@ const ServiceDiscovery = () => {
                 />
 
                 <div className="relative z-10 w-full flex items-center justify-between px-8 py-4.5 md:py-3.5">
-                  <span className={`text-sm md:text-sm font-heading font-black uppercase tracking-widest transition-colors duration-500 ${hoveredIndex === index ? 'text-accent-orange' : 'text-white'}`}>
+                  <span className={`text-sm md:text-sm font-heading font-black uppercase tracking-widest transition-colors duration-500 ${hoveredIndex === index ? 'text-black' : 'text-white'}`}>
                     {service.name}
                   </span>
                   <ArrowUpRight
                     size={22}
-                    className={`transition-all duration-500 ${hoveredIndex === index ? 'text-accent-orange rotate-0 translate-x-1' : 'text-white group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
+                    className={`transition-all duration-500 ${hoveredIndex === index ? 'text-black rotate-0 translate-x-1' : 'text-white group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
                   />
                 </div>
               </div>

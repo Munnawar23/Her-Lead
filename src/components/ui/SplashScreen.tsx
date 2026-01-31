@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useMotionValueEvent } from 'motion/react';
+import { useEffect, useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 interface SplashScreenProps {
     onComplete?: () => void;
@@ -9,17 +10,15 @@ interface SplashScreenProps {
 
 const SplashScreen = ({ onComplete }: SplashScreenProps) => {
     const [wordIndex, setWordIndex] = useState(0);
-    const [isComplete, setIsComplete] = useState(false);
     const [shouldRender, setShouldRender] = useState(false);
     const [displayCount, setDisplayCount] = useState(0);
-    const count = useMotionValue(0);
-    const progressWidth = useTransform(count, (latest: number) => `${latest}%`);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+    const counterRef = useRef<HTMLHeadingElement>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
+    const wordRef = useRef<HTMLHeadingElement>(null);
 
     const words = ['Strategy', 'Creativity', 'Growth'];
-
-    useMotionValueEvent(count, "change", (latest: number) => {
-        setDisplayCount(Math.round(latest));
-    });
 
     useEffect(() => {
         const hasShownSplash = sessionStorage.getItem('hasShownSplash');
@@ -31,100 +30,113 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         }
 
         setShouldRender(true);
-        setIsComplete(false);
         sessionStorage.setItem('hasShownSplash', 'true');
+    }, [onComplete]);
 
-        // Animate the counter from 0 to 100
-        const controls = animate(count, 100, {
-            duration: 2,
-            ease: [0.76, 0, 0.24, 1] as const,
+    useGSAP(() => {
+        if (!shouldRender) return;
+
+        const tl = gsap.timeline({
             onComplete: () => {
-                setTimeout(() => {
-                    setIsComplete(true);
-                    // Wait for the exit animation duration (approx 1.2s) before signaling completion
-                    setTimeout(() => {
+                // Exit Animation
+                gsap.to(containerRef.current, {
+                    y: '-100%',
+                    duration: 1.2,
+                    ease: "power4.inOut",
+                    onComplete: () => {
                         onComplete?.();
-                    }, 1200);
-                }, 200);
+                    }
+                });
             }
         });
 
-        // Cycle through words based on progress
-        const wordInterval = setInterval(() => {
+        // Counter Animation
+        const counterProxy = { value: 0 };
+        tl.to(counterProxy, {
+            value: 100,
+            duration: 2.5,
+            ease: "power4.inOut",
+            onUpdate: () => {
+                setDisplayCount(Math.round(counterProxy.value));
+            }
+        }, 0);
+
+        // Progress Bar Animation
+        tl.to(progressRef.current, {
+            width: '100%',
+            duration: 2.5,
+            ease: "power4.inOut"
+        }, 0);
+
+        // Word Cycling Logic (Manual intervals or GSAP callbacks)
+        const wordCycle = setInterval(() => {
             setWordIndex((prev) => (prev + 1) % words.length);
         }, 600);
 
-        return () => {
-            controls.stop();
-            clearInterval(wordInterval);
-        };
-    }, [count, onComplete]);
+        return () => clearInterval(wordCycle);
+    }, { dependencies: [shouldRender] });
+
+    // Handle Word Swapping Animation
+    useGSAP(() => {
+        if (wordIndex !== undefined) {
+            gsap.fromTo(wordRef.current,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "circ.out" }
+            );
+        }
+    }, { dependencies: [wordIndex] });
 
     if (!shouldRender) return null;
 
     return (
-        <AnimatePresence>
-            {!isComplete && (
-                <motion.div
-                    initial={{ translateY: 0 }}
-                    exit={{
-                        translateY: '-100%',
-                        transition: { duration: 1.2, ease: [0.87, 0, 0.13, 1] }
-                    }}
-                    className="fixed top-0 left-0 z-60 flex h-screen w-full flex-col justify-between bg-bg-light p-8 md:p-12 lg:p-20 overflow-hidden"
-                >
-                    {/* Top UI */}
-                    <div className="relative z-10 flex justify-between items-start">
-                        <div className="flex flex-col gap-1">
-                            <motion.span
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="text-[10px] font-black uppercase tracking-[0.5em] text-text/80"
-                            >
-                                HerLead
-                            </motion.span>
-                        </div>
-                    </div>
+        <div
+            ref={containerRef}
+            className="fixed top-0 left-0 z-100 flex h-screen w-full flex-col justify-between bg-bg-light p-8 md:p-12 lg:p-20 overflow-hidden"
+        >
+            {/* Top UI */}
+            <div className="relative z-10 flex justify-between items-start">
+                <div className="flex flex-col gap-1">
+                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-text/80">
+                        HerLead
+                    </span>
+                </div>
+            </div>
 
-                    {/* Center Content: Cycling Words */}
-                    <div className="relative z-10 flex-1 flex items-center justify-center">
-                        <div className="relative h-24 flex items-center justify-center w-full">
-                            <AnimatePresence mode="wait">
-                                <motion.h2
-                                    key={words[wordIndex]}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.5, ease: "circOut" }}
-                                    className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-text"
-                                >
-                                    {words[wordIndex]}
-                                </motion.h2>
-                            </AnimatePresence>
-                        </div>
-                    </div>
+            {/* Center Content: Cycling Words */}
+            <div className="relative z-10 flex-1 flex items-center justify-center">
+                <div className="relative h-24 flex items-center justify-center w-full">
+                    <h2
+                        ref={wordRef}
+                        key={words[wordIndex]}
+                        className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-text"
+                    >
+                        {words[wordIndex]}
+                    </h2>
+                </div>
+            </div>
 
-                    {/* Bottom Content: Progress & Counter */}
-                    <div className="relative z-10 w-full space-y-6">
-                        <div className="flex items-end justify-between pb-6">
-                            <motion.h1 className="text-7xl md:text-9xl font-heading font-black text-text tracking-tighter leading-none">
-                                {displayCount}%
-                            </motion.h1>
-                        </div>
+            {/* Bottom Content: Progress & Counter */}
+            <div className="relative z-10 w-full space-y-6">
+                <div className="flex items-end justify-between pb-6">
+                    <h1
+                        ref={counterRef}
+                        className="text-7xl md:text-9xl font-heading font-black text-text tracking-tighter leading-none"
+                    >
+                        {displayCount}%
+                    </h1>
+                </div>
 
-                        {/* Progress Bar */}
-                        <div className="w-full h-px bg-text/5 relative overflow-hidden">
-                            <motion.div
-                                style={{ width: progressWidth }}
-                                className="absolute top-0 left-0 h-full bg-primary"
-                            />
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
+                {/* Progress Bar */}
+                <div className="w-full h-px bg-text/5 relative overflow-hidden">
+                    <div
+                        ref={progressRef}
+                        className="absolute top-0 left-0 h-full bg-primary"
+                        style={{ width: '0%' }}
+                    />
+                </div>
+            </div>
+        </div>
     );
 };
 
 export default SplashScreen;
-

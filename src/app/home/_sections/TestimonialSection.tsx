@@ -1,53 +1,84 @@
 "use client"
+import React, { useRef } from 'react'
 import { testimonials } from '@/constants/testimonials'
-import { motion } from 'motion/react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Star } from 'lucide-react'
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
 const TestimonialSection = () => {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.08,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const
+  const containerRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const lineLeftRef = useRef<HTMLDivElement>(null)
+  const lineRightRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    // Header Animation
+    gsap.from(headerRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 90%",
       }
-    })
-  }
+    });
+
+    // Line Expansions
+    gsap.from([lineLeftRef.current, lineRightRef.current], {
+      scaleX: 0,
+      duration: 0.6,
+      ease: "circ.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 90%",
+      }
+    });
+
+    // Testimonial Cards Animation
+    gsap.from(".testimonial-card", {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".testimonials-grid",
+        start: "top 80%",
+      }
+    });
+
+  }, { scope: containerRef });
 
   return (
     <section
+      ref={containerRef}
       className='relative w-full bg-accent-blue mt-12 md:mt-20 py-16 md:py-24 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-3xl md:rounded-t-[2.5rem]'
     >
       <div className='max-w-7xl mx-auto'>
 
         {/* Header (Centered) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+        <div
+          ref={headerRef}
           className="text-center mb-12 md:mb-16"
         >
           <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
-              className='w-12 md:w-20 h-[2px] bg-white/30 origin-right'
+            <div
+              ref={lineLeftRef}
+              className='w-12 md:w-20 h-[2px] bg-white/30 origin-right scale-x-1'
             />
             <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.2em] text-white whitespace-nowrap'>
               Testimonials
             </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
-              className='w-12 md:w-20 h-[2px] bg-white/30 origin-left'
+            <div
+              ref={lineRightRef}
+              className='w-12 md:w-20 h-[2px] bg-white/30 origin-left scale-x-1'
             />
           </div>
           <div className='mt-8 md:mt-12'>
@@ -56,19 +87,14 @@ const TestimonialSection = () => {
               <span className="italic text-white">love about us</span>
             </h3>
           </div>
-        </motion.div>
+        </div>
 
         {/* Testimonials Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16'>
-          {testimonials.map((t, index) => (
-            <motion.div
+        <div className='testimonials-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16'>
+          {testimonials.map((t) => (
+            <div
               key={t.id}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={cardVariants}
-              className='space-y-6 flex flex-col'
+              className='testimonial-card space-y-6 flex flex-col'
             >
               {/* Quote Icon SVG */}
               <div className='text-white/60'>
@@ -95,7 +121,7 @@ const TestimonialSection = () => {
                   <span className='text-white/40 text-[10px] uppercase font-bold tracking-widest'>Verified Client</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

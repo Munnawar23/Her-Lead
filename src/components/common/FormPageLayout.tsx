@@ -1,8 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
-import { motion } from 'motion/react'
+import React, { useState, useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react'
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger)
+}
 
 export interface FormField {
     name: string
@@ -55,6 +61,9 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
     submitText
 }) => {
     const [formData, setFormData] = useState<Record<string, string>>({})
+    const containerRef = useRef<HTMLElement>(null)
+    const heroContentRef = useRef<HTMLDivElement>(null)
+    const heroImageRef = useRef<HTMLDivElement>(null)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -67,42 +76,59 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
         alert('Thank you! Your request has been submitted. We will get back to you soon.')
     }
 
+    useGSAP(() => {
+        // Hero Content Reveal
+        const heroElements = heroContentRef.current?.querySelectorAll('.reveal-item');
+        if (heroElements) {
+            gsap.from(heroElements, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        }
+
+        // Hero Image Slide In
+        gsap.from(heroImageRef.current, {
+            x: 50,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.4
+        });
+
+        // Form Section reveal
+        gsap.from(".form-container", {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".form-container",
+                start: "top 85%"
+            }
+        });
+
+    }, { scope: containerRef });
+
     // Clean, minimalist input styles with bold typography
     const inputClasses = "w-full bg-white border border-black/[0.08] rounded-xl px-5 py-4 md:px-6 md:py-5 focus:outline-none focus:border-secondary transition-all duration-300 font-heading text-base md:text-xl text-black font-black placeholder:text-text/10 hover:border-black/20"
     const labelClasses = "block text-[10px] uppercase tracking-[0.25em] font-heading font-black mb-2.5 text-black pl-1"
 
-    const fadeInVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-        }
-    }
-
     return (
-        <main className="min-h-screen bg-[#FDFDFD] pt-16 md:pt-24 pb-0 overflow-x-hidden">
+        <main ref={containerRef} className="min-h-screen bg-[#FDFDFD] pt-16 md:pt-24 pb-0 overflow-x-hidden">
             {/* Hero Section - Clean & Executive */}
             <section className="relative w-full px-6 md:px-12 lg:px-24 mb-6 md:mb-8">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                        <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-                            <motion.div
-                                initial="hidden"
-                                animate="visible"
-                                variants={fadeInVariants}
-                                className='inline-flex items-center gap-2 border border-black/5 bg-white px-3 py-1.5 rounded-full shadow-sm'
-                            >
+                        <div ref={heroContentRef} className="lg:col-span-7 space-y-8 text-center lg:text-left">
+                            <div className='reveal-item inline-flex items-center gap-2 border border-black/5 bg-white px-3 py-1.5 rounded-full shadow-sm'>
                                 <span className='w-1.5 h-1.5 rounded-full bg-secondary' />
                                 <span className='text-[9px] font-heading font-black uppercase tracking-[0.2em] text-text/60'>{badge}</span>
-                            </motion.div>
+                            </div>
 
-                            <motion.h1
-                                initial="hidden"
-                                animate="visible"
-                                variants={fadeInVariants}
-                                className="text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-black leading-[1.05] tracking-tight text-text uppercase"
-                            >
+                            <h1 className="reveal-item text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-black leading-[1.05] tracking-tight text-text uppercase">
                                 {title.line1} <br />
                                 {title.highlight && (
                                     <span className={`${title.highlightItalic ? 'text-secondary italic' : 'text-primary'}`}>
@@ -110,22 +136,15 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                     </span>
                                 )}
                                 {title.line2 && <>{' '}{title.line2}</>}
-                            </motion.h1>
+                            </h1>
 
-                            <motion.p
-                                initial="hidden"
-                                animate="visible"
-                                variants={fadeInVariants}
-                                className="text-base md:text-body-custom font-body font-medium text-text/50 max-w-xl leading-relaxed mx-auto lg:mx-0"
-                            >
+                            <p className="reveal-item text-base md:text-body-custom font-body font-medium text-text/50 max-w-xl leading-relaxed mx-auto lg:mx-0">
                                 {description}
-                            </motion.p>
+                            </p>
                         </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1.2, ease: "easeOut" }}
+                        <div
+                            ref={heroImageRef}
                             className="lg:col-span-5 relative hidden lg:block"
                         >
                             <div className="relative aspect-4/5 rounded-[3rem] overflow-hidden border-12 border-white shadow-2xl">
@@ -140,7 +159,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                 )}
                             </div>
                             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary/5 rounded-full blur-3xl -z-10" />
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -195,13 +214,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                         <p className="text-[10px] sm:text-[11px] font-heading font-black uppercase tracking-[0.3em] text-text/30">{formSubtitle}</p>
                     </div>
 
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        variants={fadeInVariants}
-                        className="bg-white"
-                    >
+                    <div className="form-container bg-white">
                         <form onSubmit={handleSubmit} className="space-y-12">
                             <div className="space-y-16">
                                 {formSections.map((section, idx) => (
@@ -273,7 +286,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                 <p className="mt-8 text-[9px] text-text/20 font-heading font-black uppercase tracking-[0.5em]">Direct Consultation Entry</p>
                             </div>
                         </form>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
         </main>

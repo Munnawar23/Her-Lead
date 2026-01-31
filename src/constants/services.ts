@@ -1,8 +1,8 @@
 export const serviceCards = [
     {
-        title: "Public Relations & Media Service 🎙️",
+        title: "Public Relations & Media Service",
         slug: "pr-media-services",
-        desc: "We don't chase headlines; we control narratives with credibility, influence, and precision. Elevate your presence! ✨",
+        desc: "We don't chase headlines; we control narratives with credibility, influence, and precision. Elevate your presence!",
         color: "bg-linear-to-br from-[#0891B2] to-[#0E7490]",
         textColor: "text-white",
         variant: "video",
@@ -18,9 +18,9 @@ export const serviceCards = [
         images: []
     },
     {
-        title: "Make me the brand 💎",
+        title: "Make me the brand",
         slug: "brand-creation",
-        desc: "We build brands from the ground up that are clear, credible, and impossible to ignore. Become the authority! 👑",
+        desc: "We build brands from the ground up that are clear, credible, and impossible to ignore. Become the authority!",
         color: "bg-accent-orange",
         textColor: "text-white",
         variant: "video",
@@ -35,9 +35,9 @@ export const serviceCards = [
         images: []
     },
     {
-        title: "Website & Digital Experience 🌐",
+        title: "Website & Digital Experience",
         slug: "web-design",
-        desc: "Your website speaks the same language as your brand—clear, current, and conversion-ready. Build your digital HQ! 🚀",
+        desc: "Your website speaks the same language as your brand—clear, current, and conversion-ready. Build your digital HQ!",
         color: "bg-linear-to-br from-[#7C3AED] to-[#4F46E5]",
         textColor: "text-white",
         variant: "lottie",
@@ -52,9 +52,9 @@ export const serviceCards = [
         images: ["/images/service-legacy/web1.webp", "/images/service-legacy/web2.webp"]
     },
     {
-        title: "Paid Ads 📈",
+        title: "Paid Ads",
         slug: "paid-ads",
-        desc: "The momentum builder giving your brand instant visibility while everything else compounds. Scale your growth! 🎯",
+        desc: "The momentum builder giving your brand instant visibility while everything else compounds. Scale your growth!",
         color: "bg-linear-to-br from-[#10B981] to-[#059669]",
         textColor: "text-white",
         variant: "single",
@@ -68,9 +68,9 @@ export const serviceCards = [
         images: ["/images/service-legacy/media.webp"]
     },
     {
-        title: "Corporate Training & Development 🎓",
+        title: "Corporate Training & Development",
         slug: "corporate-training",
-        desc: "We shape people and organizations through systems of clarity, control, and consistent growth. Lead with power! ⚡",
+        desc: "We shape people and organizations through systems of clarity, control, and consistent growth. Lead with power!",
         color: "bg-linear-to-br from-[#D946EF] to-[#A21CAF]",
         textColor: "text-white",
         variant: "lottie",
@@ -84,9 +84,9 @@ export const serviceCards = [
         images: ["/images/service-legacy/ads.webp"]
     },
     {
-        title: "TALENT, RECRUITMENT & CAREER READINESS 🏆",
+        title: "TALENT, RECRUITMENT & CAREER READINESS",
         slug: "get-the-job",
-        desc: "A comprehensive One-Month Live Training Program designed to bridge the gap between talent and opportunity. Land your dream! 💼",
+        desc: "A comprehensive One-Month Live Training Program designed to bridge the gap between talent and opportunity. Land your dream!",
         color: "bg-linear-to-br from-[#E1306C] to-[#C13584]",
         textColor: "text-white",
         variant: "single",

@@ -40,10 +40,12 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
   useGSAP(() => {
     if (showVideo) {
       // Show Video, Hide Logo
+      gsap.to(containerRef.current, { backgroundColor: "#121212", duration: 0.8 });
       gsap.to(videoContainerRef.current, { opacity: 1, duration: 0.8, ease: "power2.inOut", display: "block" });
       gsap.to(logoContainerRef.current, { opacity: 0, scale: 1.1, duration: 0.8, ease: "power2.inOut", display: "none" });
     } else {
       // Show Logo, Hide Video
+      gsap.to(containerRef.current, { backgroundColor: "#fffefc", duration: 0.8 });
       gsap.to(videoContainerRef.current, { opacity: 0, duration: 0.8, ease: "power2.inOut", display: "none" });
       gsap.to(logoContainerRef.current, {
         opacity: 1,
@@ -92,11 +94,14 @@ const HeroSection = ({ isSplashFinished = false }: HeroSectionProps) => {
         <Image
           src="/images/brand/logo.webp"
           alt="HerLead Logo"
-          width={800}
-          height={800}
-          className="w-64 md:w-96 lg:w-[450px] h-auto relative z-10"
+          width={900}
+          height={900}
+          className="w-[280px] md:w-[500px] lg:w-[700px] h-auto relative z-10"
           priority
         />
+        <h2 className="mt-8 md:mt-12 text-sm md:text-xl lg:text-3xl font-heading font-black uppercase tracking-[0.4em] text-black text-center max-w-2xl leading-relaxed">
+          360° DIGITAL IMPACT
+        </h2>
       </div>
 
       {/* Scroll indicator removed */}

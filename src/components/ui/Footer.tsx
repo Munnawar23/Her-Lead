@@ -1,17 +1,11 @@
 "use client"
-import { Instagram, Linkedin } from "lucide-react"
+import { Instagram, Linkedin, Twitter } from "lucide-react"
 import { useRouter } from "next/navigation"
 
-const XIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
-    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-  </svg>
-)
-
 const socials = [
-  { label: "Instagram", href: "#", icon: Instagram },
-  { label: "LinkedIn", href: "#", icon: Linkedin },
-  { label: "X", href: "#", icon: XIcon },
+  { label: "Instagram", href: "#", icon: Instagram, colorClass: "text-social-instagram", bgClass: "bg-social-instagram/10" },
+  { label: "LinkedIn", href: "#", icon: Linkedin, colorClass: "text-social-linkedin", bgClass: "bg-social-linkedin/10" },
+  { label: "X", href: "#", icon: Twitter, colorClass: "text-text", bgClass: "bg-text/10" },
 ]
 
 const buttons = [
@@ -98,10 +92,15 @@ const Footer = () => {
                     <a
                       key={i}
                       href={social.href}
-                      className="w-12 h-12 rounded-full border border-text/10 flex items-center justify-center text-text hover:text-primary hover:border-primary transition-all duration-300 bg-white/5"
+                      className={`w-12 h-12 rounded-full border border-text/10 flex items-center justify-center cursor-pointer hover:border-primary hover:scale-110 hover:-translate-y-1 active:scale-95 transition-all duration-300 group ${social.bgClass}`}
                       aria-label={social.label}
                     >
-                      <social.icon size={20} />
+                      <social.icon
+                        size={20}
+                        strokeWidth={social.icon === Twitter ? 0 : 2}
+                        fill={social.icon === Twitter ? 'currentColor' : 'none'}
+                        className={`group-hover:text-primary transition-colors ${social.colorClass}`}
+                      />
                     </a>
                   ))}
                 </div>
