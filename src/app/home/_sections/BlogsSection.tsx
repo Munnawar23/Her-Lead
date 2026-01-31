@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
+import Lottie from "lottie-react";
 import {
     Instagram,
     Linkedin,
@@ -74,15 +75,15 @@ const BlogsSection = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.1 }}
                         variants={cardVariants}
-                        className={`group relative w-full ${index === 2 ? 'hidden lg:block' : index === 1 ? 'hidden md:block' : ''}`}
+                        className="group relative w-full"
                     >
-                        <div className="relative w-full aspect-square rounded-[1.5rem] md:rounded-[3rem] overflow-hidden bg-text transition-all duration-500 mb-8">
+                        <div className="relative w-full aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden bg-bg-dark transition-all duration-500 mb-8">
                             <img
                                 src={post.image}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                                 alt={post.title}
                             />
-                            <div className="absolute top-6 left-6 px-4 py-1.5 bg-text text-bg-light text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
+                            <div className="absolute top-6 left-6 px-4 py-1.5 bg-bg-dark text-bg-light text-[10px] font-black uppercase tracking-widest skew-x-[-10deg] rounded-sm">
                                 {post.tag}
                             </div>
                         </div>
@@ -121,11 +122,11 @@ const BlogsSection = () => {
                             className="w-[90vw] md:w-[380px] lg:w-[420px]"
                         >
                             <div className="bg-white rounded-3xl p-3 border border-text/5">
-                                <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden">
-                                    <img
-                                        src={post.image}
+                                <div className="w-full aspect-square rounded-[1.25rem] overflow-hidden bg-secondary/20">
+                                    <Lottie
+                                        animationData={post.animation}
+                                        loop={true}
                                         className="w-full h-full object-cover"
-                                        alt="Social Post"
                                     />
                                 </div>
                             </div>

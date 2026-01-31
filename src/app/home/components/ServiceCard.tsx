@@ -1,8 +1,10 @@
 "use client"
-
-import { ArrowUpRight } from "lucide-react"
-import { motion } from "motion/react"
+import React, { useRef, useState, useEffect } from 'react'
+import { ArrowUpRight, Zap, Globe, BarChart3, GraduationCap, Box, UserCheck } from "lucide-react"
 import { useRouter } from "next/navigation"
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import Lottie from "lottie-react"
 
 interface ServiceCardProps {
     group: {
@@ -14,115 +16,110 @@ interface ServiceCardProps {
         variant: string
         tags: string[]
         video?: string
+        animation?: string
         images: string[]
+    }
+}
+
+const getIcon = (slug: string) => {
+    switch (slug) {
+        case 'pr-media-services': return <Zap size={14} />;
+        case 'web-design': return <Globe size={14} />;
+        case 'paid-ads': return <BarChart3 size={14} />;
+        case 'corporate-training': return <GraduationCap size={14} />;
+        case 'brand-creation': return <Box size={14} />;
+        case 'get-the-job': return <UserCheck size={14} />;
+        default: return <ArrowUpRight size={14} />;
     }
 }
 
 const ServiceCard = ({ group }: ServiceCardProps) => {
     const router = useRouter()
-    const cardVariants = {
-        hidden: { opacity: 0, y: 40, scale: 0.98 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1] as const,
-                staggerChildren: 0.1,
-                delayChildren: 0.2
+    const cardRef = useRef<HTMLDivElement>(null)
+    const visualRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const [animationData, setAnimationData] = useState<any>(null)
+
+    useEffect(() => {
+        if (group.variant === 'lottie' && group.animation) {
+            fetch(group.animation)
+                .then(res => res.json())
+                .then(data => setAnimationData(data))
+                .catch(err => console.error("Error loading Lottie:", err))
+        }
+    }, [group.variant, group.animation])
+
+    useGSAP(() => {
+        // Decorative parallax only - optimized
+        gsap.to(visualRef.current, {
+            y: -20,
+            ease: "none",
+            force3D: true,
+            scrollTrigger: {
+                trigger: cardRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
             }
-        }
-    }
-
-    const itemVariants = {
-        hidden: { opacity: 0, x: -20 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-        }
-    }
-
-    const visualVariants = {
-        hidden: { opacity: 0, x: 40, scale: 0.9 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const }
-        }
-    }
+        });
+    }, { scope: cardRef });
 
     const renderVisual = () => {
         switch (group.variant) {
+            case "lottie":
+                return animationData ? (
+                    <div className="relative w-full h-full flex items-center justify-center p-2 md:p-4 lg:p-6">
+                        <div className="w-full max-w-[620px] h-auto scale-110 lg:scale-125">
+                            <Lottie
+                                animationData={animationData}
+                                loop={true}
+                                className="w-full h-full"
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                    </div>
+                )
             case "single":
                 return (
-                    <div className="relative w-full h-full flex items-center justify-center p-6 md:p-12 lg:p-16">
-                        {/* Glow Behind */}
-                        <div
-                            className="absolute w-[70%] aspect-square bg-white/10 blur-[80px] rounded-full pointer-events-none"
-                        />
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            className="relative w-full h-full flex items-center justify-center will-change-transform"
-                        >
+                    <div className="relative w-full h-full flex items-center justify-center p-6 md:p-10 lg:p-12">
+                        <div className="relative group/img overflow-hidden rounded-3xl border border-white/10">
                             <img
                                 src={group.images[0]}
                                 alt={group.title}
-                                className="max-w-full max-h-full object-contain rounded-lg"
+                                className="w-full h-auto max-h-[60vh] object-cover transition-transform duration-700 group-hover:scale-105"
                             />
-                        </motion.div>
+                        </div>
                     </div>
                 )
             case "video":
                 return group.video ? (
-                    <div className="relative w-[300px] h-[500px] rounded-[2.5rem] overflow-hidden bg-black/10">
-                        <video
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                            className="w-full h-full object-cover"
-                        >
-                            <source src={group.video} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                    <div className="relative w-full h-full flex items-center justify-center p-6 md:p-10 lg:p-12">
+                        <div className="relative w-full max-w-[260px] aspect-9/16 rounded-[2rem] overflow-hidden bg-bg-dark border-8 border-white/10">
+                            <video
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="metadata"
+                                className="w-full h-full object-cover"
+                            >
+                                <source src={group.video} type="video/mp4" />
+                            </video>
+                        </div>
                     </div>
                 ) : null
             case "double":
                 return (
-                    <div className="relative w-full h-full flex items-center justify-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: 50, y: 50, rotate: 5 }}
-                            whileInView={{ opacity: 1, x: 0, y: 0, rotate: -5 }}
-                            whileHover={{ scale: 1.08, zIndex: 20 }}
-                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
-                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden z-10 translate-x-[-22%] translate-y-[-18%] will-change-transform"
-                        >
-                            <img
-                                src={group.images[0]}
-                                alt=""
-                                loading="lazy"
-                                className="w-full h-full object-cover"
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 100, y: 100, rotate: -5 }}
-                            whileInView={{ opacity: 1, x: 0, y: 0, rotate: 6 }}
-                            whileHover={{ scale: 1.08, zIndex: 20 }}
-                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
-                            className="absolute w-[280px] md:w-[380px] lg:w-[440px] aspect-video rounded-2xl overflow-hidden z-0 translate-x-[22%] translate-y-[18%] will-change-transform"
-                        >
-                            <img
-                                src={group.images[1]}
-                                alt=""
-                                loading="lazy"
-                                className="w-full h-full object-cover"
-                            />
-                        </motion.div>
+                    <div className="relative w-full h-full flex items-center justify-center p-6 md:p-10 lg:p-12">
+                        <div className="absolute w-[400px] aspect-video rounded-3xl overflow-hidden z-20 translate-y-[-10%] translate-x-[-10%] -rotate-2 border border-white/20">
+                            <img src={group.images[0]} alt="" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="absolute w-[350px] aspect-video rounded-3xl overflow-hidden z-10 translate-y-[15%] translate-x-[15%] rotate-[4deg] border border-white/10 opacity-80">
+                            <img src={group.images[1]} alt="" className="w-full h-full object-cover" />
+                        </div>
                     </div>
                 )
             default:
@@ -131,53 +128,79 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
     }
 
     return (
-        <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={cardVariants}
-            onClick={() => router.push(`/services/${group.slug}`)}
-            className={`relative w-full cursor-pointer group/card
-              min-h-[400px] md:h-[560px] lg:h-[600px]
-              ${group.color} ${group.textColor} 
-              rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden flex flex-col will-change-transform`}
+        <div
+            ref={cardRef}
+            className={`relative w-full h-full group/card overflow-hidden rounded-[3.5rem] md:rounded-[4.5rem] transition-all duration-500
+              ${group.color} ${group.textColor} border border-white/10 hover:border-white/20 will-change-transform`}
         >
-            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] flex-1">
-                {/* LEFT CONTENT */}
-                <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
-                    <motion.h3 variants={itemVariants} className="text-2xl sm:text-3xl md:text-main-heading font-black leading-[1.1] md:leading-[1] uppercase">
-                        {group.title}
-                    </motion.h3>
+            {/* Optimized Simple Light Effect */}
+            <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-white/5 rounded-full pointer-events-none" />
 
-                    <motion.p variants={itemVariants} className="mt-2 md:mt-3 max-w-md text-xs md:text-body-custom font-semibold opacity-80 leading-relaxed">
-                        {group.desc}
-                    </motion.p>
-
-                    <motion.div variants={itemVariants} className="mt-4 flex flex-wrap gap-2 max-w-lg mb-8">
-                        {group.tags.map((tag, i) => (
-                            <div
-                                key={i}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 md:px-5 md:py-2 rounded-full
-                                  bg-white/10 border border-white/20
-                                  text-[10px] md:text-xs font-bold uppercase tracking-wider text-white`}
-                            >
-                                {tag}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] h-full">
+                {/* CONTENT SIDE */}
+                <div ref={contentRef} className="relative z-10 p-7 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-between h-full">
+                    <div>
+                        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 service-top-badge">
+                            <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/10 border border-white/20">
+                                {getIcon(group.slug)}
                             </div>
-                        ))}
-                    </motion.div>
+                            <span className="text-xs sm:text-[11px] md:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/70">
+                                Premium Solution
+                            </span>
+                        </div>
 
+                        <h3 className="service-title text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-heading font-black leading-[0.9] tracking-tighter uppercase mb-6 sm:mb-8">
+                            {group.title.split(' ').map((word, i) => (
+                                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden">
+                                    <span className="inline-block">{word}</span>
+                                </span>
+                            ))}
+                        </h3>
 
+                        <p className="service-desc text-base sm:text-sm md:text-sm lg:text-base font-medium text-white/80 leading-tight sm:leading-relaxed max-w-lg mb-6 sm:mb-10">
+                            {group.desc}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5 sm:mb-8">
+                            {group.tags && group.tags.map((tag, i) => (
+                                <span
+                                    key={i}
+                                    onClick={() => router.push(`/services/${group.slug}`)}
+                                    className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white/20 border border-white/10 text-[11px] sm:text-[11px] md:text-[11px] lg:text-[12px] font-bold uppercase tracking-wide transition-all hover:bg-white hover:text-black duration-300 cursor-pointer"
+                                >
+                                    {tag}
+                                    <ArrowUpRight size={10} className="opacity-40" />
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div
+                        onClick={() => router.push(`/services/${group.slug}`)}
+                        className="service-btn flex items-center gap-4 sm:gap-8 group/btn mt-auto w-fit cursor-pointer"
+                    >
+                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover/card:bg-white overflow-hidden">
+                            <ArrowUpRight className="text-white transition-all duration-500 group-hover/card:text-black" size={26} />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-[11px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/40">View Impact</span>
+                            <span className="text-3xl sm:text-2xl md:text-2xl lg:text-3xl font-heading font-black uppercase tracking-tight">Explore More</span>
+                        </div>
+                    </div>
                 </div>
 
-                {/* RIGHT VISUAL STACK */}
-                <motion.div
-                    variants={visualVariants}
-                    className="hidden lg:flex relative h-full items-center justify-end pr-12"
+                {/* VISUAL SIDE */}
+                <div
+                    ref={visualRef}
+                    className="hidden lg:flex relative h-full items-center justify-center bg-white/5 p-12"
                 >
                     {renderVisual()}
-                </motion.div>
+                </div>
             </div>
-        </motion.div>
+
+            {/* Optimized Hover Indicator */}
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 origin-left scale-x-0 transition-transform duration-500 group-hover/card:scale-x-100" />
+        </div>
     )
 }
 

@@ -98,7 +98,7 @@ const Navbar = () => {
         variants={navbarVariants}
         animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${mobileMenuOpen ? 'bg-transparent' : 'bg-white/90 backdrop-blur-lg'} ${scrolled ? 'py-3' : 'py-5'}`}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${mobileMenuOpen ? 'bg-transparent' : 'bg-white/95'} ${scrolled ? 'py-3' : 'py-5'}`}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Mobile Action Button */}
@@ -204,7 +204,7 @@ const Navbar = () => {
             className="fixed inset-0 bg-bg-dark z-40 lg:hidden"
           >
 
-            <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-primary/10 rounded-full blur-[100px]" />
+            <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-primary/10 rounded-full" />
 
             <motion.div
               variants={containerVariants}
@@ -232,9 +232,9 @@ const Navbar = () => {
               </nav>
 
               <motion.div variants={itemVariants} className="flex items-center gap-3 opacity-40">
-                <div className="w-8 h-[1px] bg-white" />
+                <div className="w-8 h-px bg-white" />
                 <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
-                <div className="w-8 h-[1px] bg-white" />
+                <div className="w-8 h-px bg-white" />
               </motion.div>
 
               {/* Mobile Buttons Grid */}

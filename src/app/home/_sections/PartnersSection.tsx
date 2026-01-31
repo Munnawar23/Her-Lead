@@ -1,6 +1,8 @@
 'use client'
-import { motion } from 'motion/react'
-import { useRouter } from 'next/navigation'
+
+import React, { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const partners = [
     { name: "Meta", logo: "https://svgl.app/library/meta.svg" },
@@ -14,62 +16,70 @@ const partners = [
 ]
 
 const PartnersSection = () => {
-    const router = useRouter()
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const marqueeRef = useRef<HTMLDivElement>(null)
+    const lineLeftRef = useRef<HTMLDivElement>(null)
+    const lineRightRef = useRef<HTMLDivElement>(null)
+    const titleRef = useRef<HTMLDivElement>(null)
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        })
+
+        // Header Entrance
+        tl.from(lineLeftRef.current, { scaleX: 0, duration: 1, ease: "power3.out" })
+            .from(lineRightRef.current, { scaleX: 0, duration: 1, ease: "power3.out" }, "<")
+            .from(titleRef.current, { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=0.8")
+
+        // Manual Infinite Marquee
+        if (marqueeRef.current) {
+            const content = marqueeRef.current.children[0]
+            const totalWidth = content.scrollWidth
+            const duration = 40 // Adjust speed (seconds)
+
+            gsap.to(content, {
+                x: `-=${totalWidth / 3}`, // Move only 1/3 of total length since we triplicated
+                duration: duration,
+                ease: "none",
+                repeat: -1
+            })
+        }
+    }, { scope: sectionRef })
+
     return (
-        <section className="w-full bg-bg-light pt-12 md:pt-24 pb-8 md:pb-24 border-t border-text/10 overflow-hidden">
+        <section ref={sectionRef} className="w-full bg-bg-light pt-12 md:pt-24 pb-8 md:pb-24 border-t border-text/10 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
 
                 {/* Section Header: OUR PARTNERS (Centered) */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-                    className="text-center mb-10 md:mb-24"
-                >
+                <div className="text-center mb-10 md:mb-24">
                     <div className='inline-flex items-center justify-center gap-3 md:gap-6 mb-8'>
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
+                        <div
+                            ref={lineLeftRef}
                             className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
                         />
-                        <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-secondary'>
+                        <h2 ref={titleRef} className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-secondary'>
                             Our Partners
                         </h2>
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
+                        <div
+                            ref={lineRightRef}
                             className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
                         />
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Bottom: Brands Marquee */}
                 <div className="w-full mb-12 md:mb-32">
-                    {/* Infinite Marquee */}
-                    <div className="relative flex overflow-hidden">
-                        <motion.div
-                            animate={{
-                                x: ["0%", "-33.33%"],
-                            }}
-                            transition={{
-                                x: {
-                                    repeat: Infinity,
-                                    repeatType: "loop",
-                                    duration: 30, // Slightly slower for more premium feel
-                                    ease: "linear",
-                                },
-                            }}
-                            className="flex items-center gap-24 md:gap-32 whitespace-nowrap will-change-transform"
-                        >
+                    <div ref={marqueeRef} className="relative flex overflow-hidden mask-linear-gradient">
+                        <div className="flex items-center gap-24 md:gap-32 whitespace-nowrap will-change-transform">
                             {[...partners, ...partners, ...partners].map((partner, i) => (
                                 <div
                                     key={i}
-                                    className="flex-shrink-0 flex items-center justify-center transition-all duration-700 hover:scale-110"
+                                    className="shrink-0 flex items-center justify-center transition-all duration-700 hover:scale-110 cursor-pointer"
                                 >
                                     <img
                                         src={partner.logo}
@@ -78,7 +88,7 @@ const PartnersSection = () => {
                                     />
                                 </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </div>

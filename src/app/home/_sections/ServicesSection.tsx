@@ -1,53 +1,105 @@
 "use client"
-
+import React, { useRef } from 'react'
 import { serviceCards } from "@/constants/services"
 import ServiceCard from "../components/ServiceCard"
-import { motion } from "motion/react"
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const ServicesSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const lineLeftRef = useRef<HTMLDivElement>(null)
+  const lineRightRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    // Header Animation
+    gsap.from(headerRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 90%",
+      }
+    });
+
+    // Line Expansions
+    gsap.from([lineLeftRef.current, lineRightRef.current], {
+      scaleX: 0,
+      duration: 1.5,
+      ease: "expo.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 90%",
+      }
+    });
+
+    const cards = gsap.utils.toArray<HTMLElement>('.service-card-wrapper');
+    const totalCards = cards.length;
+
+    cards.forEach((card, i) => {
+      // Pinning each card
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top top",
+        pin: true,
+        pinSpacing: false,
+        endTrigger: containerRef.current,
+        end: "bottom bottom",
+        id: `card-pin-${i}`,
+      });
+
+      // No animation for background cards as requested
+
+
+    });
+
+  }, { scope: containerRef });
+
   return (
     <section
-      className="w-full px-6 md:px-12 lg:px-20 pt-24 pb-8 md:pb-12 bg-bg-light"
+      ref={containerRef}
+      className="relative w-full bg-bg-light"
     >
-      <div className="max-w-7xl mx-auto space-y-10">
-
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <div className='inline-flex items-center justify-center gap-3 md:gap-6'>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
-              className='w-12 md:w-20 h-[2px] bg-secondary origin-right'
-            />
-            <h2 className='text-2xl sm:text-3xl md:text-5xl lg:text-section-label font-heading font-black uppercase tracking-[0.15em] md:tracking-[0.2em] text-secondary'>
-              HerLead Legacy
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.6, ease: "circOut", delay: 0.1 }}
-              className='w-12 md:w-20 h-[2px] bg-secondary origin-left'
-            />
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-20 pb-8">
+        <div ref={headerRef} className="services-header-content flex flex-col items-center text-center">
+          <div className='inline-flex items-center justify-center gap-4 md:gap-8 mb-4'>
+            <div ref={lineLeftRef} className='header-line-left w-12 md:w-24 h-[2px] bg-black/10 origin-right' />
+            <span className="text-secondary font-heading font-bold uppercase tracking-[0.3em] text-xs md:text-sm">
+              Our Capabilities
+            </span>
+            <div ref={lineRightRef} className='header-line-right w-12 md:w-24 h-[2px] bg-black/10 origin-left' />
           </div>
-          <p className="mt-4 font-body text-sm md:text-body-custom font-bold text-text uppercase tracking-widest max-w-2xl mx-auto opacity-60">
-            Comprehensive solutions for digital dominance and professional growth.
-          </p>
-        </motion.div>
 
-        {serviceCards.map((group, idx) => (
-          <ServiceCard key={idx} group={group} />
-        ))}
-
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-black uppercase leading-[0.85] tracking-tighter mb-0 text-secondary">
+            HerLead Legacy
+          </h2>
+        </div>
       </div>
+
+      <div className="relative">
+        {serviceCards.map((group, idx) => (
+          <div
+            key={idx}
+            className="service-card-wrapper w-full h-[90vh] md:h-screen flex items-center justify-center p-4 md:p-8 lg:p-12 overflow-hidden will-change-transform"
+          >
+            <ServiceCard group={group} />
+          </div>
+        ))}
+      </div>
+
+      {/* Footer Spacer */}
+      <div className="h-0 md:h-[30vh]" />
     </section>
   )
 }
 
 export default ServicesSection
+

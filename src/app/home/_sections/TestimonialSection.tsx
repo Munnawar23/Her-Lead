@@ -19,7 +19,7 @@ const TestimonialSection = () => {
 
   return (
     <section
-      className='relative w-full bg-accent-blue mt-12 md:mt-20 py-16 md:py-24 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem]'
+      className='relative w-full bg-accent-blue mt-12 md:mt-20 py-16 md:py-24 px-6 md:px-12 lg:px-20 overflow-hidden rounded-t-3xl md:rounded-t-[2.5rem]'
     >
       <div className='max-w-7xl mx-auto'>
 

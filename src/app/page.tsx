@@ -23,8 +23,8 @@ const RootPage = () => {
         <AboutSection />
         <ServiceDiscovery />
         <ServicesSection />
-        <ProcessSection />
         <TestimonialSection />
+        <ProcessSection />
         <BlogsSection />
         <PartnersSection />
       </div>

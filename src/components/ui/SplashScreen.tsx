@@ -71,7 +71,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
                         translateY: '-100%',
                         transition: { duration: 1.2, ease: [0.87, 0, 0.13, 1] }
                     }}
-                    className="fixed top-0 left-0 z-[60] flex h-screen w-full flex-col justify-between bg-bg-dark p-8 md:p-12 lg:p-20 overflow-hidden"
+                    className="fixed top-0 left-0 z-60 flex h-screen w-full flex-col justify-between bg-bg-light p-8 md:p-12 lg:p-20 overflow-hidden"
                 >
                     {/* Top UI */}
                     <div className="relative z-10 flex justify-between items-start">
@@ -79,7 +79,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
                             <motion.span
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-[10px] font-black uppercase tracking-[0.5em] text-white/80"
+                                className="text-[10px] font-black uppercase tracking-[0.5em] text-text/80"
                             >
                                 HerLead
                             </motion.span>
@@ -96,7 +96,7 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.5, ease: "circOut" }}
-                                    className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-primary"
+                                    className="absolute text-[10vw] md:text-[6vw] font-heading font-black tracking-[-0.05em] uppercase text-text"
                                 >
                                     {words[wordIndex]}
                                 </motion.h2>
@@ -107,13 +107,13 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
                     {/* Bottom Content: Progress & Counter */}
                     <div className="relative z-10 w-full space-y-6">
                         <div className="flex items-end justify-between pb-6">
-                            <motion.h1 className="text-7xl md:text-9xl font-heading font-black text-white tracking-tighter leading-none">
+                            <motion.h1 className="text-7xl md:text-9xl font-heading font-black text-text tracking-tighter leading-none">
                                 {displayCount}%
                             </motion.h1>
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="w-full h-[1px] bg-white/10 relative overflow-hidden">
+                        <div className="w-full h-px bg-text/5 relative overflow-hidden">
                             <motion.div
                                 style={{ width: progressWidth }}
                                 className="absolute top-0 left-0 h-full bg-primary"

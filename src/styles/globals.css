@@ -6,19 +6,19 @@
 /* THEME DEFINITIONS */
 @theme {
   --color-bg-light: #fffefc;
-  --color-bg-dark: #1a1a1a;
+  --color-bg-dark: #121212;
   --color-text: #242424;
-  --color-primary: #FFD700;
+  --color-primary: #d4af38;
   /* Aura Gold */
   --color-secondary: #ff6666;
   --color-accent-orange: #e86fbb;
-  --color-accent-corporate: #2563EB;
+  --color-accent-corporate: #333333;
   --color-accent-blue: #0891B2;
   --color-accent-purple: #7C3AED;
   --color-social-instagram: #E1306C;
-  --color-social-linkedin: #0077B5;
+  --color-social-linkedin: #1F2937;
   --color-white: #ffffff;
-  --color-black: #000000;
+  --color-black: #121212;
 
   /* ===== TYPOGRAPHY ===== */
   --font-display: "Playfair Display", serif;
@@ -98,6 +98,22 @@
   *:focus-visible {
     outline: 2px solid var(--color-info);
     outline-offset: 2px;
+  }
+
+  @keyframes bounce-slow {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
   }
 }
 
