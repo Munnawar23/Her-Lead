@@ -52,7 +52,7 @@ const BlogsSection = () => {
                             <h3 className="text-2xl md:text-3xl font-black text-text leading-[0.9] tracking-tighter uppercase group-hover:text-secondary transition-colors">
                                 {post.title}
                             </h3>
-                            <p className="mt-4 text-sm md:text-body-custom text-text font-bold leading-relaxed opacity-70">
+                            <p className="mt-4 text-sm md:text-body-custom text-text font-bold leading-relaxed ">
                                 {post.description}
                             </p>
                         </div>
