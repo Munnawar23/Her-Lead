@@ -163,76 +163,56 @@ const ServiceCard = ({ group }: ServiceCardProps) => {
     return (
         <div
             ref={cardRef}
-            className={`relative w-[90%] h-[90%] group/card overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] transition-all duration-500
+            className={`relative w-[95%] h-[90%] group/card overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] transition-all duration-500
               ${group.color} ${group.textColor} border border-white/10 hover:border-white/20 will-change-transform shadow-2xl mx-auto`}
         >
-            {/* Optimized Simple Light Effect */}
-            <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-white/5 rounded-full pointer-events-none" />
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-black/5 pointer-events-none" />
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] h-full">
                 {/* CONTENT SIDE */}
-                <div ref={contentRef} className="relative z-10 p-5 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-between h-full">
+                <div ref={contentRef} className="relative z-10 p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-between h-full">
                     <div>
-                        <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6 service-top-badge">
-                            <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/10 border border-white/20">
-                                {getIcon(group.slug)}
-                            </div>
-                            <span className="text-[10px] sm:text-[11px] md:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/70">
-                                Premium Solution
-                            </span>
-                        </div>
-
-                        <h3 className="service-title text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-heading font-black leading-[0.9] sm:leading-[0.85] tracking-tighter uppercase mb-4 sm:mb-8">
-                            {group.title.split(' ').map((word, i) => (
-                                <span key={i} className="inline-block mr-2 sm:mr-4 overflow-hidden">
-                                    <span className="inline-block">{word}</span>
-                                </span>
-                            ))}
+                        <h3 className="service-title text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-heading font-black leading-[0.95] tracking-tighter mb-10">
+                            {group.title}
                         </h3>
 
-                        <p className="service-desc text-sm sm:text-md md:text-sm lg:text-lg font-medium text-white leading-snug sm:leading-relaxed max-w-xl mb-4 sm:mb-10">
-                            {group.desc}
-                        </p>
-
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5 sm:mb-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                             {group.tags && group.tags.map((tag, i) => (
-                                <span
+                                <div
                                     key={i}
                                     onClick={() => router.push(`/services/${group.slug}`)}
-                                    className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white/20 border border-white/10 text-[11px] sm:text-[11px] md:text-[11px] lg:text-[12px] font-bold uppercase tracking-wide transition-all hover:bg-white hover:text-black duration-300 cursor-pointer"
+                                    className="flex items-center justify-between gap-3 px-6 py-4 rounded-full bg-white border-2 border-black text-black text-xs md:text-sm font-bold shadow-[4px_4px_0px_#000] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_#000] transition-all cursor-pointer"
                                 >
-                                    {tag}
-                                    <ArrowUpRight size={10} className="opacity-40" />
-                                </span>
+                                    <span className="truncate">{tag}</span>
+                                    <ArrowUpRight size={18} className="shrink-0" />
+                                </div>
                             ))}
                         </div>
                     </div>
 
                     <div
                         onClick={() => router.push(`/services/${group.slug}`)}
-                        className="service-btn flex items-center gap-4 sm:gap-6 group/btn mt-auto w-fit cursor-pointer"
+                        className="service-btn flex items-center gap-3 px-10 py-4 border-2 border-white rounded-full text-white font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-white hover:text-black transition-all cursor-pointer w-fit group/learn"
                     >
-                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover/card:bg-white overflow-hidden">
-                            <ArrowUpRight className="text-white transition-all duration-500 group-hover/card:text-black" size={22} />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/40">View Impact</span>
-                            <span className="text-xl sm:text-xl md:text-xl lg:text-2xl font-heading font-black uppercase tracking-tight">Explore More</span>
-                        </div>
+                        <span>Learn more</span>
+                        <ArrowUpRight size={16} className="transition-transform group-hover/learn:translate-x-1 group-hover/learn:-translate-y-1" />
                     </div>
                 </div>
 
                 {/* VISUAL SIDE */}
                 <div
                     ref={visualRef}
-                    className="hidden lg:flex relative h-full items-center justify-center p-12"
+                    className="hidden lg:flex relative h-full items-center justify-center p-12 pr-20"
                 >
-                    {renderVisual()}
+                    <div className="w-full h-full max-w-[600px] flex items-center justify-center">
+                        {renderVisual()}
+                    </div>
                 </div>
             </div>
 
-            {/* Optimized Hover Indicator */}
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 origin-left scale-x-0 transition-transform duration-500 group-hover/card:scale-x-100" />
+            {/* Hover Indicator Line */}
+            <div className="absolute bottom-0 left-0 w-full h-1.5 bg-white/30 origin-left scale-x-0 transition-transform duration-700 group-hover/card:scale-x-100" />
         </div>
     )
 }

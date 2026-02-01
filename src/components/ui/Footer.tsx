@@ -70,7 +70,7 @@ const Footer = () => {
             {/* Right Column - Contact Info */}
             <div className="space-y-12">
               <div>
-                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Contact</h3>
+                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text mb-4 italic">Contact</h3>
                 <div className="space-y-3">
                   <p className="text-sm md:text-body-custom font-body font-bold text-text">
                     213 Sterling Rd. Unit 214<br />
@@ -86,7 +86,7 @@ const Footer = () => {
               </div>
 
               <div>
-                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text/40 mb-4 italic">Follow</h3>
+                <h3 className="text-xs font-heading font-black uppercase tracking-wider text-text mb-4 italic">Follow</h3>
                 <div className="flex flex-wrap gap-4">
                   {socials.map((social, i) => (
                     <a

@@ -113,7 +113,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
     }, { scope: containerRef });
 
     // Clean, minimalist input styles with bold typography
-    const inputClasses = "w-full bg-white border border-black/[0.08] rounded-xl px-5 py-4 md:px-6 md:py-5 focus:outline-none focus:border-secondary transition-all duration-300 font-heading text-base md:text-xl text-black font-black placeholder:text-text/10 hover:border-black/20"
+    const inputClasses = "w-full bg-white border border-black/15 rounded-xl px-5 py-4 md:px-6 md:py-5 focus:outline-none focus:border-secondary transition-all duration-300 font-heading text-base md:text-xl text-black font-black placeholder:text-black hover:border-black/30"
     const labelClasses = "block text-[10px] uppercase tracking-[0.25em] font-heading font-black mb-2.5 text-black pl-1"
 
     return (
@@ -123,9 +123,9 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                         <div ref={heroContentRef} className="lg:col-span-7 space-y-8 text-center lg:text-left">
-                            <div className='reveal-item inline-flex items-center gap-2 border border-black/5 bg-white px-3 py-1.5 rounded-full shadow-sm'>
+                            <div className='reveal-item inline-flex items-center gap-2 border border-black/10 bg-white px-3 py-1.5 rounded-full shadow-sm'>
                                 <span className='w-1.5 h-1.5 rounded-full bg-secondary' />
-                                <span className='text-[9px] font-heading font-black uppercase tracking-[0.2em] text-text/60'>{badge}</span>
+                                <span className='text-[9px] font-heading font-black uppercase tracking-[0.2em] text-text'>{badge}</span>
                             </div>
 
                             <h1 className="reveal-item text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-black leading-[1.05] tracking-tight text-text uppercase">
@@ -138,7 +138,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                 {title.line2 && <>{' '}{title.line2}</>}
                             </h1>
 
-                            <p className="reveal-item text-base md:text-body-custom font-body font-medium text-text/50 max-w-xl leading-relaxed mx-auto lg:mx-0">
+                            <p className="reveal-item text-base md:text-body-custom font-body font-medium text-text max-w-xl leading-relaxed mx-auto lg:mx-0">
                                 {description}
                             </p>
                         </div>
@@ -173,7 +173,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                     <div className="space-y-12">
                         <div className="space-y-6">
                             <h2 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-tighter leading-tight" dangerouslySetInnerHTML={{ __html: philosophyTitle }} />
-                            <p className="text-base md:text-body-custom font-body text-text/50 leading-relaxed max-w-lg">
+                            <p className="text-base md:text-body-custom font-body text-text leading-relaxed max-w-lg">
                                 {philosophyText}
                             </p>
                         </div>
@@ -184,7 +184,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                     <div className="w-6 h-6 rounded-full border border-black/10 flex items-center justify-center text-secondary shrink-0 mt-1 transition-colors group-hover:bg-secondary group-hover:border-secondary group-hover:text-white">
                                         <CheckCircle2 className="w-3.5 h-3.5" />
                                     </div>
-                                    <p className="text-[10px] font-heading font-black uppercase tracking-widest text-text/70">{item}</p>
+                                    <p className="text-[10px] font-heading font-black uppercase tracking-widest text-text">{item}</p>
                                 </div>
                             ))}
                         </div>
@@ -211,7 +211,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                     <div className="text-center mb-20 space-y-4">
                         <h2 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-tighter">{formTitle}</h2>
                         <div className="w-12 h-0.5 bg-secondary mx-auto" />
-                        <p className="text-[10px] sm:text-[11px] font-heading font-black uppercase tracking-[0.3em] text-text/30">{formSubtitle}</p>
+                        <p className="text-[10px] sm:text-[11px] font-heading font-black uppercase tracking-[0.3em] text-text">{formSubtitle}</p>
                     </div>
 
                     <div className="form-container bg-white">
@@ -254,7 +254,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                                                     <option key={opt.value} value={opt.value}>{opt.label}</option>
                                                                 ))}
                                                             </select>
-                                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                                                                 <ArrowRight className="w-4 h-4 rotate-90" />
                                                             </div>
                                                         </div>
@@ -283,7 +283,7 @@ const FormPageLayout: React.FC<FormPageLayoutProps> = ({
                                         <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                     </span>
                                 </button>
-                                <p className="mt-8 text-[9px] text-text/20 font-heading font-black uppercase tracking-[0.5em]">Direct Consultation Entry</p>
+                                <p className="mt-8 text-[9px] text-text font-heading font-black uppercase tracking-[0.5em]">Direct Consultation Entry</p>
                             </div>
                         </form>
                     </div>

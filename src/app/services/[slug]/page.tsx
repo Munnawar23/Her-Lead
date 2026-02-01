@@ -113,7 +113,7 @@ const FAQItem = ({ question, answer, isOpen, onClick, index }: { question: strin
                 className="w-full py-6 md:py-8 px-4 md:px-6 flex items-center justify-between text-left"
             >
                 <div className="flex gap-4 md:gap-6 items-start">
-                    <span className="text-[10px] md:text-xs font-heading font-black text-secondary/40 mt-1">0{index + 1}</span>
+                    <span className="text-[10px] md:text-xs font-heading font-black text-secondary mt-1">0{index + 1}</span>
                     <span className="text-lg md:text-2xl font-heading font-black text-text uppercase tracking-tight transition-colors">
                         {question}
                     </span>
@@ -339,7 +339,7 @@ const ServiceDetail = () => {
                         <h1 className="text-[12vw] md:text-[7vw] font-heading font-black text-white uppercase tracking-tighter leading-[0.8] mt-24 mb-12 md:mt-0 md:mb-8">
                             <RevealText text={service.name} delay={0.3} />
                         </h1>
-                        <p className="reveal-y text-lg md:text-2xl text-white/90 font-medium max-w-2xl leading-relaxed border-l-2 border-secondary pl-6">
+                        <p className="reveal-y text-lg md:text-2xl text-white font-medium max-w-2xl leading-relaxed border-l-2 border-secondary pl-6">
                             {intro.split('\n')[0]}
                         </p>
                     </div>
@@ -364,7 +364,7 @@ const ServiceDetail = () => {
                             </div>
                             <div className="flex flex-wrap gap-3">
                                 {["Strategic", "High-Impact", "Results-Driven", "Tailored"].map((tag, i) => (
-                                    <span key={i} className="px-4 py-2 rounded-full border border-black/10 text-[10px] font-black uppercase tracking-widest text-black/60">
+                                    <span key={i} className="px-4 py-2 rounded-full border border-black/10 text-[10px] font-black uppercase tracking-widest text-black">
                                         {tag}
                                     </span>
                                 ))}
@@ -378,7 +378,7 @@ const ServiceDetail = () => {
                                 <h3 className="text-2xl md:text-3xl font-heading font-black text-black uppercase tracking-tight">
                                     {items[0].type === 'step' ? 'Execution Roadmap' : 'Key Highlights'}
                                 </h3>
-                                <span className="hidden md:block text-xs font-heading font-black text-black/30 uppercase tracking-widest">
+                                <span className="hidden md:block text-xs font-heading font-black text-black uppercase tracking-widest">
                                     {items.length} KEY POINTS
                                 </span>
                             </div>
@@ -391,7 +391,7 @@ const ServiceDetail = () => {
                                     >
                                         <div className="md:px-4 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-start">
                                             <div className="md:col-span-2 lg:col-span-2 flex md:justify-end">
-                                                <span className="text-4xl md:text-5xl font-heading font-black text-black/20 group-hover:text-secondary transition-colors duration-500 tabular-nums">
+                                                <span className="text-4xl md:text-5xl font-heading font-black text-black group-hover:text-secondary transition-colors duration-500 tabular-nums">
                                                     {item.label}
                                                 </span>
                                             </div>
@@ -401,7 +401,7 @@ const ServiceDetail = () => {
                                                     {item.title}
                                                 </h4>
                                                 {item.desc && (
-                                                    <p className="text-lg text-black/60 font-medium leading-relaxed max-w-2xl group-hover:text-black/80 transition-colors duration-300">
+                                                    <p className="text-lg text-black font-medium leading-relaxed max-w-2xl transition-colors duration-300">
                                                         {item.desc}
                                                     </p>
                                                 )}
@@ -460,7 +460,7 @@ const ServiceDetail = () => {
                         <div className="space-y-4 md:space-y-6">
                             <span className="text-[10px] md:text-xs font-heading font-black text-secondary uppercase tracking-[0.4em]">Common Questions</span>
                             <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black text-text uppercase tracking-tighter leading-none">
-                                MOSTLY ASKED <span className="text-text/20">QUESTIONS</span>
+                                MOSTLY ASKED QUESTIONS
                             </h2>
                         </div>
                         <p className="text-sm md:text-lg text-text font-heading font-bold uppercase tracking-widest max-w-[300px]">
@@ -518,16 +518,16 @@ const ServiceDetail = () => {
                             <form className="space-y-8 md:space-y-10">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                                     <div className="relative group">
-                                        <input type="text" className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black/60 focus:border-secondary focus:outline-none transition-all font-black uppercase tracking-tight" placeholder="Full Name" />
+                                        <input type="text" className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black focus:border-secondary focus:outline-none transition-all font-black uppercase tracking-tight" placeholder="Full Name" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-secondary group-focus-within:w-full transition-all duration-500" />
                                     </div>
                                     <div className="relative group">
-                                        <input type="email" className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black/60 focus:border-secondary focus:outline-none transition-all font-black uppercase tracking-tight" placeholder="Email Address" />
+                                        <input type="email" className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black focus:border-secondary focus:outline-none transition-all font-black uppercase tracking-tight" placeholder="Email Address" />
                                         <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-secondary group-focus-within:w-full transition-all duration-500" />
                                     </div>
                                 </div>
                                 <div className="relative group">
-                                    <textarea rows={2} className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black/60 focus:border-secondary focus:outline-none transition-all resize-none font-black uppercase tracking-tight" placeholder="Project Details"></textarea>
+                                    <textarea rows={2} className="w-full bg-transparent border-b-2 border-black/20 py-3 md:py-4 text-lg md:text-xl text-black placeholder:text-black focus:border-secondary focus:outline-none transition-all resize-none font-black uppercase tracking-tight" placeholder="Project Details"></textarea>
                                     <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-secondary group-focus-within:w-full transition-all duration-500" />
                                 </div>
 

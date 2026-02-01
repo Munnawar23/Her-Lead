@@ -192,7 +192,7 @@ const ProcessSection = () => {
             {steps.map((step) => (
               <div key={step.number} className="group relative shrink-0 w-[310px] md:w-[400px] lg:w-[450px] h-[420px] md:h-[500px] lg:h-[550px] bg-secondary border border-white/10 rounded-[3rem] p-10 md:p-14 flex flex-col justify-between transition-all duration-700 hover:border-white/40 overflow-hidden lg:cursor-none">
                 <div className="absolute inset-0 bg-black/10 transition-all duration-700 ease-in-out z-0 opacity-0 group-hover:opacity-100" />
-                <div className="absolute top-10 right-10 flex flex-col items-end opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700">
+                <div className="absolute top-10 right-10 flex flex-col items-end group-hover:opacity-20 transition-opacity duration-700">
                   <span className="text-[8rem] font-heading font-black leading-none text-white select-none -translate-y-12">
                     {step.number}
                   </span>

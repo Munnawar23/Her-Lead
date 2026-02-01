@@ -291,12 +291,12 @@ const AboutSection = () => {
 
         {/* --- META DATA (Corners) --- */}
         <div className="absolute top-12 left-8 md:top-16 md:left-12 z-30 flex flex-col gap-2">
-          <span className="font-heading font-black text-[10px] uppercase tracking-widest text-black/40">Est. 2024</span>
+          <span className="font-heading font-black text-[10px] uppercase tracking-widest text-black">Est. 2024</span>
           <div className="w-10 h-px bg-black/20"></div>
         </div>
 
         <div className="absolute top-12 right-8 md:top-16 md:right-12 z-30 flex flex-col items-end gap-2">
-          <span className="font-heading font-black text-[10px] uppercase tracking-widest text-right text-black/40">Global Reach</span>
+          <span className="font-heading font-black text-[10px] uppercase tracking-widest text-right text-black">Global Reach</span>
           <div className="flex gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-black/10"></div>
           </div>
@@ -323,12 +323,6 @@ const AboutSection = () => {
         </div>
       </div>
 
-      {/* Decorative Side Text */}
-      <div className='side-text absolute -right-32 top-1/2 -translate-y-1/2 rotate-90 hidden xl:block pointer-events-none'>
-        <span className='text-[14vh] font-black font-heading text-secondary/10 select-none whitespace-nowrap uppercase tracking-widest'>
-          DIGITAL ELEVATION
-        </span>
-      </div>
     </section>
   )
 }

@@ -156,7 +156,7 @@ const ServiceDiscovery = () => {
                   </span>
                   <ArrowUpRight
                     size={22}
-                    className={`transition-all duration-500 ${hoveredIndex === index ? 'text-black rotate-0 translate-x-1' : 'text-white group-hover:translate-x-1 group-hover:-translate-y-1 opacity-60'}`}
+                    className={`transition-all duration-500 ${hoveredIndex === index ? 'text-black rotate-0 translate-x-1' : 'text-white group-hover:translate-x-1 group-hover:-translate-y-1'}`}
                   />
                 </div>
               </div>

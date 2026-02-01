@@ -82,7 +82,7 @@ const TestimonialSection = () => {
             />
           </div>
           <div className='mt-8 md:mt-12'>
-            <h3 className='text-4xl font-heading font-black text-white/90 leading-none tracking-tighter uppercase'>
+            <h3 className='text-4xl font-heading font-black text-white leading-none tracking-tighter uppercase'>
               What our clients <br className='hidden md:block' />
               <span className="italic text-white">love about us</span>
             </h3>
@@ -97,7 +97,7 @@ const TestimonialSection = () => {
               className='testimonial-card space-y-6 flex flex-col'
             >
               {/* Quote Icon SVG */}
-              <div className='text-white/60'>
+              <div className='text-white'>
                 <svg width="32" height="24" viewBox="0 0 48 36" fill="currentColor">
                   <path d="M0 21.6001C0 14.4001 2.4 -5.72205e-05 14.4 -5.72205e-05V7.20002C9.6 7.20002 7.2 12 7.2 16.8001V21.6001H14.4V36H0V21.6001ZM26.4 21.6001C26.4 14.4001 28.8 -5.72205e-05 40.8 -5.72205e-05V7.20002C36 7.20002 33.6 12 33.6 16.8001V21.6001H40.8V36H26.4V21.6001Z" />
                 </svg>
@@ -118,7 +118,7 @@ const TestimonialSection = () => {
                   <span className='text-white font-heading font-black uppercase text-sm tracking-[0.2em]'>
                     {t.company}
                   </span>
-                  <span className='text-white/40 text-[10px] uppercase font-bold tracking-widest'>Verified Client</span>
+                  <span className='text-white text-[10px] uppercase font-bold tracking-widest'>Verified Client</span>
                 </div>
               </div>
             </div>

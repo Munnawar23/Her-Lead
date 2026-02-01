@@ -7,12 +7,12 @@
 @theme {
   --color-bg-light: #fffefc;
   --color-bg-dark: #121212;
-  --color-text: #242424;
+  --color-text: #000000;
   --color-primary: #d4af38;
   /* Aura Gold */
   --color-secondary: #ff6666;
   --color-accent-orange: #e86fbb;
-  --color-accent-corporate: #333333;
+  --color-accent-corporate: #000000;
   --color-accent-blue: #0891B2;
   --color-accent-purple: #7C3AED;
   --color-social-instagram: #E1306C;

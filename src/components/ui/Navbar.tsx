@@ -223,9 +223,9 @@ const Navbar = () => {
           </nav>
 
           <div className="menu-item flex items-center gap-3 opacity-0">
-            <div className="w-8 h-px bg-white opacity-40" />
-            <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap opacity-40">Strategy • Creativity • Growth</span>
-            <div className="w-8 h-px bg-white opacity-40" />
+            <div className="w-8 h-px bg-white" />
+            <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white whitespace-nowrap">Strategy • Creativity • Growth</span>
+            <div className="w-8 h-px bg-white" />
           </div>
 
           {/* Mobile Buttons Grid */}
